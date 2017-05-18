@@ -1,16 +1,15 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('profiles', function(table){
+  return knex.schema.createTable('locations', function (table){
     table.increments('id').primary()
-    table.text('address')
-    table.string('email')
-    table.text('url')
+    table.integer('latitude')
+    table.integer('longitude')
     table.integer('school_id')
       .references('id')
       .inTable('schools')
   })
-}
+};
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('profiles')
-}
+  return knex.schema.dropTable('locations')
+};
