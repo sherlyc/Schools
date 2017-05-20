@@ -1,15 +1,39 @@
-# A starter webpack project for React
+# Personal Project : Find a School
 
-This is a starter project that uses webpack to transpile and bundle ES6 React code. To use, consider this approach:
 
-* Fork this repo
-* Rename your repo according to the app you're building
+## Learning Objectives
 
-```sh
-git clone https://github.com/dev-academy-challenges/[your-app].git
-cd [your-app] && npm install
-```
+1. knex , postgres : getting database deployed to heroku
+2. express
+3. data filtering and paging.
+4. convert a spreadsheet of data into readable information on web.
+5. how to use google map api and learning the names of regions in Wellington.
+6. trademe api (*stretch)
 
-To start the development server with a watcher that refreshes your browser, run `npm start`. The assets built by webpack are placed in `server/static`. This folder is defined as a static folder in an Express.js server that can be started with `npm run server`.
+## Problem Solving
 
-Additional components should be placed in `client/components`.
+To make it easier someone to find a school in any area and perhaps any properties available on trademe nearby that school.
+
+
+## MVP
+
+### User Stories
+
+* User can view a list of schools.
+* user can view profile and contact information of each school.
+* a google map will be displayed at the profile page showing where the school is at.
+
+## Stretch
+
+### User Stories
+
+* user can filter/sort the list by deciles, areas
+* user can search for a school by specifying names, areas
+* an administrator area to allow add/edit/delete/update school profile.
+* user can add comments to a school profile.
+* user can view a list/links of properties available on trademe nearby the selected school.
+* a google map based navigation for user to search for schools
+
+## ER Diagram
+### v 1.0
+![alt text](ER-First-Draft.png)
