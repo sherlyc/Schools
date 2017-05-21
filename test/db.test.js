@@ -19,6 +19,7 @@ test('getSchool gets a single school', function (t) {
   return db.getSchool(4, t.context.connection)
     .then(function (result) {
       var actual = result[0].name
+      console.log(result)
       t.is(expected, actual)
     })
 })

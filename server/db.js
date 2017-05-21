@@ -13,6 +13,5 @@ function getSchools () {
 }
 
 function getSchool (id) {
-    return knex('schools').select()
-           where('id', id)
+    return knex('schools').where('id', id)
 }
