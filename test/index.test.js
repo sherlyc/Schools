@@ -6,6 +6,6 @@ import App from '../client/components/App'
 
 test('<App />', t => {
   const wrapper = shallow(<App />)
-  t.equal(wrapper.contains(<h1>Welcome to Schools</h1>), true)
+  t.is(wrapper.contains(<h1>Welcome to Schools</h1>), true)
   t.end()
 })

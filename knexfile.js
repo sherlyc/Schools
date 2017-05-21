@@ -10,7 +10,7 @@ module.exports = {
 
   production: {
     client: 'postgresql',
-    connection: process.env.DATABASE_URL 
+    connection: process.env.DATABASE_URL
   },
 
   test: {
@@ -18,8 +18,7 @@ module.exports = {
     connection: {
       filename: ':memory'
     },
-    seeds: {
-      directory: './tests/helpers/seeds'
-    }
+    useNullAsDefault: true
+
   }
 };

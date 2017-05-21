@@ -3,9 +3,16 @@ var config = require('../knexfile.js')[env]
 var knex = require('knex')(config)
 
 
-module.exports = getSchools
+module.exports = {
+    getSchools,
+    getSchool
+}
 
 function getSchools () {
     return knex('schools').select()
+}
 
+function getSchool (id) {
+    return knex('schools').select()
+           where('id', id)
 }

@@ -9,7 +9,8 @@
     "dev": "nodemon server/index & webpack --watch",
     "start": "node server/index",
     "debug": "node --inspect --debug-brk server/index.js",
-    "test": "tape -r babel-register 'test/**/*.test.js' | tap-diff",
+    "test": "tape -r babel-register 'test/index.test.js' ava 'test/db.test.js' | tap-diff",
+    "test2": "ava 'test/db.test.js'",
     "watch": "nodemon -e js,jsx -x npm test"
   },
   "babel": {
@@ -21,6 +22,7 @@
   "author": "Sherly",
   "license": "ISC",
   "devDependencies": {
+    "ava": "^0.19.1",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
