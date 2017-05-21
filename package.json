@@ -5,7 +5,10 @@
   "repository": "https://github.com/sherlyc/Schoolz.git",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon --watch server server/index & webpack --watch",
+    "knex": "knex",
+    "dev": "nodemon server/index & webpack --watch",
+    "start": "node server/index",
+    "debug": "node --inspect --debug-brk server/index.js",
     "test": "tape -r babel-register 'test/**/*.test.js' | tap-diff",
     "watch": "nodemon -e js,jsx -x npm test"
   },
@@ -31,6 +34,7 @@
     "react-dom": "^15.4.2",
     "react-router-dom": "^4.1.1",
     "sqlite3": "^3.1.8",
+    "supertest": "^3.0.0",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.3",
     "webpack": "^2.3.3",

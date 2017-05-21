@@ -1,10 +1,22 @@
 var path = require('path')
+
 var express = require('express')
 var bodyParser = require('body-parser')
 
-var server = express()
+var index = require('./routes/index')
+var app = express()
 
-server.use(bodyParser.json())
-server.use(express.static(path.join(__dirname, '../public')))
+// Middleware
 
-module.exports = server
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static(__dirname + '/public'))
+
+// Routes
+
+app.use('/', index)
+
+module.exports = (connection) => {
+  app.set('connection', connection)
+  return app
+}

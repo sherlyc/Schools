@@ -6,7 +6,7 @@ const App = () => {
   return (
     <Router>
       <div>
-        <h1>Welcome to Schoolz</h1>
+        <h1>Welcome to Schools</h1>
         <hr></hr>
           <div className='container'>
             <div className='nav'>

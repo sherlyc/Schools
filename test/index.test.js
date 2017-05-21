@@ -5,8 +5,7 @@ import { shallow } from 'enzyme'
 import App from '../client/components/App'
 
 test('<App />', t => {
-  const expected = 'React development has begun!'
   const wrapper = shallow(<App />)
-  t.equal(wrapper.text(), expected)
+  t.equal(wrapper.contains(<h1>Welcome to Schools</h1>), true)
   t.end()
 })
