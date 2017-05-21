@@ -10,7 +10,7 @@ test('getSchools get all schools', function (t) {
   return db.getSchools(t.context.connection)
     .then(function (result) {
       var actual = result.length
-      t.is(expected, actual)
+      t.is(expected, actual, "Get all schools")
     })
 })
 
@@ -19,7 +19,6 @@ test('getSchool gets a single school', function (t) {
   return db.getSchool(4, t.context.connection)
     .then(function (result) {
       var actual = result[0].name
-      console.log(result)
-      t.is(expected, actual)
+      t.is(expected, actual, "Get a school")
     })
 })
