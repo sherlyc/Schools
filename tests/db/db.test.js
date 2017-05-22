@@ -47,3 +47,15 @@ test('update school works correctly', function (t) {
                 })
         })
 })
+
+test('delete school removed a school from database', function (t) {
+    var expected = 3
+    return db.delSchool(1, t.context.db)
+        .then(function (result) {
+            return db.getSchools(t.context.db)
+                .then(function (schools) {
+                    var actual = schools.length
+                    t.is(actual, expected)
+                })
+        })
+})
