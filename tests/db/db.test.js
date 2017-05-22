@@ -34,3 +34,16 @@ test('insert school returns 5 schools', function (t) {
         })
     })
 })
+
+test('update school works correctly', function (t) {
+    var expected = 'Fashion School'
+    var data = {name: 'Fashion School'}
+    return db.updateSchool(4, data, t.context.db)
+        .then(function (result) {
+            return db.getSchool(4, t.context.db)
+                .then(function (school){
+                    var actual = school[0].name
+                    t.is(actual, expected)
+                })
+        })
+})
