@@ -1,17 +1,17 @@
-var env = process.env['NODE_ENV'] || 'development'
-var config = require('../knexfile.js')[env]
-var knex = require('knex')(config)
-
-
 module.exports = {
     getSchools,
-    getSchool
+    getSchool,
+    addSchool
 }
 
-function getSchools () {
+function getSchools (knex) {
     return knex('schools').select()
 }
 
-function getSchool (id) {
+function getSchool (id, knex) {
     return knex('schools').where('id', id)
+}
+
+function addSchool (data, knex) {
+    return knex('schools').insert({name: data.name, schoolType: data.schoolType, authority: data.authority, decile: data.decile })
 }

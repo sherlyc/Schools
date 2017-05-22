@@ -1,0 +1,36 @@
+var test = require('ava')
+var db = require('../../server/db')
+var dbConfig = require('../dbConfig.js')
+
+dbConfig(test)
+
+
+test('getSchools get all schools', function (t) {
+  var expected = 4
+  return db.getSchools(t.context.db)
+    .then(function (result) {
+      var actual = result.length
+      t.is(expected, actual, "Get all schools")
+    })
+})
+
+test('getSchool gets a single school', function (t) {
+  var expected = 'Adventure'
+  return db.getSchool(4, t.context.db)
+    .then(function (result) {
+      var actual = result[0].name
+      t.is(expected, actual, "Get a school")
+    })
+})
+
+test('insert school returns 5 schools', function (t) {
+    var expected = 5
+    var data = {name: 'Hataitai School', schoolType: 'Full Primary School (Year 1-8)', authority: 'State', Decile:'10'}
+    return db.addSchool(data, t.context.db)
+        .then(function (result) {
+           return db.getSchools(t.context.db).then(function (results){
+           var actual = results.length
+           t.is(actual, expected)
+        })
+    })
+})
