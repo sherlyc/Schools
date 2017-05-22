@@ -9,7 +9,7 @@
     "dev": "nodemon server/index & webpack --watch",
     "start": "node server/index",
     "debug": "node --inspect --debug-brk server/index.js",
-    "test": "tape -r babel-register 'test/index.test.js' ava 'test/db.test.js' | tap-diff",
+    "test": "tape -r babel-register 'test/index.test.js' | tap-diff & ava 'test/db.test.js'",
     "test2": "ava 'test/db.test.js'",
     "watch": "nodemon -e js,jsx -x npm test"
   },
