@@ -2,6 +2,7 @@ import React from 'react'
 
 export default (props) => {
   const schools = props.schools || []
+  console.log(schools)
     return (
         <div className="school-list">
             <h2>List</h2>

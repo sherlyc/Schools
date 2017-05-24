@@ -9696,6 +9696,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (props) {
     var schools = props.schools || [];
+    console.log(schools);
     return _react2.default.createElement(
         "div",
         { className: "school-list" },
