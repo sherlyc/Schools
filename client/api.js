@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-var schoolUrl = 'http://localhost:3500/schools'
+var schoolUrl = 'http://localhost:3000/schools'
 
 module.exports = {
   getSchools
