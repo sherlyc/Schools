@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.integer('latitude')
     table.integer('longitude')
+    table.string('suburb')
     table.integer('school_id')
       .references('id')
       .inTable('schools')

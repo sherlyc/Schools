@@ -43,7 +43,9 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cors": "^2.8.3",
     "express": "^4.14.0",
-    "knex": "^0.13.0"
+    "knex": "^0.13.0",
+    "superagent": "^3.5.2"
   }
 }
