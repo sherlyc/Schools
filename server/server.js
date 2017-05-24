@@ -9,7 +9,7 @@ var app = express()
 // Middleware
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../public'))
-app.use(cors({origin: 'http://localhost:8080'}))
+app.use(cors({origin: '*'}))
 
 // Routes
 app.use('/schools', schools)
