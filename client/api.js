@@ -13,7 +13,7 @@ function getSchools (callback) {
       if (err) {
         callback(err)
       } else {
-        callback(null, res.body)
+        callback(null, res.body.schools)
       }
     })
 }

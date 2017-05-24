@@ -7,12 +7,9 @@ var schools = require('./routes/schools')
 var app = express()
 
 // Middleware
-
-
 app.use(bodyParser.json())
-app.use(express.static(__dirname + '../public'))
+app.use(express.static(__dirname + '/../public'))
 app.use(cors({origin: 'http://localhost:8080'}))
-
 
 // Routes
 app.use('/schools', schools)
