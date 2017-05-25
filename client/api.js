@@ -17,3 +17,17 @@ function getSchools (callback) {
       }
     })
 }
+
+
+function addSchool (school, callback) {
+  request
+    .post(schoolUrl)
+    .send(school)
+    .end(function (err, res) {
+      if (err) {
+        callback(err)
+      } else {
+        callback(null)
+      }
+    })
+}

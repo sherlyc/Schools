@@ -14,6 +14,10 @@ router.get('/', function (req, res) {
     })
 })
 
+router.post('/', function (req, res) {
+    db.addSchool(req.body, req.app.get('connection'))
+    res.sendStatus(200)
+})
 
 
 module.exports = router

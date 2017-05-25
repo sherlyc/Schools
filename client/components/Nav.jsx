@@ -1,9 +1,11 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Nav = () => {
   return (
     <div className="home">
-        <a href="./schools">Schools List</a>
+        <Link to='/schools'>List Schools</Link>
+        <Link to='/add'>Add School</Link>
     </div>
   )
 }
