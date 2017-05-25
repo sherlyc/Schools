@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export default (props) => {
   const schools = props.schools || []
@@ -8,7 +9,7 @@ export default (props) => {
             <h2>List</h2>
             <ul>
               {schools.map((school, i) => {
-                  return (<li key={i}>{school.name}</li>)
+                  return (<Link to={'/schools/'+school.id}><li key={i}>{school.name}</li></Link>)
               })}
             </ul>
 
