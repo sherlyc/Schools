@@ -1,6 +1,8 @@
 import React from 'react'
 import * as api from '../api'
+import Nav from './Nav'
 import Home from './Home'
+import List from './List'
 import SchoolList from './SchoolList'
 import {HashRouter as Router, Route} from 'react-router-dom'
 
@@ -39,6 +41,7 @@ render () {
                     <hr></hr>
                     <div className='content'>
                         <Route exact={true} path='/' component={Home}/>
+                        <Route exact={true} path='/schools' component={List} />
                         <SchoolList schools={this.state.schools}/>
                     </div>
                   </div>
