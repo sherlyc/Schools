@@ -1,6 +1,5 @@
 import React from 'react'
 import * as api from '../api'
-import SchoolDetail from './SchoolDetail'
 
 export default class SchoolProfile extends React.Component {
     constructor(props) {
@@ -29,9 +28,13 @@ render () {
             <div>
                 <h1>School Profile</h1>
                     <ul>
-                           {Object.keys(this.state.school).map((key, i) => {
-                               return (<li key={i}>{this.state.school[key]}</li>)
-                           })}
+
+                        <li>Name : {this.state.school.name}</li>
+                        <li>Suburb : {this.state.school.suburb}</li>
+                        <li>Email : {this.state.school.email} </li>
+
+
+
                     </ul>
             </div>
     )

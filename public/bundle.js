@@ -27789,47 +27789,7 @@ var valueEqual = function valueEqual(a, b) {
 exports.default = valueEqual;
 
 /***/ }),
-/* 238 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(5);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-    var school = props.school || [];
-    return _react2.default.createElement(
-        "div",
-        { className: "school-detail" },
-        _react2.default.createElement(
-            "h2",
-            null,
-            "List"
-        ),
-        _react2.default.createElement(
-            "ul",
-            null,
-            Object.keys(props.school).map(function (key, i) {
-                return _react2.default.createElement(
-                    "li",
-                    { key: i },
-                    school[key]
-                );
-            })
-        )
-    );
-};
-
-/***/ }),
+/* 238 */,
 /* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27849,10 +27809,6 @@ var _react2 = _interopRequireDefault(_react);
 var _api = __webpack_require__(62);
 
 var api = _interopRequireWildcard(_api);
-
-var _SchoolDetail = __webpack_require__(238);
-
-var _SchoolDetail2 = _interopRequireDefault(_SchoolDetail);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -27900,8 +27856,6 @@ var SchoolProfile = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
-
             console.log(this.state.school);
             return _react2.default.createElement(
                 'div',
@@ -27914,13 +27868,25 @@ var SchoolProfile = function (_React$Component) {
                 _react2.default.createElement(
                     'ul',
                     null,
-                    Object.keys(this.state.school).map(function (key, i) {
-                        return _react2.default.createElement(
-                            'li',
-                            { key: i },
-                            _this3.state.school[key]
-                        );
-                    })
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Name : ',
+                        this.state.school.name
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Suburb : ',
+                        this.state.school.suburb
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Email : ',
+                        this.state.school.email,
+                        ' '
+                    )
                 )
             );
         }
