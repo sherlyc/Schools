@@ -35,7 +35,7 @@ function addSchool (school, callback) {
 
 function getSchool (id, callback) {
     request
-    .get(schoolUrl+'/'+id)
+    .get(schoolUrl + '/' + id)
     .end(function (err, res) {
         if (err) {
             callback(err)

@@ -23,18 +23,13 @@ renderProfile (err, school) {
 }
 
 render () {
-    console.log(this.state.school)
     return (
             <div>
                 <h1>School Profile</h1>
                     <ul>
-
                         <li>Name : {this.state.school.name}</li>
                         <li>Suburb : {this.state.school.suburb}</li>
                         <li>Email : {this.state.school.email} </li>
-
-
-
                     </ul>
             </div>
     )

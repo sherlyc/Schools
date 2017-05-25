@@ -11399,7 +11399,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (props) {
     var schools = props.schools || [];
-    console.log(schools);
     return _react2.default.createElement(
         'div',
         { className: 'school-list' },
@@ -11414,10 +11413,10 @@ exports.default = function (props) {
             schools.map(function (school, i) {
                 return _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/schools/' + school.id },
+                    { key: i, to: '/schools/' + school.id },
                     _react2.default.createElement(
                         'li',
-                        { key: i },
+                        null,
                         school.name
                     )
                 );
@@ -27856,7 +27855,6 @@ var SchoolProfile = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            console.log(this.state.school);
             return _react2.default.createElement(
                 'div',
                 null,
