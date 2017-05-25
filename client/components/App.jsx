@@ -1,7 +1,8 @@
 import React from 'react'
 import * as api from '../api'
+import Home from './Home'
 import SchoolList from './SchoolList'
-// import {HashRouter as Router, Route} from 'react-router-dom'
+import {HashRouter as Router, Route} from 'react-router-dom'
 
 
 export default class App extends React.Component {
@@ -27,19 +28,22 @@ renderSchools (err, schools) {
 
 render () {
     return (
+        <Router>
             <div>
                 <h1>Welcome to Schools</h1>
                 <hr></hr>
                   <div className='container'>
                     <div className='nav'>
-                      Navigation menu goes here
+                     <Nav />
                     </div>
                     <hr></hr>
                     <div className='content'>
-                      <SchoolList schools={this.state.schools}/>
+                        <Route exact={true} path='/' component={Home}/>
+                        <SchoolList schools={this.state.schools}/>
                     </div>
                   </div>
               </div>
+        </Router>
     )
 }
 }
