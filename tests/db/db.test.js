@@ -18,7 +18,6 @@ test('getSchool gets a single school', function (t) {
   var expected = 'Adventure School'
   return db.getSchool(4, t.context.db)
     .then(function (result) {
-      console.log(result)
       var actual = result[0].name
       t.is(expected, actual, "Get a school")
     })

@@ -15,6 +15,7 @@ function getSchool (id, knex) {
            .join('profiles', 'schools.id', '=' , 'profiles.school_id')
            .join('locations', 'schools.id', '=', 'locations.school_id')
            .where('schools.id', id)
+           .first()
 }
 
 function addSchool (data, knex) {

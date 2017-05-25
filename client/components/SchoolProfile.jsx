@@ -7,27 +7,30 @@ export default class SchoolProfile extends React.Component {
         super(props)
         this.state = {
             error: null,
-            school: []
+            school: {},
+            id: props.match.params.id
         }
     }
 
 
+
+
 componentDidMount () {
-   api.getSchoolProfile((err, school) => this.renderProfile(err, school))
+   api.getSchool(this.state.id,(err, school) => this.renderProfile(err, school))
 }
 
 renderProfile (err, school) {
     this.setState({
         error: err,
-        school: school || []
+        school: school || {}
     })
 }
 
 render () {
     return (
             <div>
-
-                      <SchoolDetail schools={this.state.school}/>
+                     <h1>School Profile</h1>
+                      <SchoolDetail school={this.state.school}/>
             </div>
     )
 }

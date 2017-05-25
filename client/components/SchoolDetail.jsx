@@ -6,8 +6,8 @@ export default (props) => {
         <div className="school-detail">
             <h2>List</h2>
             <ul>
-              {school.map((school, i) => {
-                  return (<li key={i}>{school.name}</li>)
+              {Object.keys(props.school).map((key, i) => {
+                  return (<li key={i}>{school[key]}</li>)
               })}
             </ul>
 

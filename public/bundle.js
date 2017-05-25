@@ -7356,7 +7356,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var schoolUrl = 'http://localhost:3000/schools';
 
 module.exports = {
-  getSchools: getSchools
+  getSchools: getSchools,
+  getSchool: getSchool
 };
 
 function getSchools(callback) {
@@ -7375,6 +7376,16 @@ function addSchool(school, callback) {
       callback(err);
     } else {
       callback(null);
+    }
+  });
+}
+
+function getSchool(id, callback) {
+  _superagent2.default.get(schoolUrl + '/' + id).end(function (err, res) {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, res.body.school);
     }
   });
 }
@@ -11120,9 +11131,9 @@ var _AddSchoolForm = __webpack_require__(99);
 
 var _AddSchoolForm2 = _interopRequireDefault(_AddSchoolForm);
 
-var _List = __webpack_require__(101);
+var _SchoolProfile = __webpack_require__(239);
 
-var _List2 = _interopRequireDefault(_List);
+var _SchoolProfile2 = _interopRequireDefault(_SchoolProfile);
 
 var _reactRouterDom = __webpack_require__(91);
 
@@ -11174,7 +11185,8 @@ var App = function (_React$Component) {
                             { className: 'content' },
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools', component: _Schools2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/add', component: _AddSchoolForm2.default })
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/add', component: _AddSchoolForm2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default })
                         )
                     )
                 )
@@ -11325,43 +11337,7 @@ var Home = function Home() {
 exports.default = Home;
 
 /***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(5);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var List = function List(props) {
-
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'p',
-      null,
-      'Blah blah blah, consectetur adipiscing elit. Quisque mattis nisl leo, quis fermentum metus suscipit ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a suscipit nisl. Etiam posuere, massa a rutrum pellentesque, urna nisi dapibus sapien, a malesuada metus lorem eget mauris. Nullam gravida sapien fermentum lorem sollicitudin sagittis ac id mi. Donec iaculis sem nec blandit tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec a urna in ex tempor ullamcorper vel ut metus. Praesent pulvinar tincidunt urna et hendrerit. Aenean volutpat eleifend scelerisque. Cras vestibulum vel felis luctus accumsan.'
-    ),
-    _react2.default.createElement(
-      'p',
-      null,
-      'In bibendum, dolor quis convallis lacinia, arcu turpis accumsan dolor, at accumsan nibh sapien non turpis. Etiam semper ac eros nec vulputate. Suspendisse potenti. Phasellus vitae dolor ac nisl ultricies efficitur. Mauris blandit quis arcu in ultrices. Proin tristique purus ut libero placerat luctus a at risus. In sodales nisi nec urna sagittis, et vestibulum est lobortis. Donec ut quam at quam sagittis tempus bibendum eget turpis. Fusce neque leo, aliquet nec feugiat ut, finibus at ante. Vestibulum at mauris placerat, sollicitudin augue eget, consequat lacus. Aliquam tristique convallis odio, et cursus lectus pellentesque eget. Vivamus id lorem sed sem ullamcorper volutpat et eu ligula. Maecenas tristique purus id ligula lacinia, eget convallis leo gravida. Suspendisse sem elit, hendrerit eu sapien vel, molestie pellentesque neque. Pellentesque dictum tincidunt turpis in hendrerit.'
-    )
-  );
-};
-
-exports.default = List;
-
-/***/ }),
+/* 101 */,
 /* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27811,6 +27787,136 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+    var school = props.school || [];
+    return _react2.default.createElement(
+        "div",
+        { className: "school-detail" },
+        _react2.default.createElement(
+            "h2",
+            null,
+            "List"
+        ),
+        _react2.default.createElement(
+            "ul",
+            null,
+            Object.keys(props.school).map(function (key, i) {
+                return _react2.default.createElement(
+                    "li",
+                    { key: i },
+                    school[key]
+                );
+            })
+        )
+    );
+};
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _api = __webpack_require__(62);
+
+var api = _interopRequireWildcard(_api);
+
+var _SchoolDetail = __webpack_require__(238);
+
+var _SchoolDetail2 = _interopRequireDefault(_SchoolDetail);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SchoolProfile = function (_React$Component) {
+    _inherits(SchoolProfile, _React$Component);
+
+    function SchoolProfile(props) {
+        _classCallCheck(this, SchoolProfile);
+
+        var _this = _possibleConstructorReturn(this, (SchoolProfile.__proto__ || Object.getPrototypeOf(SchoolProfile)).call(this, props));
+
+        _this.state = {
+            error: null,
+            school: {},
+            id: props.match.params.id
+        };
+        return _this;
+    }
+
+    _createClass(SchoolProfile, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            api.getSchool(this.state.id, function (err, school) {
+                return _this2.renderProfile(err, school);
+            });
+        }
+    }, {
+        key: 'renderProfile',
+        value: function renderProfile(err, school) {
+            this.setState({
+                error: err,
+                school: school || {}
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'School Profile'
+                ),
+                _react2.default.createElement(_SchoolDetail2.default, { school: this.state.school })
+            );
+        }
+    }]);
+
+    return SchoolProfile;
+}(_react2.default.Component);
+
+exports.default = SchoolProfile;
 
 /***/ })
 /******/ ]);
