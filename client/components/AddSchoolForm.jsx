@@ -31,9 +31,16 @@ export default class AddSchoolForm extends React.Component {
   render () {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-          <label htmlFor="query">Name</label>
-          <input type="text" name="query" value={this.state.item.query} onChange={this.handleChange.bind(this)} />
-        <input type="submit" value="Search" />
+          <label htmlFor="name">Name</label>
+          <input type="text" name="name" value={this.state.item.name} onChange={this.handleChange.bind(this)} />
+
+          <label htmlFor="name"></label>
+          <input type="text" name="name" value={this.state.item.name} onChange={this.handleChange.bind(this)} />
+
+          <label htmlFor="name">Name</label>
+          <input type="text" name="name" value={this.state.item.name} onChange={this.handleChange.bind(this)} />
+
+        <input type="submit" value="Add" />
       </form>
     )
   }
