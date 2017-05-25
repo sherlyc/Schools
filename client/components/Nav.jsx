@@ -3,7 +3,7 @@ import React from 'react'
 const Nav = () => {
   return (
     <div className="home">
-        <a href="./list">Schools List</a>
+        <a href="./schools">Schools List</a>
     </div>
   )
 }

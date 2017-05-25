@@ -11243,7 +11243,7 @@ var Nav = function Nav() {
     { className: "home" },
     _react2.default.createElement(
       "a",
-      { href: "./list" },
+      { href: "./schools" },
       "Schools List"
     )
   );
