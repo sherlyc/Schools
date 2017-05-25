@@ -27875,6 +27875,36 @@ var SchoolProfile = function (_React$Component) {
                     _react2.default.createElement(
                         'li',
                         null,
+                        'School Type : ',
+                        this.state.school.schoolType
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Authority : ',
+                        this.state.school.authority
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Gender : ',
+                        this.state.school.gender
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Decile : ',
+                        this.state.school.decile
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Address : ',
+                        this.state.school.address
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
                         'Suburb : ',
                         this.state.school.suburb
                     ),
@@ -27882,8 +27912,17 @@ var SchoolProfile = function (_React$Component) {
                         'li',
                         null,
                         'Email : ',
-                        this.state.school.email,
-                        ' '
+                        this.state.school.email
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Website : ',
+                        _react2.default.createElement(
+                            'a',
+                            { href: this.state.school.url },
+                            this.state.school.url
+                        )
                     )
                 )
             );
