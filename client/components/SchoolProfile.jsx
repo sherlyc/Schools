@@ -37,6 +37,9 @@ render () {
                         <li>Email : {this.state.school.email}</li>
                         <li>Website : <a href={this.state.school.url}>{this.state.school.url}</a></li>
                     </ul>
+                    <div className='map'>
+
+                    </div>
             </div>
     )
 }
