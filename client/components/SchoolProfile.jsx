@@ -12,9 +12,6 @@ export default class SchoolProfile extends React.Component {
         }
     }
 
-
-
-
 componentDidMount () {
    api.getSchool(this.state.id,(err, school) => this.renderProfile(err, school))
 }
@@ -27,10 +24,15 @@ renderProfile (err, school) {
 }
 
 render () {
+    console.log(this.state.school)
     return (
             <div>
-                     <h1>School Profile</h1>
-                      <SchoolDetail school={this.state.school}/>
+                <h1>School Profile</h1>
+                    <ul>
+                           {Object.keys(this.state.school).map((key, i) => {
+                               return (<li key={i}>{this.state.school[key]}</li>)
+                           })}
+                    </ul>
             </div>
     )
 }

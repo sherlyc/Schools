@@ -27900,6 +27900,9 @@ var SchoolProfile = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
+            console.log(this.state.school);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -27908,7 +27911,17 @@ var SchoolProfile = function (_React$Component) {
                     null,
                     'School Profile'
                 ),
-                _react2.default.createElement(_SchoolDetail2.default, { school: this.state.school })
+                _react2.default.createElement(
+                    'ul',
+                    null,
+                    Object.keys(this.state.school).map(function (key, i) {
+                        return _react2.default.createElement(
+                            'li',
+                            { key: i },
+                            _this3.state.school[key]
+                        );
+                    })
+                )
             );
         }
     }]);
