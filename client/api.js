@@ -1,6 +1,5 @@
 import request from 'superagent'
 
-var schoolUrl = 'http://localhost:3000/schools'
 
 module.exports = {
   getSchools,
@@ -9,7 +8,7 @@ module.exports = {
 
 function getSchools (callback) {
   request
-    .get(schoolUrl)
+    .get(/schools)
     .end(function (err, res) {
       if (err) {
         callback(err)
@@ -22,7 +21,7 @@ function getSchools (callback) {
 
 function addSchool (school, callback) {
   request
-    .post(schoolUrl)
+    .post(/schools/add)
     .send(school)
     .end(function (err, res) {
       if (err) {
