@@ -8,7 +8,7 @@ module.exports = {
 
 function getSchools (callback) {
   request
-    .get(/schools)
+    .get('/schools')
     .end(function (err, res) {
       if (err) {
         callback(err)
@@ -21,7 +21,7 @@ function getSchools (callback) {
 
 function addSchool (school, callback) {
   request
-    .post(/schools/add)
+    .post('/schools/add')
     .send(school)
     .end(function (err, res) {
       if (err) {
@@ -34,7 +34,7 @@ function addSchool (school, callback) {
 
 function getSchool (id, callback) {
     request
-    .get(schoolUrl + '/' + id)
+    .get('/schools/' + id)
     .end(function (err, res) {
         if (err) {
             callback(err)
