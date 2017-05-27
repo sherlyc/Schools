@@ -11133,6 +11133,10 @@ var _SchoolProfile = __webpack_require__(104);
 
 var _SchoolProfile2 = _interopRequireDefault(_SchoolProfile);
 
+var _Form = __webpack_require__(239);
+
+var _Form2 = _interopRequireDefault(_Form);
+
 var _reactRouterDom = __webpack_require__(58);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -11184,7 +11188,8 @@ var App = function (_React$Component) {
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools', component: _Schools2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/add', component: _AddSchoolForm2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default })
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/form', component: _Form2.default })
                         )
                     )
                 )
@@ -11226,6 +11231,12 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _api = __webpack_require__(38);
+
+var api = _interopRequireWildcard(_api);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -11244,9 +11255,10 @@ var AddSchoolForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AddSchoolForm.__proto__ || Object.getPrototypeOf(AddSchoolForm)).call(this, props));
 
-    _this.itemModel = { query: '' };
+    _this.itemModel = { name: '', schoolType: '' };
     _this.state = {
-      item: _extends({}, _this.itemModel)
+      item: _extends({}, _this.itemModel),
+      radioVal: "State"
     };
     return _this;
   }
@@ -11259,6 +11271,8 @@ var AddSchoolForm = function (_React$Component) {
       this.setState({
         item: _extends({}, this.itemModel)
       });
+
+      console.log(this.state.item);
     }
   }, {
     key: 'handleChange',
@@ -11280,14 +11294,53 @@ var AddSchoolForm = function (_React$Component) {
           'Name'
         ),
         _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) }),
-        _react2.default.createElement('label', { htmlFor: 'name' }),
-        _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) }),
         _react2.default.createElement(
           'label',
           { htmlFor: 'name' },
-          'Name'
+          'School Type'
         ),
-        _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) }),
+        _react2.default.createElement(
+          'select',
+          { name: 'schoolType', value: this.state.item.value, onChange: this.handleChange.bind(this) },
+          _react2.default.createElement(
+            'option',
+            { value: '' },
+            'Select'
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Full Primary (Year 1-8)' },
+            'Full Primary (Year 1-8)'
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Secondary (Year 7-15)' },
+            'Secondary (Year 7-15)'
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Composite (Year 1-15)' },
+            'Composite (Year 1-15)'
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Special School' },
+            'Special School'
+          )
+        ),
+        _react2.default.createElement(
+          'label',
+          { htmlFor: 'name' },
+          'Authority'
+        ),
+        _react2.default.createElement('input', { type: 'radio', name: 'authority', value: 'State',
+          checked: this.state.item.value == 'State',
+          onChange: this.handleChange.bind(this) }),
+        'State',
+        _react2.default.createElement('input', { type: 'radio', name: 'authority', value: 'Private',
+          checked: this.state.item.value == 'Private',
+          onChange: this.handleChange.bind(this) }),
+        'Private',
         _react2.default.createElement('input', { type: 'submit', value: 'Add' })
       );
     }
@@ -28027,6 +28080,88 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Form = function (_React$Component) {
+    _inherits(Form, _React$Component);
+
+    function Form(props) {
+        _classCallCheck(this, Form);
+
+        var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+        _this.state = {
+            user: {
+                name: '',
+                email: ''
+            }
+        };
+        return _this;
+    }
+
+    _createClass(Form, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(evt) {
+            evt.preventDefault();
+            console.log(evt);
+            this.props.saveUser(this.state.user);
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(evt) {
+            var user = this.state.user;
+            user[evt.target.name] = evt.target.value;
+            this.setState({ user: user });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'form',
+                { onSubmit: function onSubmit(evt) {
+                        return _this2.handleSubmit(evt);
+                    } },
+                _react2.default.createElement('input', { type: 'text', name: 'name', placeholder: 'name', onChange: function onChange(evt) {
+                        return _this2.handleChange(evt);
+                    } }),
+                _react2.default.createElement('input', { type: 'email', name: 'email', placeholder: 'email', onChange: function onChange(evt) {
+                        return _this2.handleChange(evt);
+                    } }),
+                _react2.default.createElement('input', { type: 'submit', value: 'Save' })
+            );
+        }
+    }]);
+
+    return Form;
+}(_react2.default.Component);
+
+exports.default = Form;
 
 /***/ })
 /******/ ]);
