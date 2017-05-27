@@ -1,6 +1,6 @@
 import React from 'react'
 import * as api from '../api'
-import Map from './Map'
+import GMap from './GMap'
 
 export default class SchoolProfile extends React.Component {
     constructor(props) {
@@ -27,8 +27,6 @@ renderProfile (err, school) {
 }
 
 render () {
-    console.log(this.state.school)
-    console.log(this.state.coord)
     return (
 
             <div>
@@ -47,11 +45,7 @@ render () {
                         <li>Longitude: {this.state.school.longitude}</li>
                     </ul>
                     <div className='map'>
-                        <Map  center={this.state.coord}
-                              zoom={8}
-                              containerElement={<div style={{ height: `200px` }} />}
-                              mapElement={ <div style={{ height: `200px` }} />}
-                            />
+                        <GMap  center={this.state.coord}/>
                     </div>
             </div>
     )
