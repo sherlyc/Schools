@@ -2,8 +2,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('locations', function (table){
     table.increments('id').primary()
-    table.integer('latitude')
-    table.integer('longitude')
+    table.float('latitude')
+    table.float('longitude')
     table.string('suburb')
     table.integer('school_id')
       .references('id')
