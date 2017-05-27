@@ -1,45 +1,37 @@
 import React from 'react'
 import * as api from '../api'
-import SchoolList from './SchoolList'
-// import {HashRouter as Router, Route} from 'react-router-dom'
+import Nav from './Nav'
+import Home from './Home'
+import Schools from './Schools'
+import AddSchoolForm from './AddSchoolForm'
+import SchoolProfile from './SchoolProfile'
+import {HashRouter as Router, Route} from 'react-router-dom'
 
 
 export default class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            error: null,
-            schools: []
-        }
-    }
 
-
-componentDidMount () {
-   api.getSchools((err, schools) => this.renderSchools(err, schools))
-}
-
-renderSchools (err, schools) {
-    this.setState({
-        error: err,
-        schools: schools || []
-    })
-}
 
 render () {
     return (
+        <Router>
             <div>
                 <h1>Welcome to Schools</h1>
                 <hr></hr>
                   <div className='container'>
                     <div className='nav'>
-                      Navigation menu goes here
+                     <Nav />
                     </div>
                     <hr></hr>
                     <div className='content'>
-                      <SchoolList schools={this.state.schools}/>
+                        <Route exact={true} path='/' component={Home}/>
+                        <Route exact={true} path='/schools' component={Schools} />
+                        <Route exact={true} path='/add' component={AddSchoolForm} />
+                        <Route exact={true} path='/schools/:id' component={SchoolProfile} />
+
                     </div>
                   </div>
               </div>
+        </Router>
     )
 }
 }

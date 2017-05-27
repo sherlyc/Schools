@@ -1,14 +1,14 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export default (props) => {
   const schools = props.schools || []
-  console.log(schools)
     return (
         <div className="school-list">
             <h2>List</h2>
             <ul>
               {schools.map((school, i) => {
-                  return (<li key={i}>{school.name}</li>)
+                  return (<Link key={i} to={'/schools/'+school.id}><li>{school.name}</li></Link>)
               })}
             </ul>
 
