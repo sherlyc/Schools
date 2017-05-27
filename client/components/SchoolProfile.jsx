@@ -28,7 +28,7 @@ renderProfile (err, school) {
 
 render () {
     return (
-
+         <div className='school'>
             <div>
                 <h1>School Profile</h1>
                     <ul>
@@ -41,13 +41,12 @@ render () {
                         <li>Suburb : {this.state.school.suburb}</li>
                         <li>Email : {this.state.school.email}</li>
                         <li>Website : <a href={this.state.school.url}>{this.state.school.url}</a></li>
-                        <li>Latitude:{this.state.school.latitude} </li>
-                        <li>Longitude: {this.state.school.longitude}</li>
                     </ul>
-                    <div className='map'>
-                        <GMap  center={this.state.coord}/>
-                    </div>
             </div>
+            <div className='map'>
+                <GMap  center={this.state.coord}/>
+            </div>
+        </div>
     )
 }
 }

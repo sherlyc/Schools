@@ -11582,85 +11582,76 @@ var SchoolProfile = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'school' },
                 _react2.default.createElement(
-                    'h1',
-                    null,
-                    'School Profile'
-                ),
-                _react2.default.createElement(
-                    'ul',
+                    'div',
                     null,
                     _react2.default.createElement(
-                        'li',
+                        'h1',
                         null,
-                        'Name : ',
-                        this.state.school.name
+                        'School Profile'
                     ),
                     _react2.default.createElement(
-                        'li',
+                        'ul',
                         null,
-                        'School Type : ',
-                        this.state.school.schoolType
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Authority : ',
-                        this.state.school.authority
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Gender : ',
-                        this.state.school.gender
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Decile : ',
-                        this.state.school.decile
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Address : ',
-                        this.state.school.address
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Suburb : ',
-                        this.state.school.suburb
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Email : ',
-                        this.state.school.email
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Website : ',
                         _react2.default.createElement(
-                            'a',
-                            { href: this.state.school.url },
-                            this.state.school.url
+                            'li',
+                            null,
+                            'Name : ',
+                            this.state.school.name
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'School Type : ',
+                            this.state.school.schoolType
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Authority : ',
+                            this.state.school.authority
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Gender : ',
+                            this.state.school.gender
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Decile : ',
+                            this.state.school.decile
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Address : ',
+                            this.state.school.address
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Suburb : ',
+                            this.state.school.suburb
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Email : ',
+                            this.state.school.email
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Website : ',
+                            _react2.default.createElement(
+                                'a',
+                                { href: this.state.school.url },
+                                this.state.school.url
+                            )
                         )
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Latitude:',
-                        this.state.school.latitude,
-                        ' '
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Longitude: ',
-                        this.state.school.longitude
                     )
                 ),
                 _react2.default.createElement(
