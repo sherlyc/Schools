@@ -1,5 +1,6 @@
 import React from 'react'
 import * as api from '../api'
+import {RadioGroup, Radio} from 'react-radio-group';
 
 
 export default class AddSchoolForm extends React.Component {
@@ -7,8 +8,9 @@ export default class AddSchoolForm extends React.Component {
     super(props)
 
 
-    this.itemModel = {  name: '', schoolType: '', }
+    this.itemModel = {  name: '', schoolType: '', fruit: '' }
     this.state = {
+      selectedValue : 'apple',
       item : {...this.itemModel}
 
     }
@@ -34,9 +36,12 @@ export default class AddSchoolForm extends React.Component {
         [field]: evt.target.value
       }
     })
-
    }
 
+    handleRadio (value) {
+        this.setState({selectedValue : value, item: {...this.state.item, fruit: value}})
+        console.log(this.state.item)
+    }
 
 
 
@@ -55,7 +60,20 @@ export default class AddSchoolForm extends React.Component {
                <option value="Special School">Special School</option>
              </select>
 
-
+             <RadioGroup
+                name="fruit"
+                selectedValue={this.state.selectedValue}
+                onChange={this.handleRadio.bind(this)}>
+                <label>
+                  <Radio value="apple" />Apple
+                </label>
+                <label>
+                  <Radio value="orange" />Orange
+                </label>
+                <label>
+                  <Radio value="watermelon" />Watermelon
+                </label>
+              </RadioGroup>
 
         <input type="submit" value="Add" />
       </form>

@@ -11235,6 +11235,8 @@ var _api = __webpack_require__(38);
 
 var api = _interopRequireWildcard(_api);
 
+var _reactRadioGroup = __webpack_require__(240);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -11255,8 +11257,9 @@ var AddSchoolForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AddSchoolForm.__proto__ || Object.getPrototypeOf(AddSchoolForm)).call(this, props));
 
-    _this.itemModel = { name: '', schoolType: '' };
+    _this.itemModel = { name: '', schoolType: '', fruit: '' };
     _this.state = {
+      selectedValue: 'apple',
       item: _extends({}, _this.itemModel)
 
     };
@@ -11283,6 +11286,12 @@ var AddSchoolForm = function (_React$Component) {
       this.setState({
         item: _extends({}, this.state.item, _defineProperty({}, field, evt.target.value))
       });
+    }
+  }, {
+    key: 'handleRadio',
+    value: function handleRadio(value) {
+      this.setState({ selectedValue: value, item: _extends({}, this.state.item, { fruit: value }) });
+      console.log(this.state.item);
     }
   }, {
     key: 'render',
@@ -11328,6 +11337,31 @@ var AddSchoolForm = function (_React$Component) {
             'option',
             { value: 'Special School' },
             'Special School'
+          )
+        ),
+        _react2.default.createElement(
+          _reactRadioGroup.RadioGroup,
+          {
+            name: 'fruit',
+            selectedValue: this.state.selectedValue,
+            onChange: this.handleRadio.bind(this) },
+          _react2.default.createElement(
+            'label',
+            null,
+            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'apple' }),
+            'Apple'
+          ),
+          _react2.default.createElement(
+            'label',
+            null,
+            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'orange' }),
+            'Orange'
+          ),
+          _react2.default.createElement(
+            'label',
+            null,
+            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'watermelon' }),
+            'Watermelon'
           )
         ),
         _react2.default.createElement('input', { type: 'submit', value: 'Add' })
