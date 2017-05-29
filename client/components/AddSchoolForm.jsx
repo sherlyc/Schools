@@ -15,7 +15,9 @@ export default class AddSchoolForm extends React.Component {
          address: '',
          suburb: '',
          email: '',
-         url: ''}
+         url: '',
+         latitude: '',
+         longitude: '' }
 
     this.state = {
       selectedAuthority : 'State',
@@ -125,6 +127,14 @@ export default class AddSchoolForm extends React.Component {
         <div>
           <label htmlFor="website">Website : </label>
           <input type="text" name="url" value={this.state.item.url} onChange={this.handleChange.bind(this)} />
+        </div>
+        <div>
+          <label htmlFor="latitude">Latitude : </label>
+          <input type="text" name="latitude" value={this.state.item.latitude} onChange={this.handleChange.bind(this)} />
+        </div>
+        <div>
+          <label htmlFor="longitude">Longitude : </label>
+          <input type="text" name="longitude" value={this.state.item.longitude} onChange={this.handleChange.bind(this)} />
         </div>
         <div>
         <input type="submit" value="Add" />
