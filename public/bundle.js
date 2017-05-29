@@ -11133,6 +11133,10 @@ var _SchoolProfile = __webpack_require__(104);
 
 var _SchoolProfile2 = _interopRequireDefault(_SchoolProfile);
 
+var _Form = __webpack_require__(239);
+
+var _Form2 = _interopRequireDefault(_Form);
+
 var _reactRouterDom = __webpack_require__(58);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -11184,7 +11188,8 @@ var App = function (_React$Component) {
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools', component: _Schools2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/add', component: _AddSchoolForm2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default })
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/form', component: _Form2.default })
                         )
                     )
                 )
@@ -11226,6 +11231,14 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _api = __webpack_require__(38);
+
+var api = _interopRequireWildcard(_api);
+
+var _reactRadioGroup = __webpack_require__(240);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -11244,9 +11257,21 @@ var AddSchoolForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AddSchoolForm.__proto__ || Object.getPrototypeOf(AddSchoolForm)).call(this, props));
 
-    _this.itemModel = { query: '' };
+    _this.itemModel = { name: '',
+      schoolType: '',
+      authority: 'State',
+      gender: 'Co-Educational',
+      decile: '',
+      address: '',
+      suburb: '',
+      email: '',
+      url: '' };
+
     _this.state = {
+      selectedAuthority: 'State',
+      selectedGender: 'Co-Educational',
       item: _extends({}, _this.itemModel)
+
     };
     return _this;
   }
@@ -11259,14 +11284,30 @@ var AddSchoolForm = function (_React$Component) {
       this.setState({
         item: _extends({}, this.itemModel)
       });
+
+      console.log(this.state.item);
     }
   }, {
     key: 'handleChange',
     value: function handleChange(evt) {
       var field = evt.target.name;
+      console.log(evt);
+
       this.setState({
         item: _extends({}, this.state.item, _defineProperty({}, field, evt.target.value))
       });
+    }
+  }, {
+    key: 'handleAuthority',
+    value: function handleAuthority(value) {
+      this.setState({ selectedAuthority: value, item: _extends({}, this.state.item, { authority: value }) });
+      console.log(this.state.item);
+    }
+  }, {
+    key: 'handleGender',
+    value: function handleGender(value) {
+      this.setState({ selectedGender: value, item: _extends({}, this.state.item, { gender: value }) });
+      console.log(this.state.item);
     }
   }, {
     key: 'render',
@@ -11275,20 +11316,170 @@ var AddSchoolForm = function (_React$Component) {
         'form',
         { onSubmit: this.handleSubmit.bind(this) },
         _react2.default.createElement(
-          'label',
-          { htmlFor: 'name' },
-          'Name'
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'name' },
+            'Name :'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) })
         ),
-        _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) }),
-        _react2.default.createElement('label', { htmlFor: 'name' }),
-        _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) }),
         _react2.default.createElement(
-          'label',
-          { htmlFor: 'name' },
-          'Name'
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'name' },
+            'School Type :'
+          ),
+          _react2.default.createElement(
+            'select',
+            { name: 'schoolType', value: this.state.item.schoolType, onChange: this.handleChange.bind(this) },
+            _react2.default.createElement(
+              'option',
+              { value: '' },
+              'Select'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Full Primary (Year 1-8)' },
+              'Full Primary (Year 1-8)'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Secondary (Year 7-15)' },
+              'Secondary (Year 7-15)'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Composite (Year 1-15)' },
+              'Composite (Year 1-15)'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Special School' },
+              'Special School'
+            )
+          )
         ),
-        _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) }),
-        _react2.default.createElement('input', { type: 'submit', value: 'Add' })
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'authority' },
+            'Authority : '
+          ),
+          _react2.default.createElement(
+            _reactRadioGroup.RadioGroup,
+            {
+              name: 'authority',
+              selectedValue: this.state.selectedAuthority,
+              onChange: this.handleAuthority.bind(this) },
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'State' }),
+              'State'
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Private' }),
+              'Private'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'gender' },
+            'Gender : '
+          ),
+          _react2.default.createElement(
+            _reactRadioGroup.RadioGroup,
+            {
+              name: 'gender',
+              selectedValue: this.state.selectedGender,
+              onChange: this.handleGender.bind(this) },
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Girls School' }),
+              'Girls School'
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Boys School' }),
+              'Boys School'
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Co-Educational' }),
+              'Co-Educational'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'decile' },
+            'Decile : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'decile', value: this.state.item.decile, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'address' },
+            'Address : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'address', value: this.state.item.address, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'suburb' },
+            'Suburb :'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'suburb', value: this.state.item.suburb, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'email' },
+            'Email : '
+          ),
+          _react2.default.createElement('input', { type: 'email', name: 'email', value: this.state.item.email, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'website' },
+            'Website : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'url', value: this.state.item.url, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement('input', { type: 'submit', value: 'Add' })
+        )
       );
     }
   }]);
@@ -28027,6 +28218,230 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(98);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRadioGroup = __webpack_require__(240);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Form = function (_React$Component) {
+  _inherits(Form, _React$Component);
+
+  function Form(props) {
+    _classCallCheck(this, Form);
+
+    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+    _this.itemModel = { fruit: 'apple' };
+
+    _this.state = {
+      selectedValue: 'apple',
+      item: _extends({}, _this.itemModel)
+    };
+
+    console.log(_this.state.item);
+
+    return _this;
+  }
+
+  _createClass(Form, [{
+    key: 'handleSubmit',
+    value: function handleSubmit(evt) {
+      evt.preventDefault();
+
+      this.setState({
+        item: _extends({}, this.itemModel)
+      });
+
+      console.log(this.state.item.fruit);
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(evt) {
+      var field = evt.target.name;
+      this.setState({
+        item: _extends({}, this.state.item, _defineProperty({}, field, evt.target.value))
+      });
+    }
+  }, {
+    key: 'handleRadio',
+    value: function handleRadio(value) {
+      this.setState({ selectedValue: value, item: _extends({}, this.state.item, { fruit: value }) });
+      console.log(this.state.item);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'form',
+        { onSubmit: this.handleSubmit.bind(this) },
+        _react2.default.createElement(
+          _reactRadioGroup.RadioGroup,
+          {
+            name: 'fruit',
+            selectedValue: this.state.selectedValue,
+            onChange: this.handleRadio.bind(this) },
+          _react2.default.createElement(
+            'label',
+            null,
+            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'apple' }),
+            'Apple'
+          ),
+          _react2.default.createElement(
+            'label',
+            null,
+            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'orange' }),
+            'Orange'
+          ),
+          _react2.default.createElement(
+            'label',
+            null,
+            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'watermelon' }),
+            'Watermelon'
+          )
+        ),
+        _react2.default.createElement('input', { type: 'submit', value: 'Add' })
+      );
+    }
+  }]);
+
+  return Form;
+}(_react2.default.Component);
+
+exports.default = Form;
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var Radio = _react2['default'].createClass({
+  displayName: 'Radio',
+
+  contextTypes: {
+    radioGroup: _react2['default'].PropTypes.object
+  },
+
+  render: function render() {
+    var _context$radioGroup = this.context.radioGroup;
+    var name = _context$radioGroup.name;
+    var selectedValue = _context$radioGroup.selectedValue;
+    var onChange = _context$radioGroup.onChange;
+
+    var optional = {};
+    if (selectedValue !== undefined) {
+      optional.checked = this.props.value === selectedValue;
+    }
+    if (typeof onChange === 'function') {
+      optional.onChange = onChange.bind(null, this.props.value);
+    }
+
+    return _react2['default'].createElement('input', _extends({}, this.props, {
+      type: 'radio',
+      name: name
+    }, optional));
+  }
+});
+
+exports.Radio = Radio;
+var RadioGroup = _react2['default'].createClass({
+  displayName: 'RadioGroup',
+
+  propTypes: {
+    name: _react.PropTypes.string,
+    selectedValue: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number, _react.PropTypes.bool]),
+    onChange: _react.PropTypes.func,
+    children: _react.PropTypes.node.isRequired,
+    Component: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func, _react.PropTypes.object])
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      Component: "div"
+    };
+  },
+
+  childContextTypes: {
+    radioGroup: _react2['default'].PropTypes.object
+  },
+
+  getChildContext: function getChildContext() {
+    var _props = this.props;
+    var name = _props.name;
+    var selectedValue = _props.selectedValue;
+    var onChange = _props.onChange;
+
+    return {
+      radioGroup: {
+        name: name, selectedValue: selectedValue, onChange: onChange
+      }
+    };
+  },
+
+  render: function render() {
+    var _props2 = this.props;
+    var Component = _props2.Component;
+    var name = _props2.name;
+    var selectedValue = _props2.selectedValue;
+    var onChange = _props2.onChange;
+    var children = _props2.children;
+
+    var rest = _objectWithoutProperties(_props2, ['Component', 'name', 'selectedValue', 'onChange', 'children']);
+
+    return _react2['default'].createElement(
+      Component,
+      rest,
+      children
+    );
+  }
+});
+exports.RadioGroup = RadioGroup;
 
 /***/ })
 /******/ ]);
