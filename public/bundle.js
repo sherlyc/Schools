@@ -11257,9 +11257,19 @@ var AddSchoolForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AddSchoolForm.__proto__ || Object.getPrototypeOf(AddSchoolForm)).call(this, props));
 
-    _this.itemModel = { name: '', schoolType: '', fruit: '' };
+    _this.itemModel = { name: '',
+      schoolType: '',
+      authority: 'State',
+      gender: 'Co-Educational',
+      decile: '',
+      address: '',
+      suburb: '',
+      email: '',
+      url: '' };
+
     _this.state = {
-      selectedValue: 'apple',
+      selectedAuthority: 'State',
+      selectedGender: 'Co-Educational',
       item: _extends({}, _this.itemModel)
 
     };
@@ -11288,9 +11298,15 @@ var AddSchoolForm = function (_React$Component) {
       });
     }
   }, {
-    key: 'handleRadio',
-    value: function handleRadio(value) {
-      this.setState({ selectedValue: value, item: _extends({}, this.state.item, { fruit: value }) });
+    key: 'handleAuthority',
+    value: function handleAuthority(value) {
+      this.setState({ selectedAuthority: value, item: _extends({}, this.state.item, { authority: value }) });
+      console.log(this.state.item);
+    }
+  }, {
+    key: 'handleGender',
+    value: function handleGender(value) {
+      this.setState({ selectedGender: value, item: _extends({}, this.state.item, { gender: value }) });
       console.log(this.state.item);
     }
   }, {
@@ -11300,71 +11316,170 @@ var AddSchoolForm = function (_React$Component) {
         'form',
         { onSubmit: this.handleSubmit.bind(this) },
         _react2.default.createElement(
-          'label',
-          { htmlFor: 'name' },
-          'Name'
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'name' },
+            'Name :'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) })
         ),
-        _react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.item.name, onChange: this.handleChange.bind(this) }),
         _react2.default.createElement(
-          'label',
-          { htmlFor: 'name' },
-          'School Type'
-        ),
-        _react2.default.createElement(
-          'select',
-          { name: 'schoolType', value: this.state.item.schoolType, onChange: this.handleChange.bind(this) },
+          'div',
+          null,
           _react2.default.createElement(
-            'option',
-            { value: '' },
-            'Select'
+            'label',
+            { htmlFor: 'name' },
+            'School Type :'
           ),
           _react2.default.createElement(
-            'option',
-            { value: 'Full Primary (Year 1-8)' },
-            'Full Primary (Year 1-8)'
-          ),
-          _react2.default.createElement(
-            'option',
-            { value: 'Secondary (Year 7-15)' },
-            'Secondary (Year 7-15)'
-          ),
-          _react2.default.createElement(
-            'option',
-            { value: 'Composite (Year 1-15)' },
-            'Composite (Year 1-15)'
-          ),
-          _react2.default.createElement(
-            'option',
-            { value: 'Special School' },
-            'Special School'
+            'select',
+            { name: 'schoolType', value: this.state.item.schoolType, onChange: this.handleChange.bind(this) },
+            _react2.default.createElement(
+              'option',
+              { value: '' },
+              'Select'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Full Primary (Year 1-8)' },
+              'Full Primary (Year 1-8)'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Secondary (Year 7-15)' },
+              'Secondary (Year 7-15)'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Composite (Year 1-15)' },
+              'Composite (Year 1-15)'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Special School' },
+              'Special School'
+            )
           )
         ),
         _react2.default.createElement(
-          _reactRadioGroup.RadioGroup,
-          {
-            name: 'fruit',
-            selectedValue: this.state.selectedValue,
-            onChange: this.handleRadio.bind(this) },
+          'div',
+          null,
           _react2.default.createElement(
             'label',
-            null,
-            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'apple' }),
-            'Apple'
+            { htmlFor: 'authority' },
+            'Authority : '
           ),
           _react2.default.createElement(
-            'label',
-            null,
-            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'orange' }),
-            'Orange'
-          ),
-          _react2.default.createElement(
-            'label',
-            null,
-            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'watermelon' }),
-            'Watermelon'
+            _reactRadioGroup.RadioGroup,
+            {
+              name: 'authority',
+              selectedValue: this.state.selectedAuthority,
+              onChange: this.handleAuthority.bind(this) },
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'State' }),
+              'State'
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Private' }),
+              'Private'
+            )
           )
         ),
-        _react2.default.createElement('input', { type: 'submit', value: 'Add' })
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'gender' },
+            'Gender : '
+          ),
+          _react2.default.createElement(
+            _reactRadioGroup.RadioGroup,
+            {
+              name: 'gender',
+              selectedValue: this.state.selectedGender,
+              onChange: this.handleGender.bind(this) },
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Girls School' }),
+              'Girls School'
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Boys School' }),
+              'Boys School'
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(_reactRadioGroup.Radio, { value: 'Co-Educational' }),
+              'Co-Educational'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'decile' },
+            'Decile : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'decile', value: this.state.item.decile, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'address' },
+            'Address : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'address', value: this.state.item.address, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'suburb' },
+            'Suburb :'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'suburb', value: this.state.item.suburb, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'email' },
+            'Email : '
+          ),
+          _react2.default.createElement('input', { type: 'email', name: 'email', value: this.state.item.email, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'website' },
+            'Website : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'url', value: this.state.item.url, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement('input', { type: 'submit', value: 'Add' })
+        )
       );
     }
   }]);
