@@ -11265,7 +11265,9 @@ var AddSchoolForm = function (_React$Component) {
       address: '',
       suburb: '',
       email: '',
-      url: '' };
+      url: '',
+      latitude: '',
+      longitude: '' };
 
     _this.state = {
       selectedAuthority: 'State',
@@ -11474,6 +11476,26 @@ var AddSchoolForm = function (_React$Component) {
             'Website : '
           ),
           _react2.default.createElement('input', { type: 'text', name: 'url', value: this.state.item.url, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'latitude' },
+            'Latitude : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'latitude', value: this.state.item.latitude, onChange: this.handleChange.bind(this) })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'longitude' },
+            'Longitude : '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'longitude', value: this.state.item.longitude, onChange: this.handleChange.bind(this) })
         ),
         _react2.default.createElement(
           'div',
