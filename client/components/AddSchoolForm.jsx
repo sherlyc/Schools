@@ -34,6 +34,8 @@ export default class AddSchoolForm extends React.Component {
       item: { ...this.itemModel }
     })
 
+    api.addSchool(this.state.item, function(){
+          this.props.history.push('/schools')}.bind(this))
     console.log(this.state.item)
   }
 
@@ -51,12 +53,10 @@ export default class AddSchoolForm extends React.Component {
 
     handleAuthority (value) {
         this.setState({selectedAuthority : value, item: {...this.state.item, authority: value}})
-        console.log(this.state.item)
     }
 
     handleGender (value) {
         this.setState({selectedGender : value, item: {...this.state.item, gender: value}})
-        console.log(this.state.item)
     }
 
 
