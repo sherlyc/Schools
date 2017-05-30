@@ -48,7 +48,7 @@ input[type=text], input[type=email], select {
 
 input[type=submit] {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #FFFF00;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -65,7 +65,7 @@ input.radio {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #FFFF66;
 }
 
 .form {
