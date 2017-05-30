@@ -11286,7 +11286,6 @@ var App = function (_React$Component) {
                         null,
                         'Welcome to Schools'
                     ),
-                    _react2.default.createElement('hr', null),
                     _react2.default.createElement(
                         'div',
                         { className: 'container' },
@@ -11295,7 +11294,6 @@ var App = function (_React$Component) {
                             { className: 'nav' },
                             _react2.default.createElement(_Nav2.default, null)
                         ),
-                        _react2.default.createElement('hr', null),
                         _react2.default.createElement(
                             'div',
                             { className: 'content' },
@@ -11841,16 +11839,7 @@ var Home = function Home() {
   return _react2.default.createElement(
     "div",
     { className: "home" },
-    _react2.default.createElement(
-      "h1",
-      null,
-      " Home "
-    ),
-    _react2.default.createElement(
-      "p",
-      null,
-      " Welcome to Home "
-    )
+    _react2.default.createElement("img", { src: "./school.jpg" })
   );
 };
 
@@ -11879,6 +11868,14 @@ var Nav = function Nav() {
   return _react2.default.createElement(
     'div',
     { className: 'home' },
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/' },
+      'Home'
+    ),
+    '  ',
+    ' ',
+    ' |',
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: '/schools' },

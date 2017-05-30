@@ -23,6 +23,9 @@ body {
 
 }
 
+.home img {
+    width: 500px
+}
 .content {
     display: flex;
     flex-direction: row;

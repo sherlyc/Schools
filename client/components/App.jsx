@@ -21,7 +21,6 @@ render () {
                     <div className='nav'>
                      <Nav />
                     </div>
-                    <hr></hr>
                     <div className='content'>
                         <Route exact={true} path='/' component={Home}/>
                         <Route exact={true} path='/schools' component={Schools} />
