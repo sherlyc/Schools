@@ -19,14 +19,11 @@ function getSchool (id, knex) {
 }
 
 function addSchool (data, knex) {
-    console.log("dbcalled")
     return knex('schools').insert({name: data.name, schoolType: data.schoolType, authority: data.authority, gender: data.gender, decile: data.decile})
         .then((result) =>{
-            console.log(result[0])
             return knex('profiles').insert({address: data.address , email: data.email , url: data.url , school_id: result[0]})
         })
         .then((result) =>{
-            console.log(result[0])
             return knex('locations').insert({suburb: data.suburb , latitude: data.latitude , longitude: data.longitude , school_id: result[0]})
          })
 
