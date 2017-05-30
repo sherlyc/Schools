@@ -12,23 +12,22 @@ export default class Schools extends React.Component {
     }
 
 
-componentDidMount () {
-   api.getSchools((err, schools) => this.renderSchools(err, schools))
-}
+    componentDidMount () {
+        api.getSchools((err, schools) => this.renderSchools(err, schools))
+    }
 
-renderSchools (err, schools) {
-    this.setState({
-        error: err,
-        schools: schools || []
-    })
-}
+    renderSchools (err, schools) {
+        this.setState({
+            error: err,
+            schools: schools || []
+        })
+    }
 
-render () {
-    return (
+    render () {
+        return (
             <div>
-
-                      <SchoolList schools={this.state.schools}/>
+                <SchoolList schools={this.state.schools}/>
             </div>
-    )
-}
+        )
+    }
 }

@@ -11247,10 +11247,6 @@ var _SchoolProfile = __webpack_require__(106);
 
 var _SchoolProfile2 = _interopRequireDefault(_SchoolProfile);
 
-var _Form = __webpack_require__(101);
-
-var _Form2 = _interopRequireDefault(_Form);
-
 var _reactRouterDom = __webpack_require__(58);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -11300,8 +11296,7 @@ var App = function (_React$Component) {
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools', component: _Schools2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/add', component: _AddSchoolForm2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/form', component: _Form2.default })
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default })
                         )
                     )
                 )
@@ -11392,7 +11387,6 @@ var AddSchoolForm = function (_React$Component) {
       api.addSchool(this.state.item, function () {
         this.props.history.push('/schools');
       }.bind(this));
-      console.log(this.state.item);
     }
   }, {
     key: 'handleChange',
@@ -11615,127 +11609,7 @@ var AddSchoolForm = function (_React$Component) {
 exports.default = AddSchoolForm;
 
 /***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(64);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRadioGroup = __webpack_require__(92);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Form = function (_React$Component) {
-  _inherits(Form, _React$Component);
-
-  function Form(props) {
-    _classCallCheck(this, Form);
-
-    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
-
-    _this.itemModel = { fruit: 'apple' };
-
-    _this.state = {
-      selectedValue: 'apple',
-      item: _extends({}, _this.itemModel)
-    };
-
-    console.log(_this.state.item);
-
-    return _this;
-  }
-
-  _createClass(Form, [{
-    key: 'handleSubmit',
-    value: function handleSubmit(evt) {
-      evt.preventDefault();
-
-      this.setState({
-        item: _extends({}, this.itemModel)
-      });
-
-      console.log(this.state.item.fruit);
-    }
-  }, {
-    key: 'handleChange',
-    value: function handleChange(evt) {
-      var field = evt.target.name;
-      this.setState({
-        item: _extends({}, this.state.item, _defineProperty({}, field, evt.target.value))
-      });
-    }
-  }, {
-    key: 'handleRadio',
-    value: function handleRadio(value) {
-      this.setState({ selectedValue: value, item: _extends({}, this.state.item, { fruit: value }) });
-      console.log(this.state.item);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'form',
-        { onSubmit: this.handleSubmit.bind(this) },
-        _react2.default.createElement(
-          _reactRadioGroup.RadioGroup,
-          {
-            name: 'fruit',
-            selectedValue: this.state.selectedValue,
-            onChange: this.handleRadio.bind(this) },
-          _react2.default.createElement(
-            'label',
-            null,
-            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'apple' }),
-            'Apple'
-          ),
-          _react2.default.createElement(
-            'label',
-            null,
-            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'orange' }),
-            'Orange'
-          ),
-          _react2.default.createElement(
-            'label',
-            null,
-            _react2.default.createElement(_reactRadioGroup.Radio, { value: 'watermelon' }),
-            'Watermelon'
-          )
-        ),
-        _react2.default.createElement('input', { type: 'submit', value: 'Add' })
-      );
-    }
-  }]);
-
-  return Form;
-}(_react2.default.Component);
-
-exports.default = Form;
-
-/***/ }),
+/* 101 */,
 /* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 

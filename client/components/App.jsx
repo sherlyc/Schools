@@ -5,7 +5,6 @@ import Home from './Home'
 import Schools from './Schools'
 import AddSchoolForm from './AddSchoolForm'
 import SchoolProfile from './SchoolProfile'
-import Form from './Form'
 import {HashRouter as Router, Route} from 'react-router-dom'
 
 
@@ -26,7 +25,6 @@ render () {
                         <Route exact={true} path='/schools' component={Schools} />
                         <Route exact={true} path='/add' component={AddSchoolForm} />
                         <Route exact={true} path='/schools/:id' component={SchoolProfile} />
-                        <Route exact={true} path='/form' component={Form} />
                     </div>
                   </div>
               </div>
