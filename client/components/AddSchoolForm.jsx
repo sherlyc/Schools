@@ -62,7 +62,7 @@ export default class AddSchoolForm extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form onSubmit={this.handleSubmit.bind(this)} className="form">
           <div>
             <label htmlFor="name">Name :</label>
             <input type="text" name="name" value={this.state.item.name} onChange={this.handleChange.bind(this)} />

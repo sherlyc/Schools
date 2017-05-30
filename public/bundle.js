@@ -11421,7 +11421,7 @@ var AddSchoolForm = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'form',
-        { onSubmit: this.handleSubmit.bind(this) },
+        { onSubmit: this.handleSubmit.bind(this), className: 'form' },
         _react2.default.createElement(
           'div',
           null,
