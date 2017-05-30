@@ -23,6 +23,11 @@ export default class GMap extends React.Component {
         center: center,
         zoom: 17
       });
+
+      this.marker = new google.maps.Marker({
+         position: center,
+         map: this.map
+      });
   }
 
   render() {

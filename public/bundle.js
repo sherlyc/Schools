@@ -11791,6 +11791,11 @@ var GMap = function (_React$Component) {
         center: center,
         zoom: 17
       });
+
+      this.marker = new google.maps.Marker({
+        position: center,
+        map: this.map
+      });
     }
   }, {
     key: 'render',
