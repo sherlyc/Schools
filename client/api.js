@@ -3,7 +3,8 @@ import request from 'superagent'
 
 module.exports = {
   getSchools,
-  getSchool
+  getSchool,
+  addSchool
 }
 
 function getSchools (callback) {

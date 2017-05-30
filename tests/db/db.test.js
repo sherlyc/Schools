@@ -18,14 +18,14 @@ test('getSchool gets a single school', function (t) {
   var expected = 'Adventure School'
   return db.getSchool(4, t.context.db)
     .then(function (result) {
-      var actual = result[0].name
+      var actual = result.name
       t.is(expected, actual, "Get a school")
     })
 })
 
 test('insert school returns 5 schools', function (t) {
     var expected = 5
-    var data = {name: 'Hataitai School', schoolType: 'Full Primary School (Year 1-8)', authority: 'State', Decile:'10'}
+    var data = {name: 'Hataitai School', schoolType: 'Full Primary School (Year 1-8)', authority: 'State', Decile:'10', url: 'http://www.select.com'}
     return db.addSchool(data, t.context.db)
         .then(function (result) {
            return db.getSchools(t.context.db).then(function (results){
@@ -42,7 +42,7 @@ test('update school works correctly', function (t) {
         .then(function (result) {
             return db.getSchool(4, t.context.db)
                 .then(function (school){
-                    var actual = school[0].name
+                    var actual = school.name
                     t.is(actual, expected)
                 })
         })
