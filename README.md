@@ -36,4 +36,4 @@ To make it easier someone to find a school in any area and perhaps any propertie
 
 ## ER Diagram
 ### v 1.0
-![alt text](ER-First-Draft.png)
+![alt text](ER.png)
