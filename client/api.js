@@ -1,6 +1,5 @@
 import request from 'superagent'
 
-
 module.exports = {
   getSchools,
   getSchool,
@@ -18,7 +17,6 @@ function getSchools (callback) {
       }
     })
 }
-
 
 function addSchool (school, callback) {
   request

@@ -36,7 +36,6 @@ export default class AddSchoolForm extends React.Component {
 
     api.addSchool(this.state.item, function(){
           this.props.history.push('/schools')}.bind(this))
-    console.log(this.state.item)
   }
 
   handleChange (evt) {
@@ -49,15 +48,15 @@ export default class AddSchoolForm extends React.Component {
         [field]: evt.target.value
       }
     })
-   }
+  }
 
-    handleAuthority (value) {
+  handleAuthority (value) {
         this.setState({selectedAuthority : value, item: {...this.state.item, authority: value}})
-    }
+  }
 
-    handleGender (value) {
+  handleGender (value) {
         this.setState({selectedGender : value, item: {...this.state.item, gender: value}})
-    }
+  }
 
 
   render () {
@@ -66,7 +65,7 @@ export default class AddSchoolForm extends React.Component {
           <div>
             <label htmlFor="name">Name :</label>
             <input type="text" name="name" value={this.state.item.name} onChange={this.handleChange.bind(this)} />
-         </div>
+          </div>
          <div>
              <label htmlFor="name">School Type :</label>
               <select name="schoolType" value={this.state.item.schoolType} onChange={this.handleChange.bind(this)}>
@@ -76,7 +75,7 @@ export default class AddSchoolForm extends React.Component {
                     <option value="Composite (Year 1-15)">Composite (Year 1-15)</option>
                     <option value="Special School">Special School</option>
              </select>
-        </div>
+         </div>
          <div>
          <label htmlFor="authority">Authority : </label>
          <RadioGroup
