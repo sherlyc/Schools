@@ -60,6 +60,7 @@ export default class AddSchoolForm extends React.Component {
 
 
   render () {
+    console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="form">
           <div>
@@ -78,17 +79,18 @@ export default class AddSchoolForm extends React.Component {
          </div>
          <div>
          <label htmlFor="authority">Authority : </label>
-         <RadioGroup
-                name="authority"
-                selectedValue={this.state.selectedAuthority}
-                onChange={this.handleAuthority.bind(this)}>
                 <label>
-                  <Radio value="State" />State
+                  <input type='radio' value="State" name="authority"
+                    checked={this.state.selectedAuthority == "State"}
+                    onChange={(e) => this.handleAuthority("State")}
+                    />State
                 </label>
                 <label>
-                  <Radio value="Private" />Private
+                  <input type='radio' value="Private" name="authority"
+                    checked={this.state.selectedAuthority == "Private"}
+                    onChange={(e) => this.handleAuthority("Private")}
+                    />Private
                 </label>
-          </RadioGroup>
         </div>
         <div>
           <label htmlFor="gender">Gender : </label>
