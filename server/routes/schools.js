@@ -15,6 +15,7 @@ router.get('/', function (req, res) {
 })
 
 router.post('/add', function (req, res) {
+  //remove all console logs when you commit
     console.log(req.body)
     db.addSchool(req.body, req.app.get('connection'))
     res.sendStatus(201)

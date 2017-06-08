@@ -20,10 +20,7 @@ export default class AddSchoolForm extends React.Component {
          longitude: '' }
 
     this.state = {
-      selectedAuthority : 'State',
-      selectedGender : 'Co-Educational',
       item : {...this.itemModel}
-
     }
   }
 
@@ -51,15 +48,16 @@ export default class AddSchoolForm extends React.Component {
   }
 
   handleAuthority (value) {
-        this.setState({selectedAuthority : value, item: {...this.state.item, authority: value}})
+        this.setState({item: {...this.state.item, authority: value}})
   }
 
   handleGender (value) {
-        this.setState({selectedGender : value, item: {...this.state.item, gender: value}})
+        this.setState({item: {...this.state.item, gender: value}})
   }
 
 
   render () {
+    console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="form">
           <div>
@@ -78,23 +76,24 @@ export default class AddSchoolForm extends React.Component {
          </div>
          <div>
          <label htmlFor="authority">Authority : </label>
-         <RadioGroup
-                name="authority"
-                selectedValue={this.state.selectedAuthority}
-                onChange={this.handleAuthority.bind(this)}>
                 <label>
-                  <Radio value="State" />State
+                  <input type='radio' value="State" name="authority"
+                    checked={this.state.item.authority == "State"}
+                    onChange={(e) => this.handleChange(e)}
+                    />State
                 </label>
                 <label>
-                  <Radio value="Private" />Private
+                  <input type='radio' value="Private" name="authority"
+                    checked={this.state.item.authority == "Private"}
+                    onChange={(e) => this.handleChange(e)}
+                    />Private
                 </label>
-          </RadioGroup>
         </div>
         <div>
           <label htmlFor="gender">Gender : </label>
           <RadioGroup
                  name="gender"
-                 selectedValue={this.state.selectedGender}
+                 selectedValue={this.state.item.gender}
                  onChange={this.handleGender.bind(this)}>
                  <label>
                    <Radio value="Girls School" />Girls School
