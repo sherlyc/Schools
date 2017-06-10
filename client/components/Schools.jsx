@@ -1,8 +1,10 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {fetchSchools} from '../actions'
 import * as api from '../api'
 import SchoolList from './SchoolList'
 
-export default class Schools extends React.Component {
+class Schools extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -23,11 +25,31 @@ export default class Schools extends React.Component {
         })
     }
 
+    handleClick () {
+        this.props.dispatch(fetchSchools())
+
+    }
+
+    componentWillReceiveProps (props) {
+        console.log(props)
+
+
+    }
     render () {
         return (
             <div>
-                <SchoolList schools={this.state.schools}/>
+                <button onClick={this.handleClick.bind(this)}>Go</button>
             </div>
         )
     }
 }
+
+function mapStateToProps (state) {
+  return {
+    schoolsResults: state.schoolsResults
+  }
+}
+
+Schools = connect(mapStateToProps)(Schools)
+
+export default Schools
