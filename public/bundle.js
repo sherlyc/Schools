@@ -12100,9 +12100,9 @@ var _AddSchoolForm = __webpack_require__(115);
 
 var _AddSchoolForm2 = _interopRequireDefault(_AddSchoolForm);
 
-var _SchoolProfile = __webpack_require__(119);
+var _ProfileContainer = __webpack_require__(281);
 
-var _SchoolProfile2 = _interopRequireDefault(_SchoolProfile);
+var _ProfileContainer2 = _interopRequireDefault(_ProfileContainer);
 
 var _reactRouterDom = __webpack_require__(100);
 
@@ -12153,7 +12153,7 @@ var App = function (_React$Component) {
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools', component: _SchoolsContainer2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/add', component: _AddSchoolForm2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _SchoolProfile2.default })
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/schools/:id', component: _ProfileContainer2.default })
                         )
                     )
                 )
@@ -12183,10 +12183,15 @@ var _schoolsResults = __webpack_require__(122);
 
 var _schoolsResults2 = _interopRequireDefault(_schoolsResults);
 
+var _schoolProfile = __webpack_require__(282);
+
+var _schoolProfile2 = _interopRequireDefault(_schoolProfile);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  schoolsResults: _schoolsResults2.default
+  schoolsResults: _schoolsResults2.default,
+  schoolProfile: _schoolProfile2.default
 });
 
 /***/ }),
@@ -12721,155 +12726,100 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _api = __webpack_require__(39);
-
-var api = _interopRequireWildcard(_api);
 
 var _GMap = __webpack_require__(116);
 
 var _GMap2 = _interopRequireDefault(_GMap);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+exports.default = function (props) {
+    var school = props.school || {};
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SchoolProfile = function (_React$Component) {
-    _inherits(SchoolProfile, _React$Component);
-
-    function SchoolProfile(props) {
-        _classCallCheck(this, SchoolProfile);
-
-        var _this = _possibleConstructorReturn(this, (SchoolProfile.__proto__ || Object.getPrototypeOf(SchoolProfile)).call(this, props));
-
-        _this.state = {
-            error: null,
-            school: {},
-            id: props.match.params.id,
-            coord: {}
-        };
-        return _this;
-    }
-
-    _createClass(SchoolProfile, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
-
-            api.getSchool(this.state.id, function (err, school) {
-                return _this2.renderProfile(err, school);
-            });
-        }
-    }, {
-        key: 'renderProfile',
-        value: function renderProfile(err, school) {
-            this.setState({
-                error: err,
-                school: school || {},
-                coord: { lat: school.latitude, lng: school.longitude }
-            });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { className: 'school' },
+    return _react2.default.createElement(
+        'div',
+        { className: 'school' },
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'h1',
+                null,
+                'School Profile'
+            ),
+            _react2.default.createElement(
+                'ul',
+                null,
                 _react2.default.createElement(
-                    'div',
+                    'li',
                     null,
-                    _react2.default.createElement(
-                        'h1',
-                        null,
-                        'School Profile'
-                    ),
-                    _react2.default.createElement(
-                        'ul',
-                        null,
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Name : ',
-                            this.state.school.name
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'School Type : ',
-                            this.state.school.schoolType
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Authority : ',
-                            this.state.school.authority
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Gender : ',
-                            this.state.school.gender
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Decile : ',
-                            this.state.school.decile
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Address : ',
-                            this.state.school.address
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Suburb : ',
-                            this.state.school.suburb
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Email : ',
-                            this.state.school.email
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'Website : ',
-                            _react2.default.createElement(
-                                'a',
-                                { href: this.state.school.url },
-                                this.state.school.url
-                            )
-                        )
-                    )
+                    'Name : ',
+                    school.name
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'map' },
-                    _react2.default.createElement(_GMap2.default, { center: this.state.coord })
+                    'li',
+                    null,
+                    'School Type : ',
+                    school.schoolType
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    'Authority : ',
+                    school.authority
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    'Gender : ',
+                    school.gender
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    'Decile : ',
+                    school.decile
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    'Address : ',
+                    school.address
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    'Suburb : ',
+                    school.suburb
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    'Email : ',
+                    school.email
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    'Website : ',
+                    _react2.default.createElement(
+                        'a',
+                        { href: school.url },
+                        school.url
+                    )
                 )
-            );
-        }
-    }]);
-
-    return SchoolProfile;
-}(_react2.default.Component);
-
-exports.default = SchoolProfile;
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'map' },
+            _react2.default.createElement(_GMap2.default, { center: { lat: school.latitude, lng: school.longitude } })
+        )
+    );
+};
 
 /***/ }),
 /* 120 */
@@ -30476,7 +30426,9 @@ module.exports = function(module) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchSchools = exports.receiveSchools = undefined;
+exports.getSchool = exports.fetchSchools = exports.receiveSchool = exports.receiveSchools = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _superagent = __webpack_require__(271);
 
@@ -30493,13 +30445,39 @@ var receiveSchools = exports.receiveSchools = function receiveSchools(schools) {
   };
 };
 
+var receiveSchool = exports.receiveSchool = function receiveSchool(school) {
+  return {
+    type: 'RECEIVE_SCHOOL',
+    school: _extends({}, school)
+  };
+};
+
+var throwError = function throwError(message) {
+  return {
+    type: 'THROW_ERROR',
+    message: message
+  };
+};
+
 var fetchSchools = exports.fetchSchools = function fetchSchools() {
   return function (dispatch) {
     _superagent2.default.get('/schools').end(function (err, res) {
       if (err) {
-        dispatch(searchError(err.message));
+        dispatch(throwError(err.message));
       } else {
         dispatch(receiveSchools(res.body));
+      }
+    });
+  };
+};
+
+var getSchool = exports.getSchool = function getSchool(id) {
+  return function (dispatch) {
+    _superagent2.default.get('/schools/' + id).end(function (err, res) {
+      if (err) {
+        dipatch(throwError(err.message));
+      } else {
+        dispatch(receiveSchool(res.body.school));
       }
     });
   };
@@ -30525,7 +30503,6 @@ var _reactRouterDom = __webpack_require__(100);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (props) {
-
     var schools = props.schools || [];
     return _react2.default.createElement(
         'div',
@@ -30552,6 +30529,104 @@ exports.default = function (props) {
         )
     );
 };
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(113);
+
+var _SchoolProfile = __webpack_require__(119);
+
+var _SchoolProfile2 = _interopRequireDefault(_SchoolProfile);
+
+var _actions = __webpack_require__(279);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ProfileContainer = function (_React$Component) {
+    _inherits(ProfileContainer, _React$Component);
+
+    function ProfileContainer() {
+        _classCallCheck(this, ProfileContainer);
+
+        return _possibleConstructorReturn(this, (ProfileContainer.__proto__ || Object.getPrototypeOf(ProfileContainer)).apply(this, arguments));
+    }
+
+    _createClass(ProfileContainer, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.dispatch((0, _actions.getSchool)(this.props.match.params.id));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_SchoolProfile2.default, { school: this.props.schoolProfile })
+            );
+        }
+    }]);
+
+    return ProfileContainer;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+    return {
+        schoolProfile: state.schoolProfile
+    };
+}
+
+ProfileContainer = (0, _reactRedux.connect)(mapStateToProps)(ProfileContainer);
+exports.default = ProfileContainer;
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function schoolProfile() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'RECEIVE_SCHOOL':
+      return _extends({}, action.school);
+
+    default:
+      return state;
+  }
+}
+
+exports.default = schoolProfile;
 
 /***/ })
 /******/ ]);

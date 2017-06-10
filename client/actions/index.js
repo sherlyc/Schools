@@ -7,16 +7,46 @@ export const receiveSchools = (schools) => {
   }
 }
 
+export const receiveSchool = (school) => {
+    return {
+        type: 'RECEIVE_SCHOOL',
+        school: {...school}
+    }
+}
+
+const throwError = (message) => {
+  return {
+    type: 'THROW_ERROR',
+    message
+  }
+}
+
+
 export const fetchSchools = () => {
   return (dispatch) => {
     request
         .get('/schools')
         .end((err, res) => {
           if (err) {
-            dispatch(searchError(err.message))
+            dispatch(throwError(err.message))
           } else {
             dispatch(receiveSchools(res.body))
           }
         })
   }
+}
+
+export const getSchool = (id) => {
+    return (dispatch) => {
+        request
+        .get('/schools/' + id)
+        .end(function (err, res) {
+            if (err) {
+                dipatch(throwError(err.message))
+            } else {
+                dispatch(receiveSchool(res.body.school))
+            }
+        })
+    }
+
 }
