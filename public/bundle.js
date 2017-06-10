@@ -12142,11 +12142,7 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'container' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'nav' },
-                            _react2.default.createElement(_Nav2.default, null)
-                        ),
+                        _react2.default.createElement(_Nav2.default, null),
                         _react2.default.createElement(
                             'div',
                             { className: 'content' },
@@ -12688,7 +12684,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Nav = function Nav() {
   return _react2.default.createElement(
     'div',
-    { className: 'home' },
+    { className: 'nav' },
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: '/' },
