@@ -9,7 +9,6 @@ class SchoolsContainer extends React.Component {
         this.props.dispatch(fetchSchools())
     }
 
-
     render () {
         return (
             <SchoolList  schools={this.props.schoolsResults}/>

@@ -30485,8 +30485,6 @@ var _superagent2 = _interopRequireDefault(_superagent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var receiveSchools = exports.receiveSchools = function receiveSchools(schools) {
-  console.log("API CALLED");
-  console.log(schools);
   return {
     type: 'RECEIVE_SCHOOLS',
     schoolsResults: schools.schools.map(function (school) {
@@ -30499,11 +30497,8 @@ var fetchSchools = exports.fetchSchools = function fetchSchools() {
   return function (dispatch) {
     _superagent2.default.get('/schools').end(function (err, res) {
       if (err) {
-        console.log(err);
         dispatch(searchError(err.message));
       } else {
-        console.log("receiving result from api call");
-        console.log(res);
         dispatch(receiveSchools(res.body));
       }
     });
