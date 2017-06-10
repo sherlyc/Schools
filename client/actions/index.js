@@ -14,12 +14,22 @@ export const receiveSchool = (school) => {
     }
 }
 
-const throwError = (message) => {
+export const throwError = (message) => {
   return {
     type: 'THROW_ERROR',
     message
   }
 }
+
+export const createSchool = (status) => {
+    return {
+        type: 'CREATE_SCHOOL',
+        status
+    }
+}
+
+
+
 
 
 export const fetchSchools = () => {
@@ -48,5 +58,22 @@ export const getSchool = (id) => {
             }
         })
     }
+}
 
+export const addSchool = (data) => {
+    console.log(data)
+    return (dispatch) => {
+        request
+        .post('/schools/add')
+        .send(data)
+        .end(function (err, res) {
+            console.log(err)
+            console.log(res)
+            if (err) {
+                dispatch(throwError(err.message))
+            } else {
+                dispatch(createSchool('200'))
+            }
+        })
+    }
 }

@@ -1,9 +1,55 @@
 import React from 'react'
 import * as api from '../api'
-import {RadioGroup, Radio} from 'react-radio-group';
+import { addSchool } from '../actions'
+import { Field, reduxForm } from 'redux-form'
+import renderField from './RenderField'
 
 
-export default class AddSchoolForm extends React.Component {
+const validate = values => {
+  const errors = {}
+  if (!values.name || values.name.trim() === '') {
+    errors.name = 'Required'
+  } else if (values.name.length > 50) {
+    errors.username = 'Must be 50 characters or less'
+  }
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+  if (!values.decile) {
+    errors.decile = 'Required'
+ } else if (isNaN(Number(values.decile))) {
+    errors.decile = 'Must be a number'
+  }
+  return errors
+}
+
+const warn = values => {
+  const warnings = {}
+  if (values.age < 19) {
+    warnings.age = 'Hmm, you seem a bit young...'
+  }
+  return warnings
+}
+
+const validateAndAddSchool = (values, dispatch) => {
+
+  return dispatch(addSchool(values))
+//     .then(result => {
+//       // Note: Error's "data" is in result.payload.response.data (inside "response")
+//       // success's "data" is in result.payload.data
+//       //if (result.payload.response && result.payload.response.status !== 200) {
+//         // dispatch(createPostFailure(result.payload.response.data));
+//         //throw new SubmissionError(result.payload.response.data);
+//      // }
+//       //let other components know that everything is fine by updating the redux` state
+//       //dispatch(addSchoolSuccess(result.payload.data)); //ps: this is same as dispatching RESET_USER_FIELDS
+//     }
+// )
+}
+
+class AddSchoolForm extends React.Component {
   constructor (props){
     super(props)
 
@@ -20,15 +66,14 @@ export default class AddSchoolForm extends React.Component {
          longitude: '' }
 
     this.state = {
-      selectedAuthority : 'State',
-      selectedGender : 'Co-Educational',
       item : {...this.itemModel}
-
     }
   }
 
   handleSubmit (evt) {
+      console.log("don't")
     evt.preventDefault()
+
 
     this.setState({
       item: { ...this.itemModel }
@@ -40,7 +85,6 @@ export default class AddSchoolForm extends React.Component {
 
   handleChange (evt) {
     const field = evt.target.name
-    console.log(evt)
 
     this.setState({
       item: {
@@ -50,18 +94,22 @@ export default class AddSchoolForm extends React.Component {
     })
   }
 
-  handleAuthority (value) {
-        this.setState({selectedAuthority : value, item: {...this.state.item, authority: value}})
-  }
-
-  handleGender (value) {
-        this.setState({selectedGender : value, item: {...this.state.item, gender: value}})
-  }
 
 
   render () {
+      const {handleSubmit, pristine, reset, submitting } = this.props
+
     return (
-      <form onSubmit={this.handleSubmit.bind(this)} className="form">
+      <form onSubmit={handleSubmit(validateAndAddSchool)} className="form">
+
+          <Field
+            name="name"
+            type="text"
+            component={renderField}
+            label="name"
+          />
+
+
           <div>
             <label htmlFor="name">Name :</label>
             <input type="text" name="name" value={this.state.item.name} onChange={this.handleChange.bind(this)} />
@@ -77,35 +125,37 @@ export default class AddSchoolForm extends React.Component {
              </select>
          </div>
          <div>
-         <label htmlFor="authority">Authority : </label>
-         <RadioGroup
-                name="authority"
-                selectedValue={this.state.selectedAuthority}
-                onChange={this.handleAuthority.bind(this)}>
-                <label>
-                  <Radio value="State" />State
-                </label>
-                <label>
-                  <Radio value="Private" />Private
-                </label>
-          </RadioGroup>
-        </div>
+       <label htmlFor="authority">Authority : </label>
+              <label>
+                <input type='radio' value="State" name="authority"
+                  checked={this.state.item.authority == "State"}
+                  onChange={(e) => this.handleChange(e)}
+                  />State
+              </label>
+              <label>
+                <input type='radio' value="Private" name="authority"
+                  checked={this.state.item.authority == "Private"}
+                  onChange={(e) => this.handleChange(e)}
+                  />Private
+              </label>
+      </div>
         <div>
           <label htmlFor="gender">Gender : </label>
-          <RadioGroup
-                 name="gender"
-                 selectedValue={this.state.selectedGender}
-                 onChange={this.handleGender.bind(this)}>
-                 <label>
-                   <Radio value="Girls School" />Girls School
-                 </label>
-                 <label>
-                   <Radio value="Boys School" />Boys School
-                 </label>
-                 <label>
-                   <Radio value="Co-Educational" />Co-Educational
-                 </label>
-          </RadioGroup>
+            <label>
+             <input type='radio' value="Girls School" name="gender"
+                checked={this.state.item.gender == "Girls School"}
+                onChange={(e) => this.handleChange(e)} />Girls School
+            </label>
+            <label>
+            <input type='radio' value="Boys School" name="gender"
+               checked={this.state.item.gender == "Boys School"}
+               onChange={(e) => this.handleChange(e)} />Boys School
+           </label>
+           <label>
+           <input type='radio' value="Co-Educational" name="gender"
+              checked={this.state.item.gender == "Co-Educational"}
+              onChange={(e) => this.handleChange(e)} />Co-Educational
+          </label>
         </div>
         <div>
           <label htmlFor="decile">Decile : </label>
@@ -142,3 +192,9 @@ export default class AddSchoolForm extends React.Component {
     )
   }
 }
+
+
+export default reduxForm({
+  form: 'AddSchoolForm', // a unique identifier for this form
+  validate // <--- validation function given to redux-form
+})(AddSchoolForm)
