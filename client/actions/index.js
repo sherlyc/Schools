@@ -42,13 +42,13 @@ export const fetchSchools = () => {
   }
 }
 
-export const getSchool = (id) => {
+export const getSchool = (id) => {  //call api to get single school
     return (dispatch) => {
         request
         .get('/schools/' + id)
         .end(function (err, res) {
             if (err) {
-                dipatch(throwError(err.message))
+                dispatch(throwError(err.message))
             } else {
                 dispatch(receiveSchool(res.body.school))
             }
@@ -56,15 +56,12 @@ export const getSchool = (id) => {
     }
 }
 
-export const addSchool = (data) => {
-    console.log(data)
+export const addSchool = (data) => { // call api to save school
     return (dispatch) => {
         request
         .post('/schools/add')
         .send(data)
         .end(function (err, res) {
-            console.log(err)
-            console.log(res)
             if (err) {
                 dispatch(throwError(err.message))
             } else {

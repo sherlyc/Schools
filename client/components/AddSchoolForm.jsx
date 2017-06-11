@@ -34,6 +34,7 @@ const validate = values => { // Can I move this function into its own file to ma
 }
 
 const validateAndAddSchool = (values, dispatch) => {
+  console.log(values)
   //to do : add error handling here, gotta ask JV about this.
   return dispatch(addSchool(values))
 }
@@ -60,7 +61,7 @@ const AddSchoolForm = props => {
                  <Field name="schoolType" component="select">
                     <option />
                       <option value="Full Primary (Year 1-8)">Full Primary (Year 1-8)</option>
-                      <option value="Secondary (Year 7-15)">Secondary (Year 7-15)</option>
+                      <option value="Secondary (Year 9-15)">Secondary (Year 7-15)</option>
                       <option value="Composite (Year 1-15)">Composite (Year 1-15)</option>
                       <option value="Special School">Special School</option>
                  </Field>
