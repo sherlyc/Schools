@@ -3,7 +3,6 @@ import { addSchool } from '../actions'
 import { Field, reduxForm, reset } from 'redux-form'
 import renderField from './RenderField'
 
-
 const validate = values => {
   const errors = {}
   if (!values.name || values.name.trim() === '') {
@@ -39,13 +38,12 @@ const validateAndAddSchool = (values, dispatch) => {
   return dispatch(addSchool(values))
 }
 
-class AddSchoolForm extends React.Component {
+const AddSchoolForm = props => {
 
-  render () {
-
-    const {handleSubmit, pristine, reset, submitting, submitSucceeded } = this.props
+    const {handleSubmit, pristine, reset, submitting, submitSucceeded } = props
 
     return (
+
       <form onSubmit={handleSubmit(validateAndAddSchool)} className="form">
 
           <div>
@@ -156,7 +154,6 @@ class AddSchoolForm extends React.Component {
       </form>
 
     )
-  }
 }
 
 

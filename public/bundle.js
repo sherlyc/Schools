@@ -15910,8 +15910,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
@@ -15925,12 +15923,6 @@ var _RenderField = __webpack_require__(511);
 var _RenderField2 = _interopRequireDefault(_RenderField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var validate = function validate(values) {
     var errors = {};
@@ -15967,258 +15959,242 @@ var validateAndAddSchool = function validateAndAddSchool(values, dispatch) {
     return dispatch((0, _actions.addSchool)(values));
 };
 
-var AddSchoolForm = function (_React$Component) {
-    _inherits(AddSchoolForm, _React$Component);
-
-    function AddSchoolForm() {
-        _classCallCheck(this, AddSchoolForm);
-
-        return _possibleConstructorReturn(this, (AddSchoolForm.__proto__ || Object.getPrototypeOf(AddSchoolForm)).apply(this, arguments));
-    }
-
-    _createClass(AddSchoolForm, [{
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                handleSubmit = _props.handleSubmit,
-                pristine = _props.pristine,
-                reset = _props.reset,
-                submitting = _props.submitting,
-                submitSucceeded = _props.submitSucceeded;
+var AddSchoolForm = function AddSchoolForm(props) {
+    var handleSubmit = props.handleSubmit,
+        pristine = props.pristine,
+        reset = props.reset,
+        submitting = props.submitting,
+        submitSucceeded = props.submitSucceeded;
 
 
-            return _react2.default.createElement(
-                'form',
-                { onSubmit: handleSubmit(validateAndAddSchool), className: 'form' },
+    return _react2.default.createElement(
+        'form',
+        { onSubmit: handleSubmit(validateAndAddSchool), className: 'form' },
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'School Name :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'name', component: _RenderField2.default, type: 'text', placeholder: 'School Name'
+                })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'School Type :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
                 _react2.default.createElement(
-                    'div',
-                    null,
+                    _reduxForm.Field,
+                    { name: 'schoolType', component: 'select' },
+                    _react2.default.createElement('option', null),
                     _react2.default.createElement(
-                        'label',
-                        null,
-                        'School Name :'
+                        'option',
+                        { value: 'Full Primary (Year 1-8)' },
+                        'Full Primary (Year 1-8)'
                     ),
                     _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'name', component: _RenderField2.default, type: 'text', placeholder: 'School Name'
-                        })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'School Type :'
+                        'option',
+                        { value: 'Secondary (Year 7-15)' },
+                        'Secondary (Year 7-15)'
                     ),
                     _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            _reduxForm.Field,
-                            { name: 'schoolType', component: 'select' },
-                            _react2.default.createElement('option', null),
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'Full Primary (Year 1-8)' },
-                                'Full Primary (Year 1-8)'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'Secondary (Year 7-15)' },
-                                'Secondary (Year 7-15)'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'Composite (Year 1-15)' },
-                                'Composite (Year 1-15)'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'Special School' },
-                                'Special School'
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Authority :'
+                        'option',
+                        { value: 'Composite (Year 1-15)' },
+                        'Composite (Year 1-15)'
                     ),
                     _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            _react2.default.createElement(_reduxForm.Field, { name: 'authority', component: 'input', type: 'radio', value: 'State' }),
-                            ' ',
-                            'State'
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            _react2.default.createElement(_reduxForm.Field, { name: 'authority', component: 'input', type: 'radio', value: 'Private' }),
-                            ' ',
-                            'Private'
-                        )
+                        'option',
+                        { value: 'Special School' },
+                        'Special School'
                     )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Gender :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            _react2.default.createElement(_reduxForm.Field, { name: 'gender', component: 'input', type: 'radio', value: 'Girls School' }),
-                            ' ',
-                            'Girls School'
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            _react2.default.createElement(_reduxForm.Field, { name: 'gender', component: 'input', type: 'radio', value: 'Boys School' }),
-                            ' ',
-                            'Boys School'
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            _react2.default.createElement(_reduxForm.Field, { name: 'gender', component: 'input', type: 'radio', value: 'Co-Educational' }),
-                            ' ',
-                            'Co-Educational'
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Decile :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'decile', component: _RenderField2.default, type: 'text', placeholder: 'Decile' })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Address :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'address', component: 'input', type: 'text' })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Suburb :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'suburb', component: _RenderField2.default, type: 'text', placeholder: 'suburb' })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Email :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'email', component: _RenderField2.default, type: 'email', placeholder: 'email' })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'URL :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'url', component: _RenderField2.default, type: 'text', placeholder: 'http://' })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Latitude :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'latitude', component: _RenderField2.default, type: 'text', placeholder: 'latitude' })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'Longitude :'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(_reduxForm.Field, { name: 'longitude', component: _RenderField2.default, type: 'text', placeholder: 'longitude' })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement('input', { type: 'submit', value: 'Add' })
-                ),
-                _react2.default.createElement(
-                    'p',
-                    { className: 'submitSucceed' },
-                    ' ',
-                    submitSucceeded ? "School has been added" : ""
                 )
-            );
-        }
-    }]);
-
-    return AddSchoolForm;
-}(_react2.default.Component);
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Authority :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    _react2.default.createElement(_reduxForm.Field, { name: 'authority', component: 'input', type: 'radio', value: 'State' }),
+                    ' ',
+                    'State'
+                ),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    _react2.default.createElement(_reduxForm.Field, { name: 'authority', component: 'input', type: 'radio', value: 'Private' }),
+                    ' ',
+                    'Private'
+                )
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Gender :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    _react2.default.createElement(_reduxForm.Field, { name: 'gender', component: 'input', type: 'radio', value: 'Girls School' }),
+                    ' ',
+                    'Girls School'
+                ),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    _react2.default.createElement(_reduxForm.Field, { name: 'gender', component: 'input', type: 'radio', value: 'Boys School' }),
+                    ' ',
+                    'Boys School'
+                ),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    _react2.default.createElement(_reduxForm.Field, { name: 'gender', component: 'input', type: 'radio', value: 'Co-Educational' }),
+                    ' ',
+                    'Co-Educational'
+                )
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Decile :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'decile', component: _RenderField2.default, type: 'text', placeholder: 'Decile' })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Address :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'address', component: 'input', type: 'text' })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Suburb :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'suburb', component: _RenderField2.default, type: 'text', placeholder: 'suburb' })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Email :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'email', component: _RenderField2.default, type: 'email', placeholder: 'email' })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'URL :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'url', component: _RenderField2.default, type: 'text', placeholder: 'http://' })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Latitude :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'latitude', component: _RenderField2.default, type: 'text', placeholder: 'latitude' })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'label',
+                null,
+                'Longitude :'
+            ),
+            _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_reduxForm.Field, { name: 'longitude', component: _RenderField2.default, type: 'text', placeholder: 'longitude' })
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('input', { type: 'submit', value: 'Add' })
+        ),
+        _react2.default.createElement(
+            'p',
+            { className: 'submitSucceed' },
+            ' ',
+            submitSucceeded ? "School has been added" : ""
+        )
+    );
+};
 
 exports.default = (0, _reduxForm.reduxForm)({
     form: 'AddSchoolForm', // a unique identifier for this form
