@@ -151,6 +151,7 @@ class AddSchoolForm extends React.Component {
           <div>
               <input type="submit" value="Add" />
           </div>
+          {/* submitSucceed message goes here */}
           <p className="submitSucceed"> { submitSucceeded ? "School has been added" : "" }</p>
       </form>
 
@@ -161,8 +162,8 @@ class AddSchoolForm extends React.Component {
 
 export default reduxForm({
   form: 'AddSchoolForm', // a unique identifier for this form
-  validate,
-  onSubmitSuccess (result, dispatch) {
+  validate, // <--- validation function given to redux-form
+  onSubmitSuccess (result, dispatch) { // reset the form onSubmitSuccess
   setTimeout(() => dispatch(reset('AddSchoolForm')), 1200 );
-  } // <--- validation function given to redux-form
+  }
 })(AddSchoolForm)

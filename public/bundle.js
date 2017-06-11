@@ -16222,13 +16222,13 @@ var AddSchoolForm = function (_React$Component) {
 
 exports.default = (0, _reduxForm.reduxForm)({
     form: 'AddSchoolForm', // a unique identifier for this form
-    validate: validate,
+    validate: validate, // <--- validation function given to redux-form
     onSubmitSuccess: function onSubmitSuccess(result, dispatch) {
+        // reset the form onSubmitSuccess
         setTimeout(function () {
             return dispatch((0, _reduxForm.reset)('AddSchoolForm'));
         }, 1200);
-    } // <--- validation function given to redux-form
-
+    }
 })(AddSchoolForm);
 
 /***/ }),
