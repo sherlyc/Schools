@@ -1,8 +1,6 @@
 import React from 'react'
-import * as api from '../api'
 import { addSchool } from '../actions'
 import { Field, reduxForm, reset } from 'redux-form'
-
 import renderField from './RenderField'
 
 
@@ -37,54 +35,11 @@ const validate = values => {
 }
 
 const validateAndAddSchool = (values, dispatch) => {
-
-
+  //to do : add error handling here, gotta ask JV about this.
   return dispatch(addSchool(values))
 }
 
 class AddSchoolForm extends React.Component {
-  constructor (props){
-    super(props)
-
-    this.itemModel = {  name: '',
-         schoolType: '',
-         authority: 'State',
-         gender: 'Co-Educational',
-         decile: '',
-         address: '',
-         suburb: '',
-         email: '',
-         url: '',
-         latitude: '',
-         longitude: '' }
-
-    this.state = {
-      item : {...this.itemModel}
-    }
-  }
-
-  handleSubmit (evt) {
-    evt.preventDefault()
-
-
-    this.setState({
-      item: { ...this.itemModel }
-    })
-
-    api.addSchool(this.state.item, function(){
-          this.props.history.push('/schools')}.bind(this))
-  }
-
-  handleChange (evt) {
-    const field = evt.target.name
-
-    this.setState({
-      item: {
-        ...this.state.item,
-        [field]: evt.target.value
-      }
-    })
-  }
 
   render () {
 
@@ -208,6 +163,6 @@ export default reduxForm({
   form: 'AddSchoolForm', // a unique identifier for this form
   validate,
   onSubmitSuccess (result, dispatch) {
-  setTimeout(() => dispatch(reset('AddSchoolForm')), 1000 );
+  setTimeout(() => dispatch(reset('AddSchoolForm')), 1200 );
   } // <--- validation function given to redux-form
 })(AddSchoolForm)

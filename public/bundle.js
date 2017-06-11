@@ -15909,17 +15909,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _api = __webpack_require__(106);
-
-var api = _interopRequireWildcard(_api);
 
 var _actions = __webpack_require__(105);
 
@@ -15929,11 +15923,7 @@ var _RenderField = __webpack_require__(511);
 
 var _RenderField2 = _interopRequireDefault(_RenderField);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -15972,59 +15962,20 @@ var validate = function validate(values) {
 };
 
 var validateAndAddSchool = function validateAndAddSchool(values, dispatch) {
-
+    //to do : add error handling here, gotta ask JV about this.
     return dispatch((0, _actions.addSchool)(values));
 };
 
 var AddSchoolForm = function (_React$Component) {
     _inherits(AddSchoolForm, _React$Component);
 
-    function AddSchoolForm(props) {
+    function AddSchoolForm() {
         _classCallCheck(this, AddSchoolForm);
 
-        var _this = _possibleConstructorReturn(this, (AddSchoolForm.__proto__ || Object.getPrototypeOf(AddSchoolForm)).call(this, props));
-
-        _this.itemModel = { name: '',
-            schoolType: '',
-            authority: 'State',
-            gender: 'Co-Educational',
-            decile: '',
-            address: '',
-            suburb: '',
-            email: '',
-            url: '',
-            latitude: '',
-            longitude: '' };
-
-        _this.state = {
-            item: _extends({}, _this.itemModel)
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (AddSchoolForm.__proto__ || Object.getPrototypeOf(AddSchoolForm)).apply(this, arguments));
     }
 
     _createClass(AddSchoolForm, [{
-        key: 'handleSubmit',
-        value: function handleSubmit(evt) {
-            evt.preventDefault();
-
-            this.setState({
-                item: _extends({}, this.itemModel)
-            });
-
-            api.addSchool(this.state.item, function () {
-                this.props.history.push('/schools');
-            }.bind(this));
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(evt) {
-            var field = evt.target.name;
-
-            this.setState({
-                item: _extends({}, this.state.item, _defineProperty({}, field, evt.target.value))
-            });
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _props = this.props,
@@ -16274,7 +16225,7 @@ exports.default = (0, _reduxForm.reduxForm)({
     onSubmitSuccess: function onSubmitSuccess(result, dispatch) {
         setTimeout(function () {
             return dispatch((0, _reduxForm.reset)('AddSchoolForm'));
-        }, 1000);
+        }, 1200);
     } // <--- validation function given to redux-form
 
 })(AddSchoolForm);
