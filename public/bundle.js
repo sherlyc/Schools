@@ -15925,6 +15925,7 @@ var _RenderField2 = _interopRequireDefault(_RenderField);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var validate = function validate(values) {
+    // Can I move this function into its own file to make this form looked neater?
     var errors = {};
     if (!values.name || values.name.trim() === '') {
         errors.name = 'Required';

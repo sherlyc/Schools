@@ -3,7 +3,7 @@ import { addSchool } from '../actions'
 import { Field, reduxForm, reset } from 'redux-form'
 import renderField from './RenderField'
 
-const validate = values => {
+const validate = values => { // Can I move this function into its own file to make this form looked neater?
   const errors = {}
   if (!values.name || values.name.trim() === '') {
     errors.name = 'Required'
