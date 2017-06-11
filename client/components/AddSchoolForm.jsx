@@ -3,7 +3,6 @@ import { addSchool } from '../actions'
 import { Field, reduxForm, reset } from 'redux-form'
 import renderField from './RenderField'
 
-
 const validate = values => {
   const errors = {}
   if (!values.name || values.name.trim() === '') {
@@ -39,13 +38,12 @@ const validateAndAddSchool = (values, dispatch) => {
   return dispatch(addSchool(values))
 }
 
-class AddSchoolForm extends React.Component {
+const AddSchoolForm = props => {
 
-  render () {
-
-    const {handleSubmit, pristine, reset, submitting, submitSucceeded } = this.props
+    const {handleSubmit, pristine, reset, submitting, submitSucceeded } = props
 
     return (
+
       <form onSubmit={handleSubmit(validateAndAddSchool)} className="form">
 
           <div>
@@ -151,18 +149,18 @@ class AddSchoolForm extends React.Component {
           <div>
               <input type="submit" value="Add" />
           </div>
+          {/* submitSucceed message goes here */}
           <p className="submitSucceed"> { submitSucceeded ? "School has been added" : "" }</p>
       </form>
 
     )
-  }
 }
 
 
 export default reduxForm({
   form: 'AddSchoolForm', // a unique identifier for this form
-  validate,
-  onSubmitSuccess (result, dispatch) {
+  validate, // <--- validation function given to redux-form
+  onSubmitSuccess (result, dispatch) { // reset the form onSubmitSuccess
   setTimeout(() => dispatch(reset('AddSchoolForm')), 1200 );
-  } // <--- validation function given to redux-form
+  }
 })(AddSchoolForm)
