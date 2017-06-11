@@ -1,149 +1,141 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { load as loadAccount } from '../actions'
+import { getSchool as loadSchool } from '../actions'
 
-const data = {
-    address: "80A Tinakori Road",
-    authority: "Private",
-    decile: "10",
-    email: "ningpasta@gmail.com",
-    gender: "Boys School",
-    latitude: "-41.11058",
-    longitude: "174.890107",
-    name: "DD SCHOOL",
-    schoolType: "Composite (Year 1-15)",
-    suburb:"Thorndon",
-    url: "http://www.website.com"
+
+const schoolType = [ 'Full Primary (Year 1-8)', 'Secondary (Year 9-15)', 'Composite (Year 1-15)', 'Special School' ]
+
+class EditSchoolForm extends React.Component {
+
+    componentWillMount () {
+        this.props.load(this.props.match.params.id)
+    }
+
+
+    render() {
+
+        const { handleSubmit, pristine, reset, submitting } = this.props
+
+        return (
+                  <form onSubmit={handleSubmit} className="form">
+                      <div>
+                         <label>School Name :</label>
+                         <div>
+                           <Field name="name" component="input" type="text" />
+                         </div>
+                       </div>
+
+                       <div>
+                           <label>School Type :</label>
+                           <div>
+                             <Field name="schoolType" component="select">
+                                 <option value="">Select a school type...</option>
+                                 {schoolType.map(schoolOption =>
+                                     <option value={schoolOption} key={schoolOption}>{schoolOption}</option>)}
+                             </Field>
+                           </div>
+                       </div>
+
+                      <div>
+                          <label>Authority :</label>
+                          <div>
+                              <label>
+                                  <Field name="authority" component="input" type="radio" value="State" />
+                                  {' '}
+                                  State
+                              </label>
+                              <label>
+                                  <Field name="authority" component="input" type="radio" value="Private" />
+                                  {' '}
+                                  Private
+                              </label>
+                          </div>
+                      </div>
+                      <div>
+                          <label>Gender :</label>
+                            <div>
+                                <label>
+                                    <Field name="gender" component="input" type="radio" value="Girls School" />
+                                    {' '}
+                                    Girls School
+                                </label>
+                                <label>
+                                    <Field name="gender" component="input" type="radio" value="Boys School" />
+                                    {' '}
+                                    Boys School
+                                </label>
+                                <label>
+                                    <Field name="gender" component="input" type="radio" value="Co-Educational" />
+                                    {' '}
+                                    Co-Educational
+                                </label>
+                            </div>
+                      </div>
+                      <div>
+                          <label>Decile :</label>
+                          <div>
+                              <Field name="decile" component="input" type="text" />
+                          </div>
+                      </div>
+
+                      <div>
+                          <label>Address :</label>
+                          <div>
+                              <Field name="address" component="input" type="text" />
+                          </div>
+                      </div>
+                      <div>
+                          <label>Suburb :</label>
+                          <div>
+                              <Field name="suburb" component="input" type="text" />
+                          </div>
+                      </div>
+
+                      <div>
+                          <label>Email :</label>
+                          <div>
+                              <Field name="email" component="input" type="email" />
+                          </div>
+                      </div>
+                      <div>
+                          <label>URL :</label>
+                          <div>
+                              <Field name="url" component="input" type="text" />
+                          </div>
+                      </div>
+                      <div>
+                          <label>Latitude :</label>
+                          <div>
+                              <Field name="latitude" component="input" type="text" />
+                          </div>
+                      </div>
+                      <div>
+                          <label>Longitude :</label>
+                          <div>
+                              <Field name="longitude" component="input" type="text" />
+                          </div>
+                      </div>
+                      <div>
+                          <input type="submit" value="Add" />
+                      </div>
+                  </form>
+        )
+    }
+
 }
 
-const schoolType = [ 'Full Primary (Year 1-8)', 'Secondary (Year 7-15)', 'Composite (Year 1-15)', 'Special School' ]
-
-let EditSchoolForm = props => {
-    console.log("PROPS")
-    console.log(props)
-  const { handleSubmit, load, pristine, reset, submitting } = props
-  return (
-
-      <form onSubmit={handleSubmit} className="form">
-          <div>
-              <button type="button" onClick={() => load(data)}>Load Account</button>
-          </div>
-          <div>
-             <label>School Name :</label>
-             <div>
-               <Field name="name" component="input" type="text" />
-             </div>
-           </div>
-
-           <div>
-               <label>School Type :</label>
-               <div>
-                 <Field name="schoolType" component="select">
-                     <option value="">Select a school type...</option>
-                     {schoolType.map(schoolOption =>
-                         <option value={schoolOption} key={schoolOption}>{schoolOption}</option>)}
-                 </Field>
-               </div>
-           </div>
-
-          <div>
-              <label>Authority :</label>
-              <div>
-                  <label>
-                      <Field name="authority" component="input" type="radio" value="State" />
-                      {' '}
-                      State
-                  </label>
-                  <label>
-                      <Field name="authority" component="input" type="radio" value="Private" />
-                      {' '}
-                      Private
-                  </label>
-              </div>
-          </div>
-          <div>
-              <label>Gender :</label>
-                <div>
-                    <label>
-                        <Field name="gender" component="input" type="radio" value="Girls School" />
-                        {' '}
-                        Girls School
-                    </label>
-                    <label>
-                        <Field name="gender" component="input" type="radio" value="Boys School" />
-                        {' '}
-                        Boys School
-                    </label>
-                    <label>
-                        <Field name="gender" component="input" type="radio" value="Co-Educational" />
-                        {' '}
-                        Co-Educational
-                    </label>
-                </div>
-          </div>
-          <div>
-              <label>Decile :</label>
-              <div>
-                  <Field name="decile" component="input" type="text" />
-              </div>
-          </div>
-
-          <div>
-              <label>Address :</label>
-              <div>
-                  <Field name="address" component="input" type="text" />
-              </div>
-          </div>
-          <div>
-              <label>Suburb :</label>
-              <div>
-                  <Field name="suburb" component="input" type="text" />
-              </div>
-          </div>
-
-          <div>
-              <label>Email :</label>
-              <div>
-                  <Field name="email" component="input" type="email" />
-              </div>
-          </div>
-          <div>
-              <label>URL :</label>
-              <div>
-                  <Field name="url" component="input" type="text" />
-              </div>
-          </div>
-          <div>
-              <label>Latitude :</label>
-              <div>
-                  <Field name="latitude" component="input" type="text" />
-              </div>
-          </div>
-          <div>
-              <label>Longitude :</label>
-              <div>
-                  <Field name="longitude" component="input" type="text" />
-              </div>
-          </div>
-          <div>
-              <input type="submit" value="Add" />
-          </div>
-      </form>
-  )
- }
-
- // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
 EditSchoolForm = reduxForm({
-  form: 'editSchoolForm'  // a unique identifier for this form
+  form: 'editSchoolForm', // a unique identifier for this form
+  enableReinitialize : true
 })(EditSchoolForm)
 
 // You have to connect() to any reducers that you wish to connect to yourself
 EditSchoolForm = connect(
   state => ({
-    initialValues: state.loadData.data // pull initial values from account reducer
+    initialValues: state.schoolProfile // pull initial values from account reducer
   }),
-  { load: loadAccount }               // bind account loading action creator
+  { load : loadSchool }               // bind account loading action creator
 )(EditSchoolForm)
 
 export default EditSchoolForm

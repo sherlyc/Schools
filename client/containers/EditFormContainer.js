@@ -14,7 +14,7 @@ class EditFormContainer extends React.Component {
 
         return (
             <div>
-                {schoolProfile && <EditSchoolForm profile={schoolProfile} />}
+                {schoolProfile && <EditSchoolForm />}
             </div>
         )
     }

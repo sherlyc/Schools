@@ -14,9 +14,6 @@ export const receiveSchool = (school) => {
     }
 }
 
-export const load = data => ({ type: 'LOAD', data })
-
-
 export const throwError = (message) => {
   return {
     type: 'THROW_ERROR',
@@ -45,7 +42,7 @@ export const fetchSchools = () => {
   }
 }
 
-export const getSchool = (id) => {
+export const getSchool = (id) => {  //call api to get single school
     return (dispatch) => {
         request
         .get('/schools/' + id)
@@ -59,7 +56,7 @@ export const getSchool = (id) => {
     }
 }
 
-export const addSchool = (data) => {
+export const addSchool = (data) => { // call api to save school
     return (dispatch) => {
         request
         .post('/schools/add')
