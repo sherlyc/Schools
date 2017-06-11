@@ -1,5 +1,6 @@
 import React from 'react'
 import GMap from './GMap'
+import {Link} from 'react-router-dom'
 
 export default (props) => {
     const school = props.school || {}
@@ -19,6 +20,7 @@ export default (props) => {
                         <li>Email : { school.email }</li>
                         <li>Website : <a href={ school.url }>{ school.url }</a></li>
                     </ul>
+                    <Link to={'/schools/edit/' + school.id}>Edit This Listing</Link>
             </div>
             <div className='map'>
                 <GMap center={ { lat: school.latitude, lng: school.longitude } }/>

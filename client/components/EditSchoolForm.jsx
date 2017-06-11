@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { getSchool as loadSchool } from '../actions'
+import { getSchool, updateSchool, postUpdate } from '../actions'
 
 
 const schoolType = [ 'Full Primary (Year 1-8)', 'Secondary (Year 9-15)', 'Composite (Year 1-15)', 'Special School' ]
+
+
 
 class EditSchoolForm extends React.Component {
 
@@ -12,13 +14,18 @@ class EditSchoolForm extends React.Component {
         this.props.load(this.props.match.params.id)
     }
 
-
     render() {
 
-        const { handleSubmit, pristine, reset, submitting } = this.props
+        const { handleSubmit, pristine, reset, submitting, submitSucceeded } = this.props
+        const saveSchool = (values, dispatch) => {
+          console.log(values)
+          //to do : add error handling here, gotta ask JV about this.
+          return dispatch(updateSchool(this.props.match.params.id, values))
+        }
+
 
         return (
-                  <form onSubmit={handleSubmit} className="form">
+                  <form onSubmit={handleSubmit(saveSchool)} className="form">
                       <div>
                          <label>School Name :</label>
                          <div>
@@ -117,8 +124,10 @@ class EditSchoolForm extends React.Component {
                           </div>
                       </div>
                       <div>
-                          <input type="submit" value="Add" />
+                          <input type="submit" value="Update" />
                       </div>
+                      <p className="submitSucceed"> { submitSucceeded ? "School has been updated" : "" }</p>
+
                   </form>
         )
     }
@@ -127,7 +136,10 @@ class EditSchoolForm extends React.Component {
 
 EditSchoolForm = reduxForm({
   form: 'editSchoolForm', // a unique identifier for this form
-  enableReinitialize : true
+  enableReinitialize : true,
+  onSubmitSuccess (result, dispatch) { // reset the form onSubmitSuccess
+  setTimeout(() => dispatch(postUpdate()), 1200 );
+  }
 })(EditSchoolForm)
 
 // You have to connect() to any reducers that you wish to connect to yourself
@@ -135,7 +147,7 @@ EditSchoolForm = connect(
   state => ({
     initialValues: state.schoolProfile // pull initial values from account reducer
   }),
-  { load : loadSchool }               // bind account loading action creator
+  { load : getSchool }               // bind account loading action creator
 )(EditSchoolForm)
 
 export default EditSchoolForm

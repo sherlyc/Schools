@@ -32,6 +32,12 @@ function addSchool (data, knex) {
 
 function updateSchool (id, data, knex) {
     return knex('schools').where('id', id).update({name: data.name, schoolType: data.schoolType, authority: data.authority, decile: data.decile})
+        .then((result) => {
+            return knex('profiles').where('school_id', id).update({address: data.address , email: data.email , url: data.url})
+        })
+        .then((result) => {
+            return knex('locations').where('school_id', id).update({suburb: data.suburb , latitude: data.latitude , longitude: data.longitude})
+        })
 }
 
 function delSchool (id, knex) {
