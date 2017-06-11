@@ -34,6 +34,7 @@ const validate = values => { // Can I move this function into its own file to ma
 }
 
 const validateAndAddSchool = (values, dispatch) => {
+  console.log(values)
   //to do : add error handling here, gotta ask JV about this.
   return dispatch(addSchool(values))
 }

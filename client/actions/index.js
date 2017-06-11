@@ -14,6 +14,9 @@ export const receiveSchool = (school) => {
     }
 }
 
+export const load = data => ({ type: 'LOAD', data })
+
+
 export const throwError = (message) => {
   return {
     type: 'THROW_ERROR',
@@ -48,7 +51,7 @@ export const getSchool = (id) => {
         .get('/schools/' + id)
         .end(function (err, res) {
             if (err) {
-                dipatch(throwError(err.message))
+                dispatch(throwError(err.message))
             } else {
                 dispatch(receiveSchool(res.body.school))
             }
@@ -57,14 +60,11 @@ export const getSchool = (id) => {
 }
 
 export const addSchool = (data) => {
-    console.log(data)
     return (dispatch) => {
         request
         .post('/schools/add')
         .send(data)
         .end(function (err, res) {
-            console.log(err)
-            console.log(res)
             if (err) {
                 dispatch(throwError(err.message))
             } else {
