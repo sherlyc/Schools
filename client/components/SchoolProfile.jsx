@@ -9,19 +9,19 @@ export default (props) => {
             <div>
                 <h1>School Profile</h1>
                     <ul>
-                        <li>Name : {school.name}</li>
-                        <li>School Type : {school.schoolType}</li>
-                        <li>Authority : {school.authority}</li>
-                        <li>Gender : {school.gender}</li>
-                        <li>Decile : {school.decile}</li>
-                        <li>Address : {school.address}</li>
-                        <li>Suburb : {school.suburb}</li>
-                        <li>Email : {school.email}</li>
-                        <li>Website : <a href={school.url}>{school.url}</a></li>
+                        <li>Name : { school.name }</li>
+                        <li>School Type : { school.schoolType }</li>
+                        <li>Authority : { school.authority }</li>
+                        <li>Gender : { school.gender }</li>
+                        <li>Decile : { school.decile }</li>
+                        <li>Address : { school.address }</li>
+                        <li>Suburb : { school.suburb }</li>
+                        <li>Email : { school.email }</li>
+                        <li>Website : <a href={ school.url }>{ school.url }</a></li>
                     </ul>
             </div>
             <div className='map'>
-                <GMap center={{lat: school.latitude, lng: school.longitude}}/>
+                <GMap center={ { lat: school.latitude, lng: school.longitude } }/>
              </div>
         </div>
     )
