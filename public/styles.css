@@ -67,7 +67,16 @@ input.radio {
 input[type=submit]:hover {
     background-color: #FFFF66;
 }
+.help-block {
+    font-size: 0.5em;
+    color: red;
 
+}
+
+.submitSucceed {
+    font-size: 1em;
+    color: orange;
+}
 .form {
     border-radius: 5px;
     background-color: #f2f2f2;
