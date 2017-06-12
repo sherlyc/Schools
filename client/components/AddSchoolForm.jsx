@@ -40,22 +40,8 @@ class AddSchoolForm extends React.Component {
                        <option value="Composite (Year 1-15)">Composite (Year 1-15)</option>
                        <option value="Special School">Special School</option>
                   </Field>
-                    <label>
-                        <Field name="gender" component="input" type="radio" value="Girls School"  />
-                        {' '}
-                        Girls School
-                    </label>
-                    <label>
-                        <Field name="gender" component="input" type="radio" value="Boys School" />
-                        {' '}
-                        Boys School
-                    </label>
-                    <label>
-                        <Field name="gender" component="input" type="radio" value="Co-Educational" />
-                        {' '}
-                        Co-Educational
-                    </label>
-                </div>
+               </div>
+
             </div>
 
            <div>

@@ -29,11 +29,6 @@ export const clearError = () => {
     }
 }
 
-export const postUpdate = () => {
-   //update state if needed
-   history.push('/schools')
-}
-
 export const createSchool = (status) => {  //ask JV what should have been done for the error handling
     return {
         type: 'CREATE_SCHOOL',
@@ -76,11 +71,11 @@ export const addSchool = (data) => { // call api to save school
         .post('/schools/add')
         .send(data)
         .end(function (err, res) {
-          console.log(err)
             if (err) {
                 dispatch(throwError(err.message))
             } else {
                 dispatch(clearError())
+                setTimeout(() => history.push('/schools'), 1200 )
             }
         })
     }
@@ -96,7 +91,7 @@ export const updateSchool = (id, data) => { // call api to save school
                 dispatch(throwError(err.message)) // dispatch error message
             } else {
                 dispatch(clearError())
-                setTimeout(() => history.push('/'), 1200 )
+                setTimeout(() => history.push('/schools'), 1200 )
             }
         })
     }
