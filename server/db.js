@@ -41,7 +41,7 @@ function updateSchool (id, data, knex) {
         })
 }
 
-function transactUpdate (id, data, knex) {
+function transactUpdate (id, data, knex) { // writing updateSchool in knex transaction way
     return knex.transaction(function(t) {
        return knex('schools')
        .transacting(t)
