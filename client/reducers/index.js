@@ -8,6 +8,6 @@ import { reducer as formReducer } from 'redux-form'
 export default combineReducers({
   schoolsResults,
   schoolProfile,
-  form: formReducer ,
-  loadData
+  form: formReducer
+ 
 })

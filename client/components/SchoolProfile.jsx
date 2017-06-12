@@ -24,7 +24,7 @@ export default (props) => {
             </div>
             <div className='map'>
                 <GMap center={ { lat: school.latitude, lng: school.longitude } }/>
-             </div>
+            </div>
         </div>
     )
 }

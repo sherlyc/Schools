@@ -15,7 +15,7 @@ export default class GMap extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      this.loadMap(nextProps.center)
+    this.loadMap(nextProps.center)
   }
 
   loadMap(center){

@@ -17,7 +17,7 @@ export const receiveSchool = (school) => {
 export const throwError = (message) => {
   return {
     type: 'THROW_ERROR',
-    message
+    error: message
   }
 }
 
@@ -92,9 +92,9 @@ export const updateSchool = (id, data) => { // call api to save school
         .send(data)
         .end(function (err, res) {
             if (err) {
-                dispatch(throwError(err.message))
+                dispatch(throwError(err.message)) // dispatch error message
             } else {
-                dispatch(saveSchool('202'))
+                dispatch(saveSchool('202')) //dispatch clear error
             }
         })
     }

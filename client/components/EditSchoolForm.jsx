@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import { createHashHistory } from 'history'
 import { getSchool, updateSchool, postUpdate } from '../actions'
 
-
 const schoolType = [ 'Full Primary (Year 1-8)', 'Secondary (Year 9-15)', 'Composite (Year 1-15)', 'Special School' ]
-
-
+const history = createHashHistory()
 
 class EditSchoolForm extends React.Component {
 
@@ -18,7 +17,6 @@ class EditSchoolForm extends React.Component {
 
         const { handleSubmit, pristine, reset, submitting, submitSucceeded } = this.props
         const saveSchool = (values, dispatch) => {
-          console.log(values)
           //to do : add error handling here, gotta ask JV about this.
           return dispatch(updateSchool(this.props.match.params.id, values))
         }
@@ -137,9 +135,8 @@ class EditSchoolForm extends React.Component {
 EditSchoolForm = reduxForm({
   form: 'editSchoolForm', // a unique identifier for this form
   enableReinitialize : true,
-  onSubmitSuccess (result, dispatch) { // reset the form onSubmitSuccess
-  setTimeout(() => dispatch(postUpdate()), 1200 );
-  }
+  onSubmitSuccess (result) { // reset the form onSubmitSuccess
+      setTimeout(() => history.push('/'), 1200 ) }
 })(EditSchoolForm)
 
 // You have to connect() to any reducers that you wish to connect to yourself
