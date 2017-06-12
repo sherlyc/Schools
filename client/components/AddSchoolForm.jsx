@@ -35,8 +35,6 @@ const validate = values => { // Can I move this function into its own file to ma
 }
 
 const validateAndAddSchool = (values, dispatch) => {
-  console.log(values)
-  //to do : add error handling here, gotta ask JV about this.
   return dispatch(addSchool(values))
 }
 
@@ -47,13 +45,12 @@ class AddSchoolForm extends React.Component {
   }
 
    render (){
-     console.log(this.props)
-     const {handleSubmit, pristine, reset, submitting, submitSucceeded } = this.props
+     const {handleSubmit, pristine, reset, submitting, submitSucceeded, errorMessage } = this.props
 
      return (
 
        <form onSubmit={handleSubmit(validateAndAddSchool)} className="form">
-         <div>{this.props.errorMessage}</div>
+         <div>{errorMessage}</div>
            <div>
               <label>School Name :</label>
               <div>
@@ -157,8 +154,6 @@ class AddSchoolForm extends React.Component {
            <div>
                <input type="submit" disabled={pristine || submitting} value="Add" />
            </div>
-           {/* submitSucceed message goes here */}
-           <p className="submitSucceed"> { submitSucceeded ? "School has been added" : "" }</p>
        </form>
      )
    }
@@ -168,7 +163,7 @@ AddSchoolForm = reduxForm({
   form: 'AddSchoolForm', // a unique identifier for this form
   validate, // <--- validation function given to redux-form
   onSubmitSuccess (result, dispatch) { // reset the form onSubmitSuccess
-  setTimeout(() => dispatch(reset('AddSchoolForm')), 1200 );
+  //setTimeout(() => dispatch(reset('AddSchoolForm')), 1200 );
   }
 })(AddSchoolForm)
 

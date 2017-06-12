@@ -18,17 +18,15 @@ class EditSchoolForm extends React.Component {
     }
 
     render() {
-       console.log(this.props)
-        const { handleSubmit, pristine, reset, submitting, submitSucceeded } = this.props
+        const { handleSubmit, pristine, reset, submitting, submitSucceeded, errorMessage } = this.props
         const saveSchool = (values, dispatch) => {
           //to do : add error handling here, gotta ask JV about this.
           return dispatch(updateSchool(this.props.match.params.id, values))
         }
 
-
         return (
                   <form onSubmit={handleSubmit(saveSchool)} className="form">
-                    <div>{this.props.errorMessage}</div>
+                    <div>{errorMessage}</div>
                       <div>
                          <label>School Name :</label>
                          <div>
@@ -129,8 +127,6 @@ class EditSchoolForm extends React.Component {
                       <div>
                           <input type="submit" value="Update" />
                       </div>
-                      <p className="submitSucceed"> { submitSucceeded ? "School has been updated" : "" }</p>
-
                   </form>
         )
     }
@@ -139,11 +135,7 @@ class EditSchoolForm extends React.Component {
 
 EditSchoolForm = reduxForm({
   form: 'editSchoolForm', // a unique identifier for this form
-  enableReinitialize : true,
-  onSubmitSuccess (result) { // reset the form onSubmitSuccess
-    //setTimeout(() => history.push('/'), 1200 )
-  }
-
+  enableReinitialize : true
 })(EditSchoolForm)
 
 // You have to connect() to any reducers that you wish to connect to yourself

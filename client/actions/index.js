@@ -2,8 +2,6 @@ import request from 'superagent'
 import { createHashHistory } from 'history'
 const history = createHashHistory()
 
-
-
 export const receiveSchools = (schools) => {
   return {
     type: 'RECEIVE_SCHOOLS',
@@ -42,7 +40,6 @@ export const createSchool = (status) => {  //ask JV what should have been done f
         status
     }
 }
-
 
 export const fetchSchools = () => {
   return (dispatch) => {
