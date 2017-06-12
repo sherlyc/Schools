@@ -1,4 +1,6 @@
 import request from 'superagent'
+import { createHashHistory } from 'history'
+const history = createHashHistory()
 
 export const receiveSchools = (schools) => {
   return {
@@ -17,8 +19,14 @@ export const receiveSchool = (school) => {
 export const throwError = (message) => {
   return {
     type: 'THROW_ERROR',
-    error: message
+    message
   }
+}
+
+export const clearError = () => {
+    return {
+      type: 'CLEAR_ERROR'
+    }
 }
 
 export const postUpdate = () => {
@@ -31,13 +39,6 @@ export const createSchool = (status) => {  //ask JV what should have been done f
         type: 'CREATE_SCHOOL',
         status
     }
-}
-
-export const saveSchool = (status) => {
-  return {
-    type: 'UPDATE_SCHOOL',
-    status
-  }
 }
 
 export const fetchSchools = () => {
@@ -63,6 +64,7 @@ export const getSchool = (id) => {  //call api to get single school
                 dispatch(throwError(err.message))
             } else {
                 dispatch(receiveSchool(res.body.school))
+
             }
         })
     }
@@ -74,18 +76,17 @@ export const addSchool = (data) => { // call api to save school
         .post('/schools/add')
         .send(data)
         .end(function (err, res) {
+          console.log(err)
             if (err) {
                 dispatch(throwError(err.message))
             } else {
-                dispatch(createSchool('200'))
+                dispatch(clearError())
             }
         })
     }
 }
 
 export const updateSchool = (id, data) => { // call api to save school
-    console.log("CALLED UPDATESCHOOL")
-    console.log(id)
     return (dispatch) => {
         request
         .put('/schools/edit/' + id)
@@ -94,7 +95,8 @@ export const updateSchool = (id, data) => { // call api to save school
             if (err) {
                 dispatch(throwError(err.message)) // dispatch error message
             } else {
-                dispatch(saveSchool('202')) //dispatch clear error
+                dispatch(clearError())
+                setTimeout(() => history.push('/'), 1200 )
             }
         })
     }

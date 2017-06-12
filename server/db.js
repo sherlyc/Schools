@@ -19,7 +19,7 @@ function getSchool (id, knex) {
            .first()
 }
 
-function addSchool (data, knex) {
+function addSchool (data) {
     return knex('schools').insert({name: data.name, schoolType: data.schoolType, authority: data.authority, gender: data.gender, decile: data.decile})
       .returning('id')
         .then((result) =>{
@@ -31,7 +31,7 @@ function addSchool (data, knex) {
         })
 }
 
-function updateSchool (id, data, knex) {
+function updateSchool (id, data) {
     return knex('schools').where('id', id).update({name: data.name, schoolType: data.schoolType, authority: data.authority, decile: data.decile})
         .then((result) => {
             return knex('profiles').where('school_id', id).update({address: data.address , email: data.email , url: data.url})
