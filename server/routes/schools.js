@@ -54,7 +54,4 @@ router.delete('/remove/:id', function (req, res) { //remove school
     })
 })
 
-
-
-
 module.exports = router
