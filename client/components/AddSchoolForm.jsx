@@ -148,7 +148,7 @@ const AddSchoolForm = props => {
               </div>
           </div>
           <div>
-              <input type="submit" value="Add" />
+              <input type="submit" disabled={pristine || submitting} value="Add" />
           </div>
           {/* submitSucceed message goes here */}
           <p className="submitSucceed"> { submitSucceeded ? "School has been added" : "" }</p>
