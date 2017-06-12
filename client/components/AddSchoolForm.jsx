@@ -1,5 +1,6 @@
 import React from 'react'
 import { addSchool } from '../actions'
+import { connect } from 'react-redux'
 import { Field, reduxForm, reset } from 'redux-form'
 import renderField from './RenderField'
 
@@ -39,14 +40,14 @@ const validateAndAddSchool = (values, dispatch) => {
   return dispatch(addSchool(values))
 }
 
-const AddSchoolForm = props => {
+let AddSchoolForm = props => {
 
     const {handleSubmit, pristine, reset, submitting, submitSucceeded } = props
 
     return (
 
       <form onSubmit={handleSubmit(validateAndAddSchool)} className="form">
-
+        <div>{props.error}</div>
           <div>
              <label>School Name :</label>
              <div>
@@ -165,3 +166,10 @@ export default reduxForm({
   setTimeout(() => dispatch(reset('AddSchoolForm')), 1200 );
   }
 })(AddSchoolForm)
+
+AddSchoolForm = connect(
+  state => {
+    return {
+       errorMessage: state.error // pull initial values from account reducer
+    }
+  })(AddSchoolForm)
