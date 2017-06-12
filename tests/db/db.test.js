@@ -37,7 +37,7 @@ test('insert school returns 5 schools', function (t) {
 
 test('update school works correctly', function (t) {
     var expected = 'Fashion School'
-    var data = {name: 'Fashion School'}
+    var data = {name: 'Fashion School', schoolType: 'Full Primary (Year 1-8)', authority: 'State', Decile:'8', url: 'http://www.select.com', suburb: 'Kelburn' , latitude: 41 , longitude: 41}
     return db.updateSchool(4, data, t.context.db)
         .then(function (result) {
             return db.getSchool(4, t.context.db)

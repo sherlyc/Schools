@@ -13,6 +13,7 @@ class ProfileContainer extends React.Component {
         return (
             <div>
                 <SchoolProfile school={this.props.schoolProfile}/>
+
             </div>
         )
     }
