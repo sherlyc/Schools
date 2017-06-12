@@ -3,7 +3,8 @@ module.exports = {
     getSchool,
     addSchool,
     updateSchool,
-    delSchool
+    delSchool,
+    transactUpdate
 }
 
 function getSchools (knex) {
@@ -39,6 +40,34 @@ function updateSchool (id, data, knex) {
             return knex('locations').where('school_id', id).update({suburb: data.suburb , latitude: data.latitude , longitude: data.longitude})
         })
 }
+
+function transactUpdate (id, data, knex) {
+    return knex.transaction(function(t) {
+       return knex('schools')
+       .transacting(t)
+       .where('id', id)
+       .update({name: data.name, schoolType: data.schoolType, authority: data.authority, decile: data.decile})
+       .then(function() {
+            return knex('profiles')
+               .transacting(t)
+               .where('school_id', id)
+               .update({address: data.address , email: data.email , url: data.url});
+       })
+       .then(function() {
+            return knex('locations')
+               .transacting(t)
+               .where('school_id', id)
+               .update({suburb: data.suburb , latitude: data.latitude , longitude: data.longitude});
+       })
+       .then(t.commit)
+       .catch(function(e) {
+            t.rollback();
+            throw e;
+       })
+    })
+
+}
+
 
 function delSchool (id, knex) {
     return knex('schools').where('id', id).del()
