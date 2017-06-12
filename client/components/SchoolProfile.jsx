@@ -19,8 +19,15 @@ export default (props) => {
                         <li>Suburb : { school.suburb }</li>
                         <li>Email : { school.email }</li>
                         <li>Website : <a href={ school.url }>{ school.url }</a></li>
+
                     </ul>
-                    <Link to={'/schools/edit/' + school.id}>Edit This Listing</Link>
+                    <div className='actions'>
+                      <Link to={'/schools/edit/' + school.id}><i className="fa fa-pencil" aria-hidden="true"></i></Link> { '|' }
+                      <Link to={'/schools/remove/' + school.id}><i className="fa fa-trash-o" aria-hidden="true"></i></Link>
+                    </div>
+
+
+
             </div>
             <div className='map'>
                 <GMap center={ { lat: school.latitude, lng: school.longitude } }/>
