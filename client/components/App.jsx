@@ -7,11 +7,10 @@ import EditSchoolForm from './EditSchoolForm'
 import ProfileContainer from '../containers/ProfileContainer'
 import { HashRouter as Router, Route } from 'react-router-dom'
 
-
 export default class App extends React.Component {
 
 
-render () {
+ render () {
     return (
         <Router>
             <div>
@@ -29,5 +28,5 @@ render () {
               </div>
         </Router>
     )
-}
+ }
 }

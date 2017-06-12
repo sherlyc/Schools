@@ -29,13 +29,6 @@ export const clearError = () => {
     }
 }
 
-export const createSchool = (status) => {  //ask JV what should have been done for the error handling
-    return {
-        type: 'CREATE_SCHOOL',
-        status
-    }
-}
-
 export const fetchSchools = () => {
   return (dispatch) => {
     request
