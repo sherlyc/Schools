@@ -2,39 +2,10 @@ import React from 'react'
 import { addSchool, clearError } from '../actions'
 import { connect } from 'react-redux'
 import { Field, reduxForm, reset } from 'redux-form'
-import renderField from './RenderField'
+import { renderField, validate } from './FormUtils'
 
-const validate = values => { // Can I move this function into its own file to make this form looked neater?
-  const errors = {}
-  if (!values.name || values.name.trim() === '') {
-    errors.name = 'Required'
-  } else if (values.name.length > 50) {
-    errors.username = 'Must be 50 characters or less'
-  }
-  if (!values.email) {
-    errors.email = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-  if (!values.decile) {
-    errors.decile = 'Required'
-  } else if (isNaN(Number(values.decile))) {
-    errors.decile = 'Must be a number'
-  }
-  if (!values.latitude) {
-    errors.latitude = 'Required'
-  } else if (isNaN(Number(values.latitude))) {
-    errors.latitude = 'Must be a number'
-  }
-  if (!values.longitude) {
-    errors.longitude = 'Required'
-} else if (isNaN(Number(values.longitude))) {
-    errors.longitude = 'Must be a number'
-  }
-  return errors
-}
 
-const validateAndAddSchool = (values, dispatch) => {
+const submitSchool = (values, dispatch) => {
   return dispatch(addSchool(values))
 }
 
@@ -49,7 +20,7 @@ class AddSchoolForm extends React.Component {
 
      return (
 
-       <form onSubmit={handleSubmit(validateAndAddSchool)} className="form">
+         <form onSubmit={handleSubmit(submitSchool)} className="form">
          <div>{errorMessage}</div>
            <div>
               <label>School Name :</label>
@@ -69,6 +40,21 @@ class AddSchoolForm extends React.Component {
                        <option value="Composite (Year 1-15)">Composite (Year 1-15)</option>
                        <option value="Special School">Special School</option>
                   </Field>
+                    <label>
+                        <Field name="gender" component="input" type="radio" value="Girls School"  />
+                        {' '}
+                        Girls School
+                    </label>
+                    <label>
+                        <Field name="gender" component="input" type="radio" value="Boys School" />
+                        {' '}
+                        Boys School
+                    </label>
+                    <label>
+                        <Field name="gender" component="input" type="radio" value="Co-Educational" />
+                        {' '}
+                        Co-Educational
+                    </label>
                 </div>
             </div>
 
