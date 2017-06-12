@@ -18,6 +18,7 @@ class EditSchoolForm extends React.Component {
     }
 
     render() {
+       console.log(this.props)
         const { handleSubmit, pristine, reset, submitting, submitSucceeded } = this.props
         const saveSchool = (values, dispatch) => {
           //to do : add error handling here, gotta ask JV about this.
