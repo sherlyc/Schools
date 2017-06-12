@@ -58,7 +58,7 @@ export const getSchool = (id) => {  //call api to get single school
     }
 }
 
-export const addSchool = (data) => { // call api to save school
+export const addSchool = (data) => { // call api to create school
     return (dispatch) => {
         request
         .post('/schools/add')
