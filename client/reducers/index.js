@@ -9,5 +9,6 @@ export default combineReducers({
   schoolsResults,
   schoolProfile,
   form: formReducer,
-  error
+  error,
+  modal
 })

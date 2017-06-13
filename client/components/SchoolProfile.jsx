@@ -2,6 +2,14 @@ import React from 'react'
 import GMap from './GMap'
 import {Link} from 'react-router-dom'
 
+const confirmDelete = (id) => {
+  this.props.dispatch({
+    type: 'SHOW_MODAL',
+    modalType:'DELETE_SCHOOL',
+    modalProps: { schoolId: id}
+  })
+}
+
 export default (props) => {
     const school = props.school || {}
 
@@ -23,7 +31,7 @@ export default (props) => {
                     </ul>
                     <div className='actions'>
                       <Link to={'/schools/edit/' + school.id}><i className="fa fa-pencil" aria-hidden="true"></i></Link> { '|' }
-                      <Link to={'/schools/remove/' + school.id}><i className="fa fa-trash-o" aria-hidden="true"></i></Link>
+                      <i className="fa fa-trash-o" aria-hidden="true" onClick={() => confirmDelete(school.id)}></i>
                     </div>
 
 
