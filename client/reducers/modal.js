@@ -1,10 +1,9 @@
-
 const initialState = {
   modalType: null,
   modalProps: {}
 }
 
-function modal (state = initialState, action) {
+function modal(state = initialState, action) {
   switch (action.type) {
     case 'SHOW_MODAL':
       return {
@@ -17,5 +16,6 @@ function modal (state = initialState, action) {
       return state
   }
 }
+
 
 export default modal
