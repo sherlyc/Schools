@@ -12,7 +12,7 @@ let SchoolProfile = (props) => {
     return (
          <div className='school'>
             <div>
-                <h1>School Profile</h1>
+                <h2>School Profile</h2>
                     <ul>
                         <li>Name : { school.name }</li>
                         <li>School Type : { school.schoolType }</li>
@@ -26,7 +26,7 @@ let SchoolProfile = (props) => {
 
                     </ul>
                     <div className='actions'>
-                      <Link to={'/schools/edit/' + school.id}>Edit This</Link>
+                      <Link to={'/schools/edit/' + school.id}><i className="fa fa-pencil" aria-hidden="true"></i></Link> { }
                       <i className="fa fa-trash-o" aria-hidden="true"  onClick={() => props.dispatch(deleteSchool(school.id))}></i>
                     </div>
             </div>
