@@ -89,3 +89,18 @@ export const updateSchool = (id, data) => { // call api to save school
         })
     }
 }
+
+export const deleteSchool = (id) => {
+return (dispatch) => {
+    request
+    .delete('/schools/remove/' + id)
+    .end(function (err, res) {
+        if (err) {
+            dispatch(throwError(err.message))
+        } else {
+            dispatch(clearError())
+            history.push('/schools')
+        }
+    })
+}
+}

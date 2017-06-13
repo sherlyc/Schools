@@ -1,14 +1,18 @@
 import React from 'react'
 import GMap from './GMap'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { deleteSchool } from '../actions'
+import { Link } from 'react-router-dom'
 
-export default (props) => {
+
+
+let SchoolProfile = (props) => {
     const school = props.school || {}
 
     return (
          <div className='school'>
             <div>
-                <h1>School Profile</h1>
+                <h2>School Profile</h2>
                     <ul>
                         <li>Name : { school.name }</li>
                         <li>School Type : { school.schoolType }</li>
@@ -19,8 +23,12 @@ export default (props) => {
                         <li>Suburb : { school.suburb }</li>
                         <li>Email : { school.email }</li>
                         <li>Website : <a href={ school.url }>{ school.url }</a></li>
+
                     </ul>
-                    <Link to={'/schools/edit/' + school.id}>Edit This Listing</Link>
+                    <div className='actions'>
+                      <Link to={'/schools/edit/' + school.id}><i className="fa fa-pencil" aria-hidden="true"></i></Link> { }
+                      <i className="fa fa-trash-o" aria-hidden="true"  onClick={() => props.dispatch(deleteSchool(school.id))}></i>
+                    </div>
             </div>
             <div className='map'>
                 <GMap center={ { lat: school.latitude, lng: school.longitude } }/>
@@ -28,3 +36,7 @@ export default (props) => {
         </div>
     )
 }
+
+SchoolProfile = connect()(SchoolProfile)
+
+export default SchoolProfile

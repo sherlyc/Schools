@@ -68,7 +68,6 @@ function transactUpdate (id, data, knex) { // writing updateSchool in knex trans
 
 }
 
-
 function delSchool (id, knex) {
     return knex('schools').where('id', id).del()
 }
