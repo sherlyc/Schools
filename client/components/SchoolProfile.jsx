@@ -20,7 +20,8 @@ export default (props) => {
                         <li>Email : { school.email }</li>
                         <li>Website : <a href={ school.url }>{ school.url }</a></li>
                     </ul>
-                    <Link to={'/schools/edit/' + school.id}>Edit This Listing</Link>
+                    <Link to={'/schools/edit/' + school.id}>Edit This</Link> { }
+                    <Link to={'/schools/remove/' + school.id}>Remove This</Link>
             </div>
             <div className='map'>
                 <GMap center={ { lat: school.latitude, lng: school.longitude } }/>
