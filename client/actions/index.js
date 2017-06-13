@@ -99,7 +99,7 @@ return (dispatch) => {
             dispatch(throwError(err.message))
         } else {
             dispatch(clearError())
-            console.log("school removed")
+            history.push('/schools')
         }
     })
 }
