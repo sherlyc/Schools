@@ -9,7 +9,7 @@
     "dev": "nodemon server/index & webpack --watch",
     "start": "node server/index",
     "debug": "node --inspect --debug-brk server/index.js",
-    "test": "tape -r babel-register 'tests/api/index.test.js' | tap-diff & ava 'tests/db/db.test.js'",
+    "test": "tape -r babel-register 'tests/client/index.test.js' | tap-diff & ava 'tests/server/db.test.js'",
     "watch": "nodemon -e js,jsx -x npm test"
   },
   "babel": {
@@ -34,6 +34,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.18.0",
     "enzyme": "^2.7.0",
+    "jsdom": "^11.0.0",
     "jsx-loader": "^0.13.2",
     "nodemon": "^1.11.0",
     "react": "^15.4.2",

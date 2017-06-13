@@ -7,8 +7,7 @@ exports.up = function(knex, Promise) {
       table.string('authority')
       table.string('gender')
       table.integer('decile')
-    
-  })
+    })
 };
 
 exports.down = function(knex, Promise) {

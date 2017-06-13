@@ -8,6 +8,8 @@ exports.up = function(knex, Promise) {
     table.integer('school_id')
       .references('id')
       .inTable('schools')
+      .onDelete('CASCADE')
+
   })
 };
 

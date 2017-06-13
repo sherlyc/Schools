@@ -5,6 +5,11 @@ module.exports = {
     connection: {
       filename: './dev.sqlite3'
     },
+    pool: { //
+        afterCreate: (conn, cb) => { //enable foreign key check and cascade delete
+          conn.run('PRAGMA foreign_keys = ON', cb)
+        },
+    },
     useNullAsDefault: true
   },
 
@@ -21,4 +26,4 @@ module.exports = {
     useNullAsDefault: true
 
   }
-};
+}

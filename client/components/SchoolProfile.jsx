@@ -7,7 +7,18 @@ import { Link } from 'react-router-dom'
 
 
 let SchoolProfile = (props) => {
+
     const school = props.school || {}
+
+    function handleClick (e) {
+      let result = confirm('Confirming delete?')
+      if (result) {
+        props.dispatch(deleteSchool(school.id))
+      } else {
+        e.preventDefault()
+      }
+     }
+
 
     return (
          <div className='school'>
@@ -27,7 +38,7 @@ let SchoolProfile = (props) => {
                     </ul>
                     <div className='actions'>
                       <Link to={'/schools/edit/' + school.id}><i className="fa fa-pencil" aria-hidden="true"></i></Link> { }
-                      <i className="fa fa-trash-o" aria-hidden="true"  onClick={() => props.dispatch(deleteSchool(school.id))}></i>
+                      <i className="fa fa-trash-o" aria-hidden="true"  onClick={ handleClick }></i>
                     </div>
             </div>
             <div className='map'>
