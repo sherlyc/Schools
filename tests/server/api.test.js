@@ -17,3 +17,16 @@ test.cb('GET /schools returns 4 schools', t => {
       t.end()
     })
 })
+
+
+test.cb('GET school by ID returns a school correctly', t => {
+    request(t.context.app)
+        .get('/schools/4')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+            t.ifError(err)
+            t.is(res.body.school.name, 'Adventure School')
+            t.end()
+        })
+})
