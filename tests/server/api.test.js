@@ -30,3 +30,18 @@ test.cb('GET school by ID returns a school correctly', t => {
             t.end()
         })
 })
+
+test.cb('Add school is working?', t=> {
+    request(t.context.app)
+        .post('/schools/add')
+        .send({name: 'High School'})
+        .expect(201)
+        .end((err, res) => {
+            t.ifError(err)
+            t.context.db("schools")
+            .then((schools) => {
+                t.is(schools.length, 5)
+                t.end()
+      })
+         })
+})
