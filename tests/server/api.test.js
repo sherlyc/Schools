@@ -1,8 +1,9 @@
-var test = require('ava')
-var request = require('supertest')
+import test from 'ava'
+import request from 'supertest'
+import db from '../../server/db'
 
-var createServer = require('../../server/server')
-var setupDb = require('../setup-db')
+import createServer from '../../server/server'
+import setupDb from '../setup-db'
 
 setupDb(test,createServer)
 
@@ -31,7 +32,7 @@ test.cb('GET school by ID returns a school correctly', t => {
         })
 })
 
-test.cb('Add school is working?', t=> {
+test.cb('POST /schools/add', t=> {
     request(t.context.app)
         .post('/schools/add')
         .send({name: 'High School'})
@@ -40,8 +41,27 @@ test.cb('Add school is working?', t=> {
             t.ifError(err)
             t.context.db("schools")
             .then((schools) => {
-                t.is(schools.length, 5)
+                t.is(res.statusCode, 201)
                 t.end()
-      })
+            })
          })
 })
+
+test.cb("DELETE /schools/remove/1" , t=> {
+    request(t.context.app)
+        .delete('/schools/remove/1')
+        .send({name: 'Avondale School'})
+        .expect(204)
+        .end((err, res) => {
+            t.ifError(err)
+            t.context.db("schools")
+            .then((schools) => {
+                t.is(schools.length, 4)
+                t.end()
+            })
+        })
+})
+
+//edit
+
+//remove
