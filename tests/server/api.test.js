@@ -39,18 +39,14 @@ test.cb('POST /schools/add', t=> {
         .expect(201)
         .end((err, res) => {
             t.ifError(err)
-            t.context.db("schools")
-            .then((schools) => {
-                t.is(res.statusCode, 201)
-                t.end()
-            })
+            t.is(res.statusCode, 201)
+            t.end()
          })
 })
 
 test.cb("DELETE /schools/remove/1" , t=> {
     request(t.context.app)
         .delete('/schools/remove/1')
-        .send({name: 'Avondale School'})
         .expect(204)
         .end((err, res) => {
             t.ifError(err)
