@@ -1,8 +1,8 @@
 {
-  "name": "Schoolz",
+  "name": "Schools",
   "version": "0.1.1",
-  "description": "A webpack React starter",
-  "repository": "https://github.com/sherlyc/Schoolz.git",
+  "description": "A Schools Project",
+  "repository": "https://github.com/sherlyc/Schools.git",
   "main": "server/index.js",
   "scripts": {
     "knex": "knex",
