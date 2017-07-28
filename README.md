@@ -1,5 +1,16 @@
 # Personal Project : Find a School
 
+## Installation
+
+```
+git clone https://github.com/sherlyc/Schools.git
+npm i
+npm run knex migrate:latest
+npm run knex migrate seed:run
+npm start
+open in your browser:  http://localhost:3000
+```
+
 
 ## Learning Objectives
 
