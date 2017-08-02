@@ -1,20 +1,15 @@
 import React from "react";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 import _ from "underscore";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
 
-class Example extends React.Component {
+class ExampleContainer extends React.Component {
   constructor() {
     super();
 
-    //an example array of items to be paged
-    var exampleItems = _.range(1, 151).map(i => {
-      return { id: i, name: "Item " + i };
-    });
-
     this.state = {
-      exampleItems: exampleItems,
+      schools: [],
       pageOfItems: []
     };
 
@@ -24,6 +19,18 @@ class Example extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchSchools());
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const schoolsLength = nextProps.schoolsResults.length;
+    const schoolsList = nextProps.schoolsResults.map((school, i) => {
+      return { id: i, name: school.Name };
+    });
+
+    this.setState({
+      schools: schoolsList,
+      schoolsResults: nextProps.schoolsResults
+    });
   }
 
   onChangePage(pageOfItems) {
@@ -43,7 +50,7 @@ class Example extends React.Component {
               </div>
             )}
             <Pagination
-              items={this.state.exampleItems}
+              items={this.state.schools}
               onChangePage={this.onChangePage}
             />
           </div>
@@ -60,5 +67,5 @@ function mapStateToProps(state) {
   };
 }
 
-Example = connect(mapStateToProps)(Example);
-export default Example;
+ExampleContainer = connect(mapStateToProps)(ExampleContainer);
+export default ExampleContainer;
