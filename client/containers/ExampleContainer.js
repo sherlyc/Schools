@@ -22,7 +22,6 @@ class ExampleContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const schoolsLength = nextProps.schoolsResults.length;
     const schoolsList = nextProps.schoolsResults.map((school, i) => {
       return { id: i, name: school.Name };
     });
