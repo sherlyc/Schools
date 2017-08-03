@@ -5,7 +5,6 @@ import SchoolsContainer from "../containers/SchoolsContainer";
 import AddSchoolForm from "./AddSchoolForm";
 import EditSchoolForm from "./EditSchoolForm";
 import ProfileContainer from "../containers/ProfileContainer";
-import ExampleContainer from "../containers/ExampleContainer";
 import { HashRouter as Router, Route } from "react-router-dom";
 
 export default class App extends React.Component {
@@ -28,7 +27,6 @@ export default class App extends React.Component {
               path="/schools/edit/:id"
               component={EditSchoolForm}
             />
-            <Route exact={true} path="/example" component={ExampleContainer} />
           </div>
         </div>
       </Router>
