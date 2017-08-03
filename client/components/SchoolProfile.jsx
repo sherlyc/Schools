@@ -25,41 +25,48 @@ export default class SchoolProfile extends React.Component {
   render = () => {
     const school = this.props.school || {};
     return (
-      <div className="school">
-        <div>
-          <h2>School Profile</h2>
-          <ul>
-            <li>
-              Name : {school.Name}
-            </li>
-            <li>
-              School Type : {school.School_Type}
-            </li>
-            <li>
-              Authority : {school.Authority}
-            </li>
-            <li>
-              Gender : {school.Gender}
-            </li>
-            <li>
-              Decile : {school.Decile}
-            </li>
-            <li>
-              Address :{" "}
-              {this.formatAddress(school.Street, school.Suburb, school.City)}
-            </li>
-            <li>
-              Suburb : {school.Suburb}
-            </li>
-            <li>
-              Email : {school.Email}
-            </li>
-            <li>
-              Website :
-              <a href={school.School_Website}> {school.School_Website}</a>
-            </li>
-          </ul>
-          <div className="actions">
+      <div>
+        <div className="school">
+          <div>
+            <h2>
+              {school.Name}
+            </h2>
+            <h4>
+              {" "}{this.formatAddress(
+                school.Street,
+                school.Suburb,
+                school.City
+              )}{" "}
+            </h4>
+            <ul className="list-group">
+              <li className="list-group-item">
+                School Type : {school.School_Type}
+              </li>
+              <li className="list-group-item">
+                Authority : {school.Authority}
+              </li>
+              <li className="list-group-item">
+                Gender : {school.Gender}
+              </li>
+              <li className="list-group-item">
+                Decile : {school.Decile}
+              </li>
+              <li className="list-group-item">
+                Address :{" "}
+                {this.formatAddress(school.Street, school.Suburb, school.City)}
+              </li>
+              <li className="list-group-item">
+                Suburb : {school.Suburb}
+              </li>
+              <li className="list-group-item">
+                Email : {school.Email}
+              </li>
+              <li className="list-group-item">
+                Website :
+                <a href={school.School_Website}> {school.School_Website}</a>
+              </li>
+            </ul>
+            {/* <div className="actions">
             <Link to={"/schools/edit/" + school.id}>
               <i className="fa fa-pencil" aria-hidden="true" />
             </Link>{" "}
@@ -69,11 +76,15 @@ export default class SchoolProfile extends React.Component {
               aria-hidden="true"
               onClick={this.handleClick}
             />
+          </div> */}
+          </div>
+          <div className="map">
+            <GMap center={{ lat: school.Latitude, lng: school.Longitude }} />
           </div>
         </div>
-        <div className="map">
-          <GMap center={{ lat: school.Latitude, lng: school.Longitude }} />
-        </div>
+        {/* <div>
+          <h4>Properties Nearby : </h4>{" "}
+        </div> */}
       </div>
     );
   };

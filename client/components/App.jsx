@@ -12,7 +12,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div>
           <Nav />
           <div className="content">
             <Route exact={true} path="/" component={Home} />
