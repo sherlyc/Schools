@@ -23,7 +23,7 @@ class ExampleContainer extends React.Component {
   componentWillReceiveProps(nextProps) {
     const schoolsList = nextProps.schoolsResults.map((school, i) => {
       return {
-        id: i + 1,
+        id: school.ID,
         name: school.Name,
         city: school.City,
         decile: school.Decile

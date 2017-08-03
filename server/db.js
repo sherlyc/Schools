@@ -16,7 +16,7 @@ function getSchool(id, db) {
     db("schools")
       // .join('profiles', 'schools.id', '=' , 'profiles.school_id')
       // .join('locations', 'schools.id', '=', 'locations.school_id')
-      .where("School_ID", id)
+      .where("ID", id)
       .first()
   );
 }
@@ -66,13 +66,11 @@ function updateSchool(id, data, db) {
         .update({ address: data.address, email: data.email, url: data.url });
     })
     .then(result => {
-      return db("locations")
-        .where("school_id", id)
-        .update({
-          suburb: data.suburb,
-          latitude: data.latitude,
-          longitude: data.longitude
-        });
+      return db("locations").where("school_id", id).update({
+        suburb: data.suburb,
+        latitude: data.latitude,
+        longitude: data.longitude
+      });
     });
 }
 
@@ -95,14 +93,11 @@ function transactUpdate(id, data, db) {
           .update({ address: data.address, email: data.email, url: data.url });
       })
       .then(function() {
-        return db("locations")
-          .transacting(t)
-          .where("school_id", id)
-          .update({
-            suburb: data.suburb,
-            latitude: data.latitude,
-            longitude: data.longitude
-          });
+        return db("locations").transacting(t).where("school_id", id).update({
+          suburb: data.suburb,
+          latitude: data.latitude,
+          longitude: data.longitude
+        });
       })
       .then(t.commit)
       .catch(function(e) {
