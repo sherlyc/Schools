@@ -40,7 +40,7 @@ export default class SchoolProfile extends React.Component {
             </h4>
             <ul className="list-group">
               <li className="list-group-item">
-                School Type : {school.School_Type}
+                <b> School Type </b> : {school.School_Type}
               </li>
               <li className="list-group-item">
                 Authority : {school.Authority}

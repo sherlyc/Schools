@@ -16795,7 +16795,7 @@ var Pagination = function (_React$Component) {
       currentPage = currentPage || 1;
 
       // default page size is 50
-      pageSize = pageSize || 15;
+      pageSize = pageSize || 50;
 
       // calculate total pages
       var totalPages = Math.ceil(totalItems / pageSize);
@@ -17019,7 +17019,12 @@ var SchoolProfile = function (_React$Component) {
               _react2.default.createElement(
                 "li",
                 { className: "list-group-item" },
-                "School Type : ",
+                _react2.default.createElement(
+                  "b",
+                  null,
+                  " School Type "
+                ),
+                " : ",
                 school.School_Type
               ),
               _react2.default.createElement(
