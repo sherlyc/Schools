@@ -1,53 +1,93 @@
-import React from 'react'
-import GMap from './GMap'
-import { connect } from 'react-redux'
-import { deleteSchool } from '../actions'
-import { Link } from 'react-router-dom'
+import React from "react";
+import GMap from "./GMap";
+import { connect } from "react-redux";
+import { deleteSchool } from "../actions";
+import { Link } from "react-router-dom";
 
+export default class SchoolProfile extends React.Component {
+  handleClick = e => {
+    let result = confirm("Confirming delete?");
+    if (result) {
+      props.dispatch(deleteSchool(school.id));
+    } else {
+      e.preventDefault();
+    }
+  };
+  //combine street, suburb and city to form address
+  formatAddress = (street, suburb, city) => {
+    let strStreet = street ? street : "";
+    let strSuburb = suburb ? ", " + suburb : "";
+    let strCity = city ? ", " + city : "";
 
+    return strStreet + strSuburb + strCity;
+  };
 
-let SchoolProfile = (props) => {
-
-    const school = props.school || {}
-
-    function handleClick (e) {
-      let result = confirm('Confirming delete?')
-      if (result) {
-        props.dispatch(deleteSchool(school.id))
-      } else {
-        e.preventDefault()
-      }
-     }
-
-
+  render = () => {
+    const school = this.props.school || {};
     return (
-         <div className='school'>
-            <div>
-                <h2>School Profile</h2>
-                    <ul>
-                        <li>Name : { school.name }</li>
-                        <li>School Type : { school.schoolType }</li>
-                        <li>Authority : { school.authority }</li>
-                        <li>Gender : { school.gender }</li>
-                        <li>Decile : { school.decile }</li>
-                        <li>Address : { school.address }</li>
-                        <li>Suburb : { school.suburb }</li>
-                        <li>Email : { school.email }</li>
-                        <li>Website : <a href={ school.url }>{ school.url }</a></li>
-
-                    </ul>
-                    <div className='actions'>
-                      <Link to={'/schools/edit/' + school.id}><i className="fa fa-pencil" aria-hidden="true"></i></Link> { }
-                      <i className="fa fa-trash-o" aria-hidden="true"  onClick={ handleClick }></i>
-                    </div>
-            </div>
-            <div className='map'>
-                <GMap center={ { lat: school.latitude, lng: school.longitude } }/>
-            </div>
+      <div>
+        <div className="school">
+          <div>
+            <h2>
+              {school.Name}
+            </h2>
+            <h4>
+              {" "}{this.formatAddress(
+                school.Street,
+                school.Suburb,
+                school.City
+              )}{" "}
+            </h4>
+            <ul className="list-group">
+              <li className="list-group-item">
+                School Type : {school.School_Type}
+              </li>
+              <li className="list-group-item">
+                Authority : {school.Authority}
+              </li>
+              <li className="list-group-item">
+                Gender : {school.Gender}
+              </li>
+              <li className="list-group-item">
+                Decile : {school.Decile}
+              </li>
+              <li className="list-group-item">
+                Address :{" "}
+                {this.formatAddress(school.Street, school.Suburb, school.City)}
+              </li>
+              <li className="list-group-item">
+                Suburb : {school.Suburb}
+              </li>
+              <li className="list-group-item">
+                Email : {school.Email}
+              </li>
+              <li className="list-group-item">
+                Website :
+                <a href={school.School_Website}> {school.School_Website}</a>
+              </li>
+            </ul>
+            {/* <div className="actions">
+            <Link to={"/schools/edit/" + school.id}>
+              <i className="fa fa-pencil" aria-hidden="true" />
+            </Link>{" "}
+            {}
+            <i
+              className="fa fa-trash-o"
+              aria-hidden="true"
+              onClick={this.handleClick}
+            />
+          </div> */}
+          </div>
+          <div className="map">
+            <GMap center={{ lat: school.Latitude, lng: school.Longitude }} />
+          </div>
         </div>
-    )
+        {/* <div>
+          <h4>Properties Nearby : </h4>{" "}
+        </div> */}
+      </div>
+    );
+  };
 }
 
-SchoolProfile = connect()(SchoolProfile)
-
-export default SchoolProfile
+SchoolProfile = connect()(SchoolProfile);

@@ -1,14 +1,11 @@
-
-function schoolsResults (state = [], action) {
+function schoolsResults(state = [], action) {
   switch (action.type) {
-    case 'RECEIVE_SCHOOLS':
-      return [
-        ...action.schoolsResults
-      ]
+    case "RECEIVE_SCHOOLS":
+      return [...action.schoolsResults];
 
     default:
-      return state
+      return state;
   }
 }
 
-export default schoolsResults
+export default schoolsResults;

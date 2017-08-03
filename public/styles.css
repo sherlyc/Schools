@@ -1,20 +1,49 @@
 h1 {
   text-align: center;
   font-family: 'Comfortaa', cursive;
-
 }
 
 body {
   font-family: 'Comfortaa', cursive;
   font-size: 1.5em;
-
 }
 
 .nav {
   text-align: center;
-  margin-bottom: 2em;
+}
+.navbar-custom {
+  background-color: #008cbf;
+  color: #ffffff;
+  border-radius: 0;
 }
 
+.navbar-custom .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open > a {
+  text-decoration: none;
+  background-color: #45bce8;
+}
+
+.navbar-custom .navbar-brand {
+  color: #eeeeee;
+}
+.navbar-custom .navbar-toggle {
+  background-color: #eeeeee;
+}
+.navbar-custom .icon-bar {
+  background-color: #45bce8;
+}
 .school {
   display: flex;
   flex-direction: row;
@@ -28,42 +57,43 @@ a {
 
 .actions a {
   color: inherit;
-
 }
-
 
 .home img {
-    width: 500px
+  width: 500px;
 }
 .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .map {
-    padding: 2em;
+  margin-top: 4em;
+  padding: 2em;
 }
 
-input[type=text], input[type=email], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+input[type=text],
+input[type=email],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 input[type=submit] {
-    width: 100%;
-    background-color: #FFFF00;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 100%;
+  background-color: #ffff00;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 input[type=radio],
@@ -74,20 +104,19 @@ input.radio {
 }
 
 input[type=submit]:hover {
-    background-color: #FFFF66;
+  background-color: #ffff66;
 }
 .help-block {
-    font-size: 0.5em;
-    color: red;
-
+  font-size: 0.5em;
+  color: red;
 }
 
 .submitSucceed {
-    font-size: 1em;
-    color: orange;
+  font-size: 1em;
+  color: orange;
 }
 .form {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
