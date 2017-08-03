@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export default props => {
   const schools = props.schools || [];
-  console.log(schools);
   return (
     <div className="school-list">
       <h2>List</h2>
