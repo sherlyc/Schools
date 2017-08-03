@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "../components/Pagination";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
 
@@ -21,7 +22,12 @@ class ExampleContainer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const schoolsList = nextProps.schoolsResults.map((school, i) => {
-      return { id: i, name: school.Name };
+      return {
+        id: i + 1,
+        name: school.Name,
+        city: school.City,
+        decile: school.Decile
+      };
     });
 
     this.setState({
@@ -41,18 +47,51 @@ class ExampleContainer extends React.Component {
         <div className="container">
           <div className="text-center">
             <h1>List of Schools in New Zealand</h1>
-            {this.state.pageOfItems.map(item =>
-              <div key={item.id}>
-                {item.name}
-              </div>
-            )}
+          </div>
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Decile</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.pageOfItems.map(item =>
+                <tr key={item.id}>
+                  <td>
+                    {item.id}
+                  </td>
+                  <td>
+                    <Link to={"/schools/" + item.id}>
+                      {item.name}
+                    </Link>
+                  </td>
+                  <td>
+                    {item.city}
+                  </td>
+                  <td>
+                    {item.decile}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          {/* {this.state.pageOfItems.map(item =>
+              <Link key={item.id} to={"/schools/" + item.id}>
+                <div key={item.id}>
+                  {item.name}
+                </div>
+              </Link>
+            )} */}
+          <div className="text-center">
             <Pagination
               items={this.state.schools}
               onChangePage={this.onChangePage}
             />
           </div>
         </div>
-        <hr />
       </div>
     );
   }
