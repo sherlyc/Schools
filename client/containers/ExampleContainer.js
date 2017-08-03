@@ -1,6 +1,5 @@
 import React from "react";
 import Pagination from "../components/Pagination";
-import _ from "underscore";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
 
@@ -13,7 +12,6 @@ class ExampleContainer extends React.Component {
       pageOfItems: []
     };
 
-    // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
     this.onChangePage = this.onChangePage.bind(this);
   }
 
@@ -42,7 +40,7 @@ class ExampleContainer extends React.Component {
       <div>
         <div className="container">
           <div className="text-center">
-            <h1>School List with Pagination Test</h1>
+            <h1>List of Schools in New Zealand</h1>
             {this.state.pageOfItems.map(item =>
               <div key={item.id}>
                 {item.name}
