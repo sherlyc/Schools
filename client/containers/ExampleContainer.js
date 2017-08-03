@@ -78,13 +78,7 @@ class ExampleContainer extends React.Component {
               )}
             </tbody>
           </table>
-          {/* {this.state.pageOfItems.map(item =>
-              <Link key={item.id} to={"/schools/" + item.id}>
-                <div key={item.id}>
-                  {item.name}
-                </div>
-              </Link>
-            )} */}
+
           <div className="text-center">
             <Pagination
               items={this.state.schools}
