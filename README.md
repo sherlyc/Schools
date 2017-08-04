@@ -1,5 +1,8 @@
 # Personal Project : Find a School
 
+Find a school in any area and perhaps any properties available on trademe nearby that school.
+
+
 ## Installation
 
 ```
@@ -20,11 +23,6 @@ open in your browser:  http://localhost:3000
 4. convert a spreadsheet of data into readable information on web.
 5. how to use google map api and learning the names of regions in Wellington.
 6. trademe api (*stretch)
-
-## Problem Solving
-
-To make it easier someone to find a school in any area and perhaps any properties available on trademe nearby that school.
-
 
 ## MVP
 
