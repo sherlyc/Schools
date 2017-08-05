@@ -1,18 +1,20 @@
 module.exports = {
-  entry: './client/index.js',
+  entry: "./client/index.js",
   output: {
-    path: __dirname + '/public',
-    filename: 'bundle.js'
+    path: __dirname + "/public",
+    filename: "bundle.js"
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"]
   },
-  devtool: 'source-map'
-}
+  devtool: "source-map"
+};

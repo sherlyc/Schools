@@ -16629,6 +16629,11 @@ var Home = function Home() {
   return _react2.default.createElement(
     "div",
     { className: "home" },
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Welcome to Schools"
+    ),
     _react2.default.createElement("img", { src: "./school.jpg" })
   );
 };

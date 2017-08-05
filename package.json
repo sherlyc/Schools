@@ -9,10 +9,14 @@
     "dev": "nodemon server/index & webpack --watch",
     "start": "node server/index",
     "debug": "node --inspect --debug-brk server/index.js",
-    "test": "mocha --compilers js:babel-register --require ./tests/helpers.js --require ./tests/dom.js --recursive"
+    "test": "mocha test/client/ --compilers js:babel-register --require ./test/helpers.js --require ./test/dom.js --recursive"
   },
   "babel": {
-    "presets": ["es2015", "react", "stage-0"]
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ]
   },
   "ava": {
     "require": "babel-register",
@@ -39,6 +43,7 @@
     "react-dom": "^15.4.2",
     "react-radio-group": "^3.0.1",
     "react-router-dom": "^4.1.1",
+    "react-test-renderer": "^15.6.1",
     "sinon": "^3.0.0",
     "sqlite3": "^3.1.8",
     "supertest": "^3.0.0",
