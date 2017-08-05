@@ -22,33 +22,13 @@ function getSchool(id, db) {
 }
 
 function addSchool(data, db) {
-  return db("schools")
-    .insert({
-      name: data.name,
-      schoolType: data.schoolType,
-      authority: data.authority,
-      gender: data.gender,
-      decile: data.decile
-    })
-    .returning("id")
-    .then(result => {
-      return db("profiles")
-        .insert({
-          address: data.address,
-          email: data.email,
-          url: data.url,
-          school_id: result[0]
-        })
-        .returning("id");
-    })
-    .then(result => {
-      return db("locations").insert({
-        suburb: data.suburb,
-        latitude: data.latitude,
-        longitude: data.longitude,
-        school_id: result[0]
-      });
-    });
+  return db("schools").insert({
+    Name: data.Name,
+    School_Type: data.School_Type,
+    Authority: data.Authority,
+    Gender: data.Gender,
+    Decile: data.Decile
+  });
 }
 
 function updateSchool(id, data, db) {
