@@ -1,12 +1,14 @@
-import test from 'tape'
 import React from 'react'
-import { shallow } from 'enzyme'
+import { expect } from 'chai'
+import { shallow, mount } from 'enzyme'
+import { Home } from '../../client/components/Home'
 import './setup-dom'
 
 import App from '../../client/components/App'
 
-test('<App />', t => {
-  const wrapper = shallow(<App />)
-  t.is(wrapper.contains(<h1>Welcome to Schools</h1>), true)
-  t.end()
+describe('HomeComponent', () => {
+  it('should render Home component', () => {
+    const wrapper = shallow(<Home/>)
+    expect(wrapper.find('.home')).to.have.length(1);
+  })
 })
