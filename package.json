@@ -9,14 +9,10 @@
     "dev": "nodemon server/index & webpack --watch",
     "start": "node server/index",
     "debug": "node --inspect --debug-brk server/index.js",
-    "test": "mocha --compilers js:babel-register --require ./test/helpers.js --require ./test/dom.js --recursive"
+    "test": "mocha --compilers js:babel-register --require ./tests/helpers.js --require ./tests/dom.js --recursive"
   },
   "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-0"
-    ]
+    "presets": ["es2015", "react", "stage-0"]
   },
   "ava": {
     "require": "babel-register",
