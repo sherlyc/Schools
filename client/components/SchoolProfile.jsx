@@ -13,6 +13,7 @@ export default class SchoolProfile extends React.Component {
       e.preventDefault();
     }
   };
+
   //combine street, suburb and city to form address
   formatAddress = (street, suburb, city) => {
     let strStreet = street ? street : "";

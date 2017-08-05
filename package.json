@@ -9,8 +9,7 @@
     "dev": "nodemon server/index & webpack --watch",
     "start": "node server/index",
     "debug": "node --inspect --debug-brk server/index.js",
-    "test": "tape -r babel-register 'tests/client/index.test.js' | tap-diff & ava -v 'tests/server/*.test.js'",
-    "watch": "nodemon -e js,jsx -x npm test"
+    "test": "mocha test/client/ --compilers js:babel-register --require ./test/helpers.js --require ./test/dom.js --recursive"
   },
   "babel": {
     "presets": [
@@ -33,15 +32,19 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.18.0",
+    "chai": "^4.1.0",
     "enzyme": "^2.7.0",
     "jsdom": "^11.0.0",
     "jsx-loader": "^0.13.2",
+    "mocha": "^3.5.0",
     "nodemon": "^1.11.0",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-radio-group": "^3.0.1",
     "react-router-dom": "^4.1.1",
+    "react-test-renderer": "^15.6.1",
+    "sinon": "^3.0.0",
     "sqlite3": "^3.1.8",
     "supertest": "^3.0.0",
     "tap-diff": "^0.1.1",

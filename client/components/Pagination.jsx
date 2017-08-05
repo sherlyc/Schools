@@ -57,7 +57,7 @@ class Pagination extends React.Component {
     currentPage = currentPage || 1;
 
     // default page size is 50
-    pageSize = pageSize || 15;
+    pageSize = pageSize || 50;
 
     // calculate total pages
     var totalPages = Math.ceil(totalItems / pageSize);
@@ -104,7 +104,7 @@ class Pagination extends React.Component {
 
   render() {
     var pager = this.state.pager;
-
+    console.log(pager);
     if (!pager.pages || pager.pages.length <= 1) {
       //don't display pager if there is only 1 page
       return null;
