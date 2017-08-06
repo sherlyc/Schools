@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/lib/Button";
 import Modal from "react-overlays/lib/Modal";
+import SchoolProfile from "../containers/ProfileContainer";
 
 let rand = () => Math.floor(Math.random() * 20) - 10;
 
@@ -23,12 +24,13 @@ const backdropStyle = {
 const dialogStyle = function() {
   // we use some psuedo random coords so nested modals
   // don't sit right on top of each other.
-  let top = 50 + rand();
-  let left = 50 + rand();
+  let top = 50;
+  let left = 50;
 
   return {
     position: "absolute",
-    width: 400,
+    width: "80%",
+    height: "80%",
     top: top + "%",
     left: left + "%",
     transform: `translate(-${top}%, -${left}%)`,
@@ -40,14 +42,11 @@ const dialogStyle = function() {
 };
 
 class ModalExample extends React.Component {
-  state = { showModal: false };
+  state = { showModal: true };
 
   render() {
     return (
-      <div className="modal-example">
-        <Button onClick={this.open}>Open Modal</Button>
-        <p>Click to get the full Modal experience!</p>
-
+      <div className="modal">
         <Modal
           aria-labelledby="modal-label"
           style={modalStyle}
@@ -56,11 +55,7 @@ class ModalExample extends React.Component {
           onHide={this.close}
         >
           <div style={dialogStyle()}>
-            <h4 id="modal-label">Text in a modal</h4>
-            <p>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
-            <ModalExample />
+            <SchoolProfile schoolID={this.props.match.params.id} />
           </div>
         </Modal>
       </div>

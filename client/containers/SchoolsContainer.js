@@ -8,6 +8,7 @@ import { fetchSchools } from "../actions";
 class SchoolsContainer extends React.Component {
   constructor() {
     super();
+    this.hello = this.openModal.bind(this);
 
     this.state = {
       schools: [],
@@ -35,6 +36,11 @@ class SchoolsContainer extends React.Component {
       schools: schoolsList,
       schoolsResults: nextProps.schoolsResults
     });
+  }
+
+  openModal(e) {
+    e.preventDefault();
+    console.log(e.target.id);
   }
 
   onChangePage(pageOfItems) {
@@ -66,9 +72,9 @@ class SchoolsContainer extends React.Component {
                     {item.id}
                   </td>
                   <td>
-                    <Link to={"/schools/" + item.id}>
+                    <a href="#" id={item.id} onClick={this.openModal}>
                       {item.name}
-                    </Link>
+                    </a>
                   </td>
                   <td>
                     {item.city}
