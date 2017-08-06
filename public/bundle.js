@@ -15684,6 +15684,10 @@ var _ProfileContainer = __webpack_require__(199);
 
 var _ProfileContainer2 = _interopRequireDefault(_ProfileContainer);
 
+var _Modal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../Modal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 var _reactRouterDom = __webpack_require__(62);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -15719,6 +15723,7 @@ var App = function (_React$Component) {
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Home2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/schools", component: _SchoolsContainer2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/add", component: _AddSchoolForm2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/modal", component: _Modal2.default }),
             _react2.default.createElement(_reactRouterDom.Route, {
               exact: true,
               path: "/schools/:id",
