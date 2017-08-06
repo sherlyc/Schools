@@ -1,17 +1,8 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from 'prop-types'
 import _ from "underscore";
 
-const propTypes = {
-  items: PropTypes.array.isRequired,
-  onChangePage: PropTypes.func.isRequired,
-  initialPage: PropTypes.number
-};
-
-const defaultProps = {
-  initialPage: 1
-};
-
-class Pagination extends React.Component {
+export default class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pager: {} };
@@ -142,7 +133,12 @@ class Pagination extends React.Component {
     );
   }
 }
+Pagination.propTypes = {
+  items: PropTypes.array.isRequired,
+  onChangPage: PropTypes.func.isRequired,
+  initialPage: PropTypes.number
+}
 
-Pagination.propTypes = propTypes;
-Pagination.defaultProps;
-export default Pagination;
+Pagination.defaultProps = {
+  initialPage: 1
+}
