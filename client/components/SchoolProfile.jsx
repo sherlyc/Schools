@@ -3,6 +3,7 @@ import GMap from "./GMap";
 import { connect } from "react-redux";
 import { deleteSchool } from "../actions";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default class SchoolProfile extends React.Component {
   handleClick = e => {
@@ -100,5 +101,12 @@ export default class SchoolProfile extends React.Component {
     );
   };
 }
+
+SchoolProfile.propTypes = {
+  school: PropTypes.object.isRequired,
+  center: PropTypes.object,
+  formatAddress: PropTypes.func,
+  coordinateCheck: PropTypes.func
+};
 
 SchoolProfile = connect()(SchoolProfile);
