@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "../components/Pagination";
+import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
@@ -48,6 +49,7 @@ class SchoolsContainer extends React.Component {
           <div className="text-center">
             <h1>List of Schools in New Zealand</h1>
           </div>
+          <SearchBar />
           <table className="table table-hover">
             <thead>
               <tr>

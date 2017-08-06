@@ -12,11 +12,21 @@
     "test": "ava -v"
   },
   "babel": {
-    "presets": ["es2015", "react", "stage-0"]
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ]
   },
   "ava": {
-    "files": ["test/**/*.test.js"],
-    "require": ["babel-register", "./test/dom.js", "./test/helpers.js"],
+    "files": [
+      "test/**/*.test.js"
+    ],
+    "require": [
+      "babel-register",
+      "./test/dom.js",
+      "./test/helpers.js"
+    ],
     "babel": "inherit"
   },
   "author": "Sherly",
@@ -43,7 +53,7 @@
     "react-router-dom": "^4.1.1",
     "react-test-renderer": "^15.6.1",
     "sinon": "^3.0.0",
-    "sqlite3": "^3.1.8",
+    "sqlite3": "^3.1.9",
     "supertest": "^3.0.0",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.3",

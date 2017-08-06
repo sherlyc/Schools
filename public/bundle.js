@@ -3462,7 +3462,7 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.deleteSchool = exports.updateSchool = exports.addSchool = exports.getSchool = exports.fetchSchools = exports.clearError = exports.throwError = exports.receiveSchool = exports.receiveSchools = undefined;
 
@@ -3479,102 +3479,102 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var history = (0, _history.createHashHistory)();
 
 var receiveSchools = exports.receiveSchools = function receiveSchools(schools) {
-    return {
-        type: 'RECEIVE_SCHOOLS',
-        schoolsResults: schools.schools.map(function (school) {
-            return school;
-        })
-    };
+  return {
+    type: "RECEIVE_SCHOOLS",
+    schoolsResults: schools.schools.map(function (school) {
+      return school;
+    })
+  };
 };
 
 var receiveSchool = exports.receiveSchool = function receiveSchool(school) {
-    return {
-        type: 'RECEIVE_SCHOOL',
-        school: _extends({}, school)
-    };
+  return {
+    type: "RECEIVE_SCHOOL",
+    school: _extends({}, school)
+  };
 };
 
 var throwError = exports.throwError = function throwError(message) {
-    return {
-        type: 'THROW_ERROR',
-        message: message
-    };
+  return {
+    type: "THROW_ERROR",
+    message: message
+  };
 };
 
 var clearError = exports.clearError = function clearError() {
-    return {
-        type: 'CLEAR_ERROR'
-    };
+  return {
+    type: "CLEAR_ERROR"
+  };
 };
 
 var fetchSchools = exports.fetchSchools = function fetchSchools() {
-    return function (dispatch) {
-        _superagent2.default.get('/schools').end(function (err, res) {
-            if (err) {
-                dispatch(throwError(err.message));
-            } else {
-                dispatch(receiveSchools(res.body));
-            }
-        });
-    };
+  return function (dispatch) {
+    _superagent2.default.get("/schools").end(function (err, res) {
+      if (err) {
+        dispatch(throwError(err.message));
+      } else {
+        dispatch(receiveSchools(res.body));
+      }
+    });
+  };
 };
 
 var getSchool = exports.getSchool = function getSchool(id) {
-    //call api to get single school
-    return function (dispatch) {
-        _superagent2.default.get('/schools/' + id).end(function (err, res) {
-            if (err) {
-                dispatch(throwError(err.message));
-            } else {
-                dispatch(receiveSchool(res.body.school));
-            }
-        });
-    };
+  //call api to get single school
+  return function (dispatch) {
+    _superagent2.default.get("/schools/" + id).end(function (err, res) {
+      if (err) {
+        dispatch(throwError(err.message));
+      } else {
+        dispatch(receiveSchool(res.body.school));
+      }
+    });
+  };
 };
 
 var addSchool = exports.addSchool = function addSchool(data) {
-    // call api to create school
-    return function (dispatch) {
-        _superagent2.default.post('/schools/add').send(data).end(function (err, res) {
-            if (err) {
-                dispatch(throwError(err.message));
-            } else {
-                dispatch(clearError());
-                setTimeout(function () {
-                    return history.push('/schools');
-                }, 1200);
-            }
-        });
-    };
+  // call api to create school
+  return function (dispatch) {
+    _superagent2.default.post("/schools/add").send(data).end(function (err, res) {
+      if (err) {
+        dispatch(throwError(err.message));
+      } else {
+        dispatch(clearError());
+        setTimeout(function () {
+          return history.push("/schools");
+        }, 1200);
+      }
+    });
+  };
 };
 
 var updateSchool = exports.updateSchool = function updateSchool(id, data) {
-    // call api to save school
-    return function (dispatch) {
-        _superagent2.default.put('/schools/edit/' + id).send(data).end(function (err, res) {
-            if (err) {
-                dispatch(throwError(err.message)); // dispatch error message
-            } else {
-                dispatch(clearError());
-                setTimeout(function () {
-                    return history.push('/schools');
-                }, 1200);
-            }
-        });
-    };
+  // call api to save school
+  return function (dispatch) {
+    _superagent2.default.put("/schools/edit/" + id).send(data).end(function (err, res) {
+      if (err) {
+        dispatch(throwError(err.message)); // dispatch error message
+      } else {
+        dispatch(clearError());
+        setTimeout(function () {
+          return history.push("/schools");
+        }, 1200);
+      }
+    });
+  };
 };
 
 var deleteSchool = exports.deleteSchool = function deleteSchool(id) {
-    return function (dispatch) {
-        _superagent2.default.delete('/schools/remove/' + id).end(function (err, res) {
-            if (err) {
-                dispatch(throwError(err.message));
-            } else {
-                dispatch(clearError());
-                history.push('/schools');
-            }
-        });
-    };
+  return function (dispatch) {
+    _superagent2.default.delete("/schools/remove/" + id).end(function (err, res) {
+      if (err) {
+        dispatch(throwError(err.message));
+      } else {
+        dispatch(clearError());
+        history.push("/schools");
+      }
+    });
+  };
 };
 
 /***/ }),
@@ -16537,6 +16537,10 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(6);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16545,32 +16549,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var defaultCenter = {
-  lat: 48.858608,
-  lng: 2.294471
-};
-
 var GMap = function (_React$Component) {
   _inherits(GMap, _React$Component);
 
   function GMap() {
     _classCallCheck(this, GMap);
 
-    return _possibleConstructorReturn(this, (GMap.__proto__ || Object.getPrototypeOf(GMap)).call(this));
+    return _possibleConstructorReturn(this, (GMap.__proto__ || Object.getPrototypeOf(GMap)).apply(this, arguments));
   }
 
   _createClass(GMap, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.loadMap(defaultCenter);
-    }
-  }, {
-    key: 'componentWillReceiveProps',
+    key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      this.loadMap(nextProps.center);
+      if (nextProps.center["lat"] != 0 && nextProps.center["lng"] != 0) {
+        this.loadMap(nextProps.center);
+      }
     }
   }, {
-    key: 'loadMap',
+    key: "loadMap",
     value: function loadMap(center) {
       this.map = new google.maps.Map(this.refs.map, {
         center: center,
@@ -16583,21 +16579,21 @@ var GMap = function (_React$Component) {
       });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var mapStyle = {
         width: 500,
         height: 300,
-        border: '1px solid black'
+        border: "1px solid black"
       };
 
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'div',
-          { ref: 'map', style: mapStyle },
-          'I should be a map!'
+          "div",
+          { ref: "map", style: mapStyle },
+          "Map is not available."
         )
       );
     }
@@ -16607,6 +16603,12 @@ var GMap = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = GMap;
+
+
+GMap.propTypes = {
+  loadMap: _propTypes2.default.func,
+  center: _propTypes2.default.object
+};
 
 /***/ }),
 /* 195 */
@@ -16721,6 +16723,10 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(6);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _underscore = __webpack_require__(518);
 
 var _underscore2 = _interopRequireDefault(_underscore);
@@ -16732,16 +16738,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var propTypes = {
-  items: _react.PropTypes.array.isRequired,
-  onChangePage: _react.PropTypes.func.isRequired,
-  initialPage: _react.PropTypes.number
-};
-
-var defaultProps = {
-  initialPage: 1
-};
 
 var Pagination = function (_React$Component) {
   _inherits(Pagination, _React$Component);
@@ -16850,7 +16846,6 @@ var Pagination = function (_React$Component) {
       var _this2 = this;
 
       var pager = this.state.pager;
-      console.log(pager);
       if (!pager.pages || pager.pages.length <= 1) {
         //don't display pager if there is only 1 page
         return null;
@@ -16930,9 +16925,18 @@ var Pagination = function (_React$Component) {
   return Pagination;
 }(_react2.default.Component);
 
-Pagination.propTypes = propTypes;
-Pagination.defaultProps;
 exports.default = Pagination;
+
+
+Pagination.propTypes = {
+  items: _propTypes2.default.array.isRequired,
+  onChangePage: _propTypes2.default.func.isRequired,
+  initialPage: _propTypes2.default.number
+};
+
+Pagination.defaultProps = {
+  initialPage: 1
+};
 
 /***/ }),
 /* 198 */
@@ -16958,6 +16962,10 @@ var _reactRedux = __webpack_require__(11);
 var _actions = __webpack_require__(34);
 
 var _reactRouterDom = __webpack_require__(62);
+
+var _propTypes = __webpack_require__(6);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16994,6 +17002,12 @@ var SchoolProfile = function (_React$Component) {
       var strCity = city ? ", " + city : "";
 
       return strStreet + strSuburb + strCity;
+    }, _this.coordinateCheck = function (lat, lng) {
+      if (typeof lat == "number" && typeof lng == "number") {
+        return { lat: lat, lng: lng };
+      } else {
+        return { lat: 0, lng: 0 };
+      }
     }, _this.render = function () {
       var school = _this.props.school || {};
       return _react2.default.createElement(
@@ -17079,7 +17093,9 @@ var SchoolProfile = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { className: "map" },
-            _react2.default.createElement(_GMap2.default, { center: { lat: school.Latitude, lng: school.Longitude } })
+            _react2.default.createElement(_GMap2.default, {
+              center: _this.coordinateCheck(school.Latitude, school.Longitude)
+            })
           )
         )
       );
@@ -17094,6 +17110,13 @@ var SchoolProfile = function (_React$Component) {
 
 exports.default = SchoolProfile;
 
+
+SchoolProfile.propTypes = {
+  school: _propTypes2.default.object.isRequired,
+  center: _propTypes2.default.object,
+  formatAddress: _propTypes2.default.func,
+  coordinateCheck: _propTypes2.default.func
+};
 
 SchoolProfile = (0, _reactRedux.connect)()(SchoolProfile);
 
@@ -17188,6 +17211,10 @@ var _Pagination = __webpack_require__(197);
 
 var _Pagination2 = _interopRequireDefault(_Pagination);
 
+var _SearchBar = __webpack_require__(520);
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
 var _reactRouterDom = __webpack_require__(62);
 
 var _reactRedux = __webpack_require__(11);
@@ -17265,6 +17292,7 @@ var SchoolsContainer = function (_React$Component) {
               "List of Schools in New Zealand"
             )
           ),
+          _react2.default.createElement(_SearchBar2.default, null),
           _react2.default.createElement(
             "table",
             { className: "table table-hover" },
@@ -45010,6 +45038,118 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 520 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SearchBar = function SearchBar() {
+  return _react2.default.createElement(
+    "div",
+    { className: "row" },
+    _react2.default.createElement(
+      "div",
+      { className: "col-xs-6" },
+      _react2.default.createElement(
+        "div",
+        { className: "input-group" },
+        _react2.default.createElement("input", {
+          type: "text",
+          className: "form-control",
+          placeholder: "Look up a school",
+          id: "search"
+        }),
+        _react2.default.createElement(
+          "span",
+          { className: "input-group-btn" },
+          _react2.default.createElement(
+            "button",
+            { className: "btn btn-info", type: "button" },
+            _react2.default.createElement("span", { className: "glyphicon glyphicon-search" })
+          )
+        )
+      )
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "col-xs-3" },
+      _react2.default.createElement(
+        "select",
+        { className: "form-control", id: "city" },
+        _react2.default.createElement(
+          "option",
+          null,
+          "Select a City"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Auckland"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Wellington"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Christchurch"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Hamilton"
+        )
+      ),
+      " "
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "col-xs-3" },
+      _react2.default.createElement(
+        "select",
+        { className: "form-control", id: "decile" },
+        _react2.default.createElement(
+          "option",
+          null,
+          "Filter by Decile"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Decile 9 and above"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Decile 7 to 8"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Decile 1 to 6"
+        )
+      ),
+      " "
+    )
+  );
+};
+
+exports.default = SearchBar;
 
 /***/ })
 /******/ ]);
