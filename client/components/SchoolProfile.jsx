@@ -23,6 +23,14 @@ export default class SchoolProfile extends React.Component {
     return strStreet + strSuburb + strCity;
   };
 
+  coordinateCheck = (lat, lng) => {
+    if (typeof lat == "number" && typeof lng == "number") {
+      return { lat, lng };
+    } else {
+      return { lat: 0, lng: 0 };
+    }
+  };
+
   render = () => {
     const school = this.props.school || {};
     return (
@@ -80,7 +88,9 @@ export default class SchoolProfile extends React.Component {
           </div> */}
           </div>
           <div className="map">
-            <GMap center={{ lat: school.Latitude, lng: school.Longitude }} />
+            <GMap
+              center={this.coordinateCheck(school.Latitude, school.Longitude)}
+            />
           </div>
         </div>
         {/* <div>

@@ -16537,6 +16537,10 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(6);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16545,32 +16549,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var defaultCenter = {
-  lat: 48.858608,
-  lng: 2.294471
-};
-
 var GMap = function (_React$Component) {
   _inherits(GMap, _React$Component);
 
   function GMap() {
     _classCallCheck(this, GMap);
 
-    return _possibleConstructorReturn(this, (GMap.__proto__ || Object.getPrototypeOf(GMap)).call(this));
+    return _possibleConstructorReturn(this, (GMap.__proto__ || Object.getPrototypeOf(GMap)).apply(this, arguments));
   }
 
   _createClass(GMap, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.loadMap(defaultCenter);
-    }
-  }, {
-    key: 'componentWillReceiveProps',
+    key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      this.loadMap(nextProps.center);
+      if (nextProps.center["lat"] != 0 && nextProps.center["lng"] != 0) {
+        this.loadMap(nextProps.center);
+      }
     }
   }, {
-    key: 'loadMap',
+    key: "loadMap",
     value: function loadMap(center) {
       this.map = new google.maps.Map(this.refs.map, {
         center: center,
@@ -16583,21 +16579,21 @@ var GMap = function (_React$Component) {
       });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var mapStyle = {
         width: 500,
         height: 300,
-        border: '1px solid black'
+        border: "1px solid black"
       };
 
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'div',
-          { ref: 'map', style: mapStyle },
-          'I should be a map!'
+          "div",
+          { ref: "map", style: mapStyle },
+          "Map is not available."
         )
       );
     }
@@ -16607,6 +16603,12 @@ var GMap = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = GMap;
+
+
+GMap.propTypes = {
+  loadMap: _propTypes2.default.func,
+  center: _propTypes2.default.object
+};
 
 /***/ }),
 /* 195 */
@@ -16926,9 +16928,10 @@ var Pagination = function (_React$Component) {
 
 exports.default = Pagination;
 
+
 Pagination.propTypes = {
   items: _propTypes2.default.array.isRequired,
-  onChangPage: _propTypes2.default.func.isRequired,
+  onChangePage: _propTypes2.default.func.isRequired,
   initialPage: _propTypes2.default.number
 };
 
@@ -16996,6 +16999,12 @@ var SchoolProfile = function (_React$Component) {
       var strCity = city ? ", " + city : "";
 
       return strStreet + strSuburb + strCity;
+    }, _this.coordinateCheck = function (lat, lng) {
+      if (typeof lat == "number" && typeof lng == "number") {
+        return { lat: lat, lng: lng };
+      } else {
+        return { lat: 0, lng: 0 };
+      }
     }, _this.render = function () {
       var school = _this.props.school || {};
       return _react2.default.createElement(
@@ -17081,7 +17090,9 @@ var SchoolProfile = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { className: "map" },
-            _react2.default.createElement(_GMap2.default, { center: { lat: school.Latitude, lng: school.Longitude } })
+            _react2.default.createElement(_GMap2.default, {
+              center: _this.coordinateCheck(school.Latitude, school.Longitude)
+            })
           )
         )
       );

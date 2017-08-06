@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import _ from "underscore";
 
 export default class Pagination extends React.Component {
@@ -133,12 +133,13 @@ export default class Pagination extends React.Component {
     );
   }
 }
+
 Pagination.propTypes = {
   items: PropTypes.array.isRequired,
-  onChangPage: PropTypes.func.isRequired,
+  onChangePage: PropTypes.func.isRequired,
   initialPage: PropTypes.number
-}
+};
 
 Pagination.defaultProps = {
   initialPage: 1
-}
+};
