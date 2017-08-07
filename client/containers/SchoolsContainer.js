@@ -46,7 +46,6 @@ class SchoolsContainer extends React.Component {
       showModal: true,
       SchoolID: e.target.id
     });
-    console.log(this.state.showModal);
   }
 
   closeModal() {

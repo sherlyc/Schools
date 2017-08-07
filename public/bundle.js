@@ -18624,7 +18624,6 @@ var SchoolsContainer = function (_React$Component) {
         showModal: true,
         SchoolID: e.target.id
       });
-      console.log(this.state.showModal);
     }
   }, {
     key: "closeModal",
