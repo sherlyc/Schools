@@ -66,6 +66,15 @@ export default class SchoolProfile extends React.Component {
                 Gender : {school.Gender}
               </ListGroupItem>
               <ListGroupItem>
+                School Roll : {school.School_Roll}
+              </ListGroupItem>
+              <ListGroupItem>
+                Min. Edu. Office : {school.ME_Local_Office}
+              </ListGroupItem>
+              <ListGroupItem>
+                Principal : {school.Principal}
+              </ListGroupItem>
+              <ListGroupItem>
                 Decile : {school.Decile}
               </ListGroupItem>
               <ListGroupItem>

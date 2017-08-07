@@ -22,8 +22,8 @@ export default class GMap extends React.Component {
 
   render() {
     const mapStyle = {
-      width: "300px",
-      height: "300px",
+      width: "400px",
+      height: "400px",
       border: "1px solid black"
     };
 

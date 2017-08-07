@@ -17856,8 +17856,8 @@ var GMap = function (_React$Component) {
     key: "render",
     value: function render() {
       var mapStyle = {
-        width: "300px",
-        height: "300px",
+        width: "400px",
+        height: "400px",
         border: "1px solid black"
       };
 
@@ -18339,6 +18339,24 @@ var SchoolProfile = function (_React$Component) {
                 null,
                 "Gender : ",
                 school.Gender
+              ),
+              _react2.default.createElement(
+                _reactBootstrap.ListGroupItem,
+                null,
+                "School Roll : ",
+                school.School_Roll
+              ),
+              _react2.default.createElement(
+                _reactBootstrap.ListGroupItem,
+                null,
+                "Min. Edu. Office : ",
+                school.ME_Local_Office
+              ),
+              _react2.default.createElement(
+                _reactBootstrap.ListGroupItem,
+                null,
+                "Principal : ",
+                school.Principal
               ),
               _react2.default.createElement(
                 _reactBootstrap.ListGroupItem,
