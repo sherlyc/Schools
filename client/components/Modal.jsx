@@ -3,8 +3,6 @@ import Button from "react-bootstrap/lib/Button";
 import Modal from "react-overlays/lib/Modal";
 import SchoolProfile from "../containers/ProfileContainer";
 
-let rand = () => Math.floor(Math.random() * 20) - 10;
-
 const modalStyle = {
   position: "fixed",
   zIndex: 1040,
@@ -22,8 +20,6 @@ const backdropStyle = {
 };
 
 const dialogStyle = function() {
-  // we use some psuedo random coords so nested modals
-  // don't sit right on top of each other.
   let top = 50;
   let left = 50;
 
@@ -37,7 +33,8 @@ const dialogStyle = function() {
     border: "1px solid #e5e5e5",
     backgroundColor: "white",
     boxShadow: "0 5px 15px rgba(0,0,0,.5)",
-    padding: 20
+    padding: 20,
+    overflow: "scroll"
   };
 };
 
