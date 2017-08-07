@@ -7,14 +7,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default class SchoolProfile extends React.Component {
-  handleClick = e => {
-    let result = confirm("Confirming delete?");
-    if (result) {
-      props.dispatch(deleteSchool(school.id));
-    } else {
-      e.preventDefault();
-    }
-  };
 
   //combine street, suburb and city to form address
   formatAddress = (street, suburb, city) => {

@@ -18265,14 +18265,7 @@ var SchoolProfile = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SchoolProfile.__proto__ || Object.getPrototypeOf(SchoolProfile)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (e) {
-      var result = confirm("Confirming delete?");
-      if (result) {
-        props.dispatch((0, _actions.deleteSchool)(school.id));
-      } else {
-        e.preventDefault();
-      }
-    }, _this.formatAddress = function (street, suburb, city) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SchoolProfile.__proto__ || Object.getPrototypeOf(SchoolProfile)).call.apply(_ref, [this].concat(args))), _this), _this.formatAddress = function (street, suburb, city) {
       var strStreet = street ? street : "";
       var strSuburb = suburb ? ", " + suburb : "";
       var strCity = city ? ", " + city : "";
@@ -18627,7 +18620,6 @@ var SchoolsContainer = function (_React$Component) {
     key: "openModal",
     value: function openModal(e) {
       e.preventDefault();
-      console.log("Open modal");
       this.setState({
         showModal: true,
         SchoolID: e.target.id
@@ -18637,7 +18629,6 @@ var SchoolsContainer = function (_React$Component) {
   }, {
     key: "closeModal",
     value: function closeModal() {
-      console.log("close modal triggered");
       this.setState({
         showModal: false
       });

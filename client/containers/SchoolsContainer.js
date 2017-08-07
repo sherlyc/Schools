@@ -42,7 +42,6 @@ class SchoolsContainer extends React.Component {
 
   openModal(e) {
     e.preventDefault();
-    console.log("Open modal");
     this.setState({
       showModal: true,
       SchoolID: e.target.id
@@ -51,7 +50,6 @@ class SchoolsContainer extends React.Component {
   }
 
   closeModal() {
-    console.log("close modal triggered");
     this.setState({
       showModal: false
     });
