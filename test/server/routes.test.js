@@ -8,11 +8,15 @@ import setupDb from "../setup-db";
 setupDb(test, createServer);
 
 test.cb("GET /schools returns schools", t => {
-  request(t.context.app).get("/schools").expect(200).end((err, res) => {
-    t.ifError(err);
-    t.is(res.body.schools[0].Name, "Te Kao School");
-    t.end();
-  });
+  request(t.context.app)
+    .get("/schools")
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .end((err, res) => {
+      t.ifError(err);
+      t.true(res.body.schools[0].hasOwnProperty("Name"));
+      t.end();
+    });
 });
 
 test.cb("GET school by ID returns a school correctly", t => {

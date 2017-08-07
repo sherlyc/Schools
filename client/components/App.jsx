@@ -5,6 +5,7 @@ import SchoolsContainer from "../containers/SchoolsContainer";
 import AddSchoolForm from "./AddSchoolForm";
 import EditSchoolForm from "./EditSchoolForm";
 import ProfileContainer from "../containers/ProfileContainer";
+import Modal from "./Modal";
 import { HashRouter as Router, Route } from "react-router-dom";
 
 export default class App extends React.Component {
@@ -17,11 +18,13 @@ export default class App extends React.Component {
             <Route exact={true} path="/" component={Home} />
             <Route exact={true} path="/schools" component={SchoolsContainer} />
             <Route exact={true} path="/add" component={AddSchoolForm} />
+
             <Route
               exact={true}
               path="/schools/:id"
               component={ProfileContainer}
             />
+            <Route exact={true} path="/modal/:id" component={Modal} />
             <Route
               exact={true}
               path="/schools/edit/:id"

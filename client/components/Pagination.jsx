@@ -1,17 +1,8 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "underscore";
 
-const propTypes = {
-  items: PropTypes.array.isRequired,
-  onChangePage: PropTypes.func.isRequired,
-  initialPage: PropTypes.number
-};
-
-const defaultProps = {
-  initialPage: 1
-};
-
-class Pagination extends React.Component {
+export default class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pager: {} };
@@ -104,7 +95,6 @@ class Pagination extends React.Component {
 
   render() {
     var pager = this.state.pager;
-    console.log(pager);
     if (!pager.pages || pager.pages.length <= 1) {
       //don't display pager if there is only 1 page
       return null;
@@ -143,6 +133,12 @@ class Pagination extends React.Component {
   }
 }
 
-Pagination.propTypes = propTypes;
-Pagination.defaultProps;
-export default Pagination;
+Pagination.propTypes = {
+  items: PropTypes.array.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  initialPage: PropTypes.number
+};
+
+Pagination.defaultProps = {
+  initialPage: 1
+};

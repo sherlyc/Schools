@@ -3,6 +3,7 @@ import GMap from "./GMap";
 import { connect } from "react-redux";
 import { deleteSchool } from "../actions";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default class SchoolProfile extends React.Component {
   handleClick = e => {
@@ -21,6 +22,14 @@ export default class SchoolProfile extends React.Component {
     let strCity = city ? ", " + city : "";
 
     return strStreet + strSuburb + strCity;
+  };
+
+  coordinateCheck = (lat, lng) => {
+    if (typeof lat == "number" && typeof lng == "number") {
+      return { lat, lng };
+    } else {
+      return { lat: 0, lng: 0 };
+    }
   };
 
   render = () => {
@@ -67,20 +76,11 @@ export default class SchoolProfile extends React.Component {
                 <a href={school.School_Website}> {school.School_Website}</a>
               </li>
             </ul>
-            {/* <div className="actions">
-            <Link to={"/schools/edit/" + school.id}>
-              <i className="fa fa-pencil" aria-hidden="true" />
-            </Link>{" "}
-            {}
-            <i
-              className="fa fa-trash-o"
-              aria-hidden="true"
-              onClick={this.handleClick}
-            />
-          </div> */}
           </div>
           <div className="map">
-            <GMap center={{ lat: school.Latitude, lng: school.Longitude }} />
+            <GMap
+              center={this.coordinateCheck(school.Latitude, school.Longitude)}
+            />
           </div>
         </div>
         {/* <div>
@@ -90,5 +90,12 @@ export default class SchoolProfile extends React.Component {
     );
   };
 }
+
+SchoolProfile.propTypes = {
+  school: PropTypes.object.isRequired,
+  center: PropTypes.object,
+  formatAddress: PropTypes.func,
+  coordinateCheck: PropTypes.func
+};
 
 SchoolProfile = connect()(SchoolProfile);
