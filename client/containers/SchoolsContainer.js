@@ -1,6 +1,7 @@
 import React from "react";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import SchoolModal from "../components/Modal";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
@@ -8,7 +9,8 @@ import { fetchSchools } from "../actions";
 class SchoolsContainer extends React.Component {
   constructor() {
     super();
-    this.hello = this.openModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 
     this.state = {
       schools: [],
@@ -40,15 +42,34 @@ class SchoolsContainer extends React.Component {
 
   openModal(e) {
     e.preventDefault();
-    console.log(e.target.id);
+    console.log("Open modal");
+    this.setState({
+      showModal: true,
+      SchoolID: e.target.id
+    });
+    console.log(this.state.showModal);
   }
 
+  closeModal() {
+    console.log("close modal triggered");
+    this.setState({
+      showModal: false
+    });
+  }
   onChangePage(pageOfItems) {
     // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
   }
 
   render() {
+    let modal = null;
+    var showModal = this.state.showModal;
+    if (showModal) {
+      modal = (
+        <SchoolModal SchoolID={this.state.SchoolID} onClose={this.closeModal} />
+      );
+    }
+    console.log(modal);
     return (
       <div>
         <div className="container">
@@ -86,7 +107,7 @@ class SchoolsContainer extends React.Component {
               )}
             </tbody>
           </table>
-
+          {modal}
           <div className="text-center">
             <Pagination
               items={this.state.schools}

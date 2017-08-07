@@ -41,7 +41,7 @@ const dialogStyle = function() {
   };
 };
 
-class ModalExample extends React.Component {
+class SchoolModal extends React.Component {
   state = { showModal: true };
 
   render() {
@@ -55,7 +55,7 @@ class ModalExample extends React.Component {
           onHide={this.close}
         >
           <div style={dialogStyle()}>
-            <SchoolProfile schoolID={this.props.match.params.id} />
+            <SchoolProfile schoolID={this.props.SchoolID} />
           </div>
         </Modal>
       </div>
@@ -64,6 +64,7 @@ class ModalExample extends React.Component {
 
   close = () => {
     this.setState({ showModal: false });
+    this.props.onClose();
   };
 
   open = () => {
@@ -71,4 +72,4 @@ class ModalExample extends React.Component {
   };
 }
 
-export default ModalExample;
+export default SchoolModal;
