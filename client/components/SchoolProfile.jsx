@@ -76,17 +76,6 @@ export default class SchoolProfile extends React.Component {
                 <a href={school.School_Website}> {school.School_Website}</a>
               </li>
             </ul>
-            {/* <div className="actions">
-            <Link to={"/schools/edit/" + school.id}>
-              <i className="fa fa-pencil" aria-hidden="true" />
-            </Link>{" "}
-            {}
-            <i
-              className="fa fa-trash-o"
-              aria-hidden="true"
-              onClick={this.handleClick}
-            />
-          </div> */}
           </div>
           <div className="map">
             <GMap
