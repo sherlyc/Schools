@@ -15,7 +15,6 @@ function sortBy(field, sortOrder) {
 }
 
 function schoolsResults(state = [], action) {
-  console.log(action);
   switch (action.type) {
     case "RECEIVE_SCHOOLS":
       return [...action.schoolsResults];
