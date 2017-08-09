@@ -65,10 +65,10 @@ class SchoolsContainer extends React.Component {
 
   sortBy(e) {
     e.preventDefault();
-    let toggleSort = this.state.sorting.Name == "" ? "ASC" : "DESC";
-    this.setState({ sorting: { Name: toggleSort } });
-    console.log(this.state.sorting);
-    this.props.dispatch(sortingByName(e.target.id, toggleSort));
+    let sortField = e.target.id;
+    let toggleSort = this.state.sorting[sortField] == "" ? "ASC" : "";
+    this.setState({ sorting: { [sortField]: toggleSort } });
+    this.props.dispatch(sortingByName(sortField, toggleSort));
   }
 
   render() {

@@ -26294,9 +26294,11 @@ var _reactRedux = __webpack_require__(23);
 
 var _actions = __webpack_require__(67);
 
-var _sorting = __webpack_require__(352);
+var _sorting2 = __webpack_require__(352);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -26376,10 +26378,10 @@ var SchoolsContainer = function (_React$Component) {
     key: "sortBy",
     value: function sortBy(e) {
       e.preventDefault();
-      var toggleSort = this.state.sorting.Name == "" ? "ASC" : "DESC";
-      this.setState({ sorting: { Name: toggleSort } });
-      console.log(this.state.sorting);
-      this.props.dispatch((0, _sorting.sortingByName)(e.target.id, toggleSort));
+      var sortField = e.target.id;
+      var toggleSort = this.state.sorting[sortField] == "" ? "ASC" : "";
+      this.setState({ sorting: _defineProperty({}, sortField, toggleSort) });
+      this.props.dispatch((0, _sorting2.sortingByName)(sortField, toggleSort));
     }
   }, {
     key: "render",
