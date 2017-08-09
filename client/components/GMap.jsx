@@ -22,14 +22,14 @@ export default class GMap extends React.Component {
 
   render() {
     const mapStyle = {
-      width: "400px",
-      height: "400px",
+      width: "100%",
+      height: "100%",
       border: "1px solid black"
     };
 
     return (
-      <div>
-        <div ref="map" style={mapStyle}>
+      <div className="mapWrapper">
+        <div className="googleMap" ref="map" style={mapStyle}>
           Map is not available.
         </div>
       </div>
