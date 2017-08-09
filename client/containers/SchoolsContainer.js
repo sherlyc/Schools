@@ -16,7 +16,12 @@ class SchoolsContainer extends React.Component {
 
     this.state = {
       schools: [],
-      pageOfItems: []
+      pageOfItems: [],
+      sorting: {
+        Name: "",
+        City: "",
+        Decile: ""
+      }
     };
   }
 
@@ -58,9 +63,12 @@ class SchoolsContainer extends React.Component {
     this.setState({ pageOfItems: pageOfItems });
   }
 
-  sortByName(e) {
+  sortBy(e) {
     e.preventDefault();
-    this.props.dispatch(sortingByName());
+    let toggleSort = this.state.sorting.Name == "" ? "ASC" : "DESC";
+    this.setState({ sorting: { Name: toggleSort } });
+    console.log(this.state.sorting);
+    this.props.dispatch(sortingByName(e.target.id, toggleSort));
   }
 
   render() {
@@ -83,12 +91,20 @@ class SchoolsContainer extends React.Component {
               <tr>
                 <th>ID</th>
                 <th>
-                  <a href="#" onClick={this.sortByName.bind(this)}>
+                  <a href="#" id="Name" onClick={this.sortBy.bind(this)}>
                     Name
                   </a>
                 </th>
-                <th>City</th>
-                <th>Decile</th>
+                <th>
+                  <a href="#" id="City" onClick={this.sortBy.bind(this)}>
+                    City
+                  </a>
+                </th>
+                <th>
+                  <a href="#" id="Decile" onClick={this.sortBy.bind(this)}>
+                    Decile
+                  </a>
+                </th>
               </tr>
             </thead>
             <tbody>

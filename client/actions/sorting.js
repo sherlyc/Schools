@@ -1,5 +1,7 @@
-export const sortingByName = () => {
+export const sortingByName = (sortField, sortOrder) => {
   return {
-    type: "SORT_SCHOOLS_NAME"
+    type: "SORT_SCHOOLS",
+    sortOrder,
+    sortField
   };
 };

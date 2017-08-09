@@ -25578,7 +25578,12 @@ var SchoolsContainer = function (_React$Component) {
 
     _this.state = {
       schools: [],
-      pageOfItems: []
+      pageOfItems: [],
+      sorting: {
+        Name: "",
+        City: "",
+        Decile: ""
+      }
     };
     return _this;
   }
@@ -25628,10 +25633,13 @@ var SchoolsContainer = function (_React$Component) {
       this.setState({ pageOfItems: pageOfItems });
     }
   }, {
-    key: "sortByName",
-    value: function sortByName(e) {
+    key: "sortBy",
+    value: function sortBy(e) {
       e.preventDefault();
-      this.props.dispatch((0, _sorting.sortingByName)());
+      var toggleSort = this.state.sorting.Name == "" ? "ASC" : "DESC";
+      this.setState({ sorting: { Name: toggleSort } });
+      console.log(this.state.sorting);
+      this.props.dispatch((0, _sorting.sortingByName)(e.target.id, toggleSort));
     }
   }, {
     key: "render",
@@ -25678,19 +25686,27 @@ var SchoolsContainer = function (_React$Component) {
                   null,
                   _react2.default.createElement(
                     "a",
-                    { href: "#", onClick: this.sortByName.bind(this) },
+                    { href: "#", id: "Name", onClick: this.sortBy.bind(this) },
                     "Name"
                   )
                 ),
                 _react2.default.createElement(
                   "th",
                   null,
-                  "City"
+                  _react2.default.createElement(
+                    "a",
+                    { href: "#", id: "City", onClick: this.sortBy.bind(this) },
+                    "City"
+                  )
                 ),
                 _react2.default.createElement(
                   "th",
                   null,
-                  "Decile"
+                  _react2.default.createElement(
+                    "a",
+                    { href: "#", id: "Decile", onClick: this.sortBy.bind(this) },
+                    "Decile"
+                  )
                 )
               )
             ),
@@ -25868,22 +25884,35 @@ Object.defineProperty(exports, "__esModule", {
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+function sortBy(field, sortOrder) {
+  if (sortOrder == "ASC") {
+    return function (a, b) {
+      if (a[field] < b[field]) return -1;
+      if (a[field] > b[field]) return 1;
+      return 0;
+    };
+  } else {
+    return function (a, b) {
+      if (a[field] > b[field]) return -1;
+      if (a[field] < b[field]) return 1;
+      return 0;
+    };
+  }
+}
+
 function schoolsResults() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
 
-  console.log("state");
-  console.log(state["100"]);
+  console.log(action);
   switch (action.type) {
     case "RECEIVE_SCHOOLS":
       return [].concat(_toConsumableArray(action.schoolsResults));
 
-    case "SORT_SCHOOLS_NAME":
-      return [].concat(_toConsumableArray(state.sort(function (a, b) {
-        if (a.Name < b.Name) return -1;
-        if (a.Name > b.Name) return 1;
-        return 0;
-      })));
+    case "SORT_SCHOOLS":
+      {
+        return [].concat(_toConsumableArray(state.sort(sortBy(action.sortField, action.sortOrder))));
+      }
 
     default:
       return state;
@@ -64561,9 +64590,11 @@ module.exports = function(module) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var sortingByName = exports.sortingByName = function sortingByName() {
+var sortingByName = exports.sortingByName = function sortingByName(sortField, sortOrder) {
   return {
-    type: "SORT_SCHOOLS_NAME"
+    type: "SORT_SCHOOLS",
+    sortOrder: sortOrder,
+    sortField: sortField
   };
 };
 

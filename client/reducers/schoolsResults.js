@@ -1,18 +1,28 @@
+function sortBy(field, sortOrder) {
+  if (sortOrder == "ASC") {
+    return function(a, b) {
+      if (a[field] < b[field]) return -1;
+      if (a[field] > b[field]) return 1;
+      return 0;
+    };
+  } else {
+    return function(a, b) {
+      if (a[field] > b[field]) return -1;
+      if (a[field] < b[field]) return 1;
+      return 0;
+    };
+  }
+}
+
 function schoolsResults(state = [], action) {
-  console.log("state");
-  console.log(state["100"]);
+  console.log(action);
   switch (action.type) {
     case "RECEIVE_SCHOOLS":
       return [...action.schoolsResults];
 
-    case "SORT_SCHOOLS_NAME":
-      return [
-        ...state.sort((a, b) => {
-          if (a.Name < b.Name) return -1;
-          if (a.Name > b.Name) return 1;
-          return 0;
-        })
-      ];
+    case "SORT_SCHOOLS": {
+      return [...state.sort(sortBy(action.sortField, action.sortOrder))];
+    }
 
     default:
       return state;
