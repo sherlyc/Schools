@@ -5,19 +5,24 @@ import SchoolModal from "../components/Modal";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
+import { sortingByName } from "../actions/sorting";
 
 class SchoolsContainer extends React.Component {
   constructor() {
     super();
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
 
     this.state = {
       schools: [],
-      pageOfItems: []
+      pageOfItems: [],
+      sorting: {
+        Name: "",
+        City: "",
+        Decile: ""
+      }
     };
-
-    this.onChangePage = this.onChangePage.bind(this);
   }
 
   componentDidMount() {
@@ -42,16 +47,13 @@ class SchoolsContainer extends React.Component {
 
   openModal(e) {
     e.preventDefault();
-    console.log("Open modal");
     this.setState({
       showModal: true,
       SchoolID: e.target.id
     });
-    console.log(this.state.showModal);
   }
 
   closeModal() {
-    console.log("close modal triggered");
     this.setState({
       showModal: false
     });
@@ -59,6 +61,14 @@ class SchoolsContainer extends React.Component {
   onChangePage(pageOfItems) {
     // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
+  }
+
+  sortBy(e) {
+    e.preventDefault();
+    let toggleSort = this.state.sorting.Name == "" ? "ASC" : "DESC";
+    this.setState({ sorting: { Name: toggleSort } });
+    console.log(this.state.sorting);
+    this.props.dispatch(sortingByName(e.target.id, toggleSort));
   }
 
   render() {
@@ -69,7 +79,6 @@ class SchoolsContainer extends React.Component {
         <SchoolModal SchoolID={this.state.SchoolID} onClose={this.closeModal} />
       );
     }
-    console.log(modal);
     return (
       <div>
         <div className="container">
@@ -81,9 +90,21 @@ class SchoolsContainer extends React.Component {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Decile</th>
+                <th>
+                  <a href="#" id="Name" onClick={this.sortBy.bind(this)}>
+                    Name
+                  </a>
+                </th>
+                <th>
+                  <a href="#" id="City" onClick={this.sortBy.bind(this)}>
+                    City
+                  </a>
+                </th>
+                <th>
+                  <a href="#" id="Decile" onClick={this.sortBy.bind(this)}>
+                    Decile
+                  </a>
+                </th>
               </tr>
             </thead>
             <tbody>
