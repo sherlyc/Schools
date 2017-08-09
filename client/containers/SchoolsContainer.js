@@ -5,19 +5,19 @@ import SchoolModal from "../components/Modal";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
+import { sortingByName } from "../actions/sorting";
 
 class SchoolsContainer extends React.Component {
   constructor() {
     super();
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
 
     this.state = {
       schools: [],
       pageOfItems: []
     };
-
-    this.onChangePage = this.onChangePage.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +58,11 @@ class SchoolsContainer extends React.Component {
     this.setState({ pageOfItems: pageOfItems });
   }
 
+  sortByName(e) {
+    e.preventDefault();
+    this.props.dispatch(sortingByName());
+  }
+
   render() {
     let modal = null;
     var showModal = this.state.showModal;
@@ -66,7 +71,6 @@ class SchoolsContainer extends React.Component {
         <SchoolModal SchoolID={this.state.SchoolID} onClose={this.closeModal} />
       );
     }
-    console.log(modal);
     return (
       <div>
         <div className="container">
@@ -78,7 +82,11 @@ class SchoolsContainer extends React.Component {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>
+                  <a href="#" onClick={this.sortByName.bind(this)}>
+                    Name
+                  </a>
+                </th>
                 <th>City</th>
                 <th>Decile</th>
               </tr>

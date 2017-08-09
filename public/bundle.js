@@ -25554,6 +25554,8 @@ var _reactRedux = __webpack_require__(25);
 
 var _actions = __webpack_require__(62);
 
+var _sorting = __webpack_require__(782);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25572,13 +25574,12 @@ var SchoolsContainer = function (_React$Component) {
 
     _this.openModal = _this.openModal.bind(_this);
     _this.closeModal = _this.closeModal.bind(_this);
+    _this.onChangePage = _this.onChangePage.bind(_this);
 
     _this.state = {
       schools: [],
       pageOfItems: []
     };
-
-    _this.onChangePage = _this.onChangePage.bind(_this);
     return _this;
   }
 
@@ -25627,6 +25628,12 @@ var SchoolsContainer = function (_React$Component) {
       this.setState({ pageOfItems: pageOfItems });
     }
   }, {
+    key: "sortByName",
+    value: function sortByName(e) {
+      e.preventDefault();
+      this.props.dispatch((0, _sorting.sortingByName)());
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -25636,7 +25643,6 @@ var SchoolsContainer = function (_React$Component) {
       if (showModal) {
         modal = _react2.default.createElement(_Modal2.default, { SchoolID: this.state.SchoolID, onClose: this.closeModal });
       }
-      console.log(modal);
       return _react2.default.createElement(
         "div",
         null,
@@ -25670,7 +25676,11 @@ var SchoolsContainer = function (_React$Component) {
                 _react2.default.createElement(
                   "th",
                   null,
-                  "Name"
+                  _react2.default.createElement(
+                    "a",
+                    { href: "#", onClick: this.sortByName.bind(this) },
+                    "Name"
+                  )
                 ),
                 _react2.default.createElement(
                   "th",
@@ -25862,9 +25872,18 @@ function schoolsResults() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
 
+  console.log("state");
+  console.log(state["100"]);
   switch (action.type) {
     case "RECEIVE_SCHOOLS":
       return [].concat(_toConsumableArray(action.schoolsResults));
+
+    case "SORT_SCHOOLS_NAME":
+      return [].concat(_toConsumableArray(state.sort(function (a, b) {
+        if (a.Name < b.Name) return -1;
+        if (a.Name > b.Name) return 1;
+        return 0;
+      })));
 
     default:
       return state;
@@ -64531,6 +64550,22 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 782 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var sortingByName = exports.sortingByName = function sortingByName() {
+  return {
+    type: "SORT_SCHOOLS_NAME"
+  };
+};
 
 /***/ })
 /******/ ]);
