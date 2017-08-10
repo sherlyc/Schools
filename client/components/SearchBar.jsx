@@ -18,7 +18,6 @@ export default class SearchBar extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state.filter);
     this.props.filter(this.state.filter);
   }
 

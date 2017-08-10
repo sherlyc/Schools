@@ -16,7 +16,6 @@ function schoolsResults(
       };
 
     case "SORT_SCHOOLS": {
-      console.log(action);
       return {
         ...state,
         schoolsResults: [

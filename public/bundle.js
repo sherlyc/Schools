@@ -24818,8 +24818,6 @@ var sorting = exports.sorting = function sorting(sortField, sortOrder) {
 };
 
 var filtering = exports.filtering = function filtering(filter) {
-  console.log("filtering");
-  console.log(filter);
   return {
     type: "FILTER_SCHOOLS",
     filter: filter
@@ -26210,7 +26208,6 @@ var SearchBar = function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      console.log(this.state.filter);
       this.props.filter(this.state.filter);
     }
   }, {
@@ -26795,7 +26792,6 @@ function schoolsResults() {
 
     case "SORT_SCHOOLS":
       {
-        console.log(action);
         return _extends({}, state, {
           schoolsResults: [].concat(_toConsumableArray(state.originalResults.sort((0, _utilities.sortBy)(action.sortField, action.sortOrder))))
         });
