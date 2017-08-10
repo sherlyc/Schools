@@ -34,6 +34,7 @@ class SchoolsContainer extends React.Component {
       return {
         id: school.ID,
         name: school.Name,
+        type: school.School_Type,
         city: school.City,
         decile: school.Decile
       };
@@ -96,6 +97,11 @@ class SchoolsContainer extends React.Component {
                   </a>
                 </th>
                 <th>
+                  <a href="#" id="School_Type" onClick={this.sortBy.bind(this)}>
+                    Type
+                  </a>
+                </th>
+                <th>
                   <a href="#" id="City" onClick={this.sortBy.bind(this)}>
                     City
                   </a>
@@ -117,6 +123,9 @@ class SchoolsContainer extends React.Component {
                     <a href="#" id={item.id} onClick={this.openModal}>
                       {item.name}
                     </a>
+                  </td>
+                  <td>
+                    {item.type}
                   </td>
                   <td>
                     {item.city}

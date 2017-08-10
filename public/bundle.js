@@ -26342,6 +26342,7 @@ var SchoolsContainer = function (_React$Component) {
         return {
           id: school.ID,
           name: school.Name,
+          type: school.School_Type,
           city: school.City,
           decile: school.Decile
         };
@@ -26437,6 +26438,15 @@ var SchoolsContainer = function (_React$Component) {
                   null,
                   _react2.default.createElement(
                     "a",
+                    { href: "#", id: "School_Type", onClick: this.sortBy.bind(this) },
+                    "Type"
+                  )
+                ),
+                _react2.default.createElement(
+                  "th",
+                  null,
+                  _react2.default.createElement(
+                    "a",
                     { href: "#", id: "City", onClick: this.sortBy.bind(this) },
                     "City"
                   )
@@ -26472,6 +26482,11 @@ var SchoolsContainer = function (_React$Component) {
                       { href: "#", id: item.id, onClick: _this2.openModal },
                       item.name
                     )
+                  ),
+                  _react2.default.createElement(
+                    "td",
+                    null,
+                    item.type
                   ),
                   _react2.default.createElement(
                     "td",
