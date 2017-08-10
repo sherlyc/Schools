@@ -119,14 +119,10 @@ input[type=submit]:hover {
 .btn-info {
   margin-top: 0.6em;
 }
-.mapWrapper {
-  position: relative;
-  padding-bottom: 75%;
-  height: 0;
-  overflow: hidden;
-}
+
 .googleMap {
-  position: absolute;
-  width: "300";
-  height: "300";
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
 }
