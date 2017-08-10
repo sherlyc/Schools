@@ -19,7 +19,7 @@ function schoolsResults(
       return {
         ...state,
         schoolsResults: [
-          ...state.originalResults.sort(
+          ...state.schoolsResults.sort(
             sortBy(action.sortField, action.sortOrder)
           )
         ]
@@ -30,9 +30,7 @@ function schoolsResults(
       return {
         ...state,
         schoolsResults: [
-          ...state.originalResults.filter(
-            school => school.City == action.filter.city
-          )
+          ...state.originalResults.filter(filterBy(action.filter))
         ]
       };
     }

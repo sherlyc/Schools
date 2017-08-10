@@ -15,5 +15,12 @@ export const sortBy = (field, sortOrder) => {
 };
 
 export const filterBy = field => {
-  return function() {};
+  if (field.city != "" && field.type != "") {
+    return school =>
+      school.City == field.city && school.School_Type == field.type;
+  } else if (field.city) {
+    return school => school.City == field.city;
+  } else if (field.type) {
+    return school => school.School_Type == field.type;
+  }
 };

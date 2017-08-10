@@ -26192,7 +26192,7 @@ var SearchBar = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
 
     _this.state = {
-      filter: { city: "", age: "" }
+      filter: { city: "", type: "" }
     };
     return _this;
   }
@@ -26208,7 +26208,11 @@ var SearchBar = function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      this.props.filter(this.state.filter);
+      var filter = this.state.filter;
+      console.log(filter.city);
+      if (filter.city || filter.type) {
+        this.props.filter(filter);
+      }
     }
   }, {
     key: "render",
@@ -26218,7 +26222,30 @@ var SearchBar = function (_React$Component) {
         { className: "row" },
         _react2.default.createElement(
           "div",
-          { className: "col-xs-4" },
+          { className: "col-xs-3" },
+          _react2.default.createElement(
+            "div",
+            { className: "input-group" },
+            _react2.default.createElement("input", {
+              type: "text",
+              className: "form-control",
+              placeholder: "Look up a school",
+              id: "search"
+            }),
+            _react2.default.createElement(
+              "span",
+              { className: "input-group-btn" },
+              _react2.default.createElement(
+                "button",
+                { className: "btn btn-info", type: "button" },
+                _react2.default.createElement("span", { className: "glyphicon glyphicon-search" })
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "col-xs-3" },
           _react2.default.createElement(
             "select",
             {
@@ -26228,7 +26255,7 @@ var SearchBar = function (_React$Component) {
             },
             _react2.default.createElement(
               "option",
-              null,
+              { value: "" },
               "Select a City"
             ),
             _react2.default.createElement(
@@ -26256,115 +26283,75 @@ var SearchBar = function (_React$Component) {
         ),
         _react2.default.createElement(
           "div",
-          { className: "col-xs-4" },
+          { className: "col-xs-3" },
           _react2.default.createElement(
             "select",
             {
               className: "form-control",
-              id: "age",
+              id: "type",
               onChange: this.handleChange.bind(this)
             },
             _react2.default.createElement(
               "option",
-              null,
-              "Attending Age"
+              { value: "" },
+              "School Type"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "Preschool"
+              "Contributing"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "5"
+              "Full Primary"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "6"
+              "Intermediate"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "7"
+              "Restricted Composite (Year 7-10)"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "8"
+              "Secondary (Year 11-15)"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "9"
+              "Secondary (Year 7-10)"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "10"
+              "Secondary (Year 9-15)"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "11"
+              "Special School"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "12"
+              "Teen Parent Unit"
             ),
             _react2.default.createElement(
               "option",
               null,
-              "13"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "14"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "15"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "16"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "17"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "18"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "19"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "20"
-            ),
-            _react2.default.createElement(
-              "option",
-              null,
-              "21"
+              "Correspondence School"
             )
           ),
           " "
         ),
         _react2.default.createElement(
           "div",
-          { className: "col-xs-4" },
+          { className: "col-xs-3" },
           _react2.default.createElement(
             "button",
             {
@@ -26793,16 +26780,14 @@ function schoolsResults() {
     case "SORT_SCHOOLS":
       {
         return _extends({}, state, {
-          schoolsResults: [].concat(_toConsumableArray(state.originalResults.sort((0, _utilities.sortBy)(action.sortField, action.sortOrder))))
+          schoolsResults: [].concat(_toConsumableArray(state.schoolsResults.sort((0, _utilities.sortBy)(action.sortField, action.sortOrder))))
         });
       }
 
     case "FILTER_SCHOOLS":
       {
         return _extends({}, state, {
-          schoolsResults: [].concat(_toConsumableArray(state.originalResults.filter(function (school) {
-            return school.City == action.filter.city;
-          })))
+          schoolsResults: [].concat(_toConsumableArray(state.originalResults.filter((0, _utilities.filterBy)(action.filter))))
         });
       }
 
@@ -73339,7 +73324,19 @@ var sortBy = exports.sortBy = function sortBy(field, sortOrder) {
 };
 
 var filterBy = exports.filterBy = function filterBy(field) {
-  return function () {};
+  if (field.city != "" && field.type != "") {
+    return function (school) {
+      return school.City == field.city && school.School_Type == field.type;
+    };
+  } else if (field.city) {
+    return function (school) {
+      return school.City == field.city;
+    };
+  } else if (field.type) {
+    return function (school) {
+      return school.School_Type == field.type;
+    };
+  }
 };
 
 /***/ })
