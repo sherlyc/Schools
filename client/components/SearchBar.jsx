@@ -33,7 +33,7 @@ export default class SearchBar extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-xs-3">
+        <div className="col-xs-5">
           <div className="input-group">
             <input
               type="text"
@@ -86,7 +86,7 @@ export default class SearchBar extends React.Component {
             <option>Correspondence School</option>
           </select>{" "}
         </div>
-        <div className="col-xs-3">
+        <div className="col-xs-1">
           <button
             className="btn btn-info"
             type="button"
