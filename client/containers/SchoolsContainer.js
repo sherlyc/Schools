@@ -5,19 +5,24 @@ import SchoolModal from "../components/Modal";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
+import { sorting, filtering, search } from "../actions/sorting";
 
 class SchoolsContainer extends React.Component {
   constructor() {
     super();
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
 
     this.state = {
       schools: [],
-      pageOfItems: []
+      pageOfItems: [],
+      sorting: {
+        Name: "",
+        City: "",
+        Decile: ""
+      }
     };
-
-    this.onChangePage = this.onChangePage.bind(this);
   }
 
   componentDidMount() {
@@ -25,10 +30,12 @@ class SchoolsContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const schoolsList = nextProps.schoolsResults.map((school, i) => {
+    const result = nextProps.schoolsResults.schoolsResults;
+    const schoolsList = result.map((school, i) => {
       return {
         id: school.ID,
         name: school.Name,
+        type: school.School_Type,
         city: school.City,
         decile: school.Decile
       };
@@ -36,22 +43,19 @@ class SchoolsContainer extends React.Component {
 
     this.setState({
       schools: schoolsList,
-      schoolsResults: nextProps.schoolsResults
+      schoolsResults: result
     });
   }
 
   openModal(e) {
     e.preventDefault();
-    console.log("Open modal");
     this.setState({
       showModal: true,
       SchoolID: e.target.id
     });
-    console.log(this.state.showModal);
   }
 
   closeModal() {
-    console.log("close modal triggered");
     this.setState({
       showModal: false
     });
@@ -59,6 +63,22 @@ class SchoolsContainer extends React.Component {
   onChangePage(pageOfItems) {
     // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
+  }
+
+  sortBy(e) {
+    e.preventDefault();
+    let sortField = e.target.id;
+    let toggleSort = this.state.sorting[sortField] == "" ? "ASC" : "";
+    this.setState({ sorting: { [sortField]: toggleSort } });
+    this.props.dispatch(sorting(sortField, toggleSort));
+  }
+
+  filterBy(e) {
+    this.props.dispatch(filtering(e));
+  }
+
+  search(e) {
+    this.props.dispatch(search(e));
   }
 
   render() {
@@ -69,21 +89,40 @@ class SchoolsContainer extends React.Component {
         <SchoolModal SchoolID={this.state.SchoolID} onClose={this.closeModal} />
       );
     }
-    console.log(modal);
     return (
       <div>
         <div className="container">
           <div className="text-center">
             <h1>List of Schools in New Zealand</h1>
           </div>
-          <SearchBar />
+          <SearchBar
+            search={this.search.bind(this)}
+            filter={this.filterBy.bind(this)}
+          />
           <table className="table table-hover">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Decile</th>
+                <th>
+                  <a href="#" id="Name" onClick={this.sortBy.bind(this)}>
+                    Name
+                  </a>
+                </th>
+                <th>
+                  <a href="#" id="School_Type" onClick={this.sortBy.bind(this)}>
+                    Type
+                  </a>
+                </th>
+                <th>
+                  <a href="#" id="City" onClick={this.sortBy.bind(this)}>
+                    City
+                  </a>
+                </th>
+                <th>
+                  <a href="#" id="Decile" onClick={this.sortBy.bind(this)}>
+                    Decile
+                  </a>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -96,6 +135,9 @@ class SchoolsContainer extends React.Component {
                     <a href="#" id={item.id} onClick={this.openModal}>
                       {item.name}
                     </a>
+                  </td>
+                  <td>
+                    {item.type}
                   </td>
                   <td>
                     {item.city}
