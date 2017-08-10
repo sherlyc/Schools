@@ -4,7 +4,7 @@ export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: { city: "", type: "" }
+      filter: { name: "", city: "", type: "" }
     };
   }
   handleChange(e) {
@@ -17,9 +17,14 @@ export default class SearchBar extends React.Component {
     });
   }
 
-  handleSubmit(e) {
+  handleSearch(e) {
     const filter = this.state.filter;
-    console.log(filter.city);
+    this.props.search(filter.name);
+  }
+
+  handleFilter(e) {
+    const filter = this.state.filter;
+
     if (filter.city || filter.type) {
       this.props.filter(filter);
     }
@@ -34,10 +39,16 @@ export default class SearchBar extends React.Component {
               type="text"
               className="form-control"
               placeholder="Look up a school"
-              id="search"
+              id="name"
+              onChange={this.handleChange.bind(this)}
             />
             <span className="input-group-btn">
-              <button className="btn btn-info" type="button">
+              <button
+                className="btn btn-info"
+                id="btnSearch"
+                type="button"
+                onClick={this.handleSearch.bind(this)}
+              >
                 <span className="glyphicon glyphicon-search" />
               </button>
             </span>
@@ -79,7 +90,7 @@ export default class SearchBar extends React.Component {
           <button
             className="btn btn-info"
             type="button"
-            onClick={this.handleSubmit.bind(this)}
+            onClick={this.handleFilter.bind(this)}
           >
             <span className="glyphicon glyphicon-search" />
           </button>

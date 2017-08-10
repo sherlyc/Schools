@@ -14,6 +14,16 @@ export const sortBy = (field, sortOrder) => {
   }
 };
 
+export const search = name => {
+  console.log(name);
+  if (name != "") {
+    console.log(name);
+    let schoolName = name.toLowerCase();
+    console.log(schoolName);
+    return school => school.Name.toLowerCase().search(schoolName) == 0;
+  }
+};
+
 export const filterBy = field => {
   if (field.city != "" && field.type != "") {
     return school =>

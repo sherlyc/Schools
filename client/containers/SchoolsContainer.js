@@ -5,7 +5,7 @@ import SchoolModal from "../components/Modal";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
-import { sorting, filtering } from "../actions/sorting";
+import { sorting, filtering, search } from "../actions/sorting";
 
 class SchoolsContainer extends React.Component {
   constructor() {
@@ -77,6 +77,10 @@ class SchoolsContainer extends React.Component {
     this.props.dispatch(filtering(e));
   }
 
+  search(e) {
+    this.props.dispatch(search(e));
+  }
+
   render() {
     let modal = null;
     var showModal = this.state.showModal;
@@ -91,7 +95,10 @@ class SchoolsContainer extends React.Component {
           <div className="text-center">
             <h1>List of Schools in New Zealand</h1>
           </div>
-          <SearchBar filter={this.filterBy.bind(this)} />
+          <SearchBar
+            search={this.search.bind(this)}
+            filter={this.filterBy.bind(this)}
+          />
           <table className="table table-hover">
             <thead>
               <tr>

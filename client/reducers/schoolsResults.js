@@ -1,4 +1,4 @@
-import { sortBy, filterBy } from "../helpers/utilities";
+import { sortBy, filterBy, search } from "../helpers/utilities";
 
 function schoolsResults(
   state = {
@@ -25,7 +25,21 @@ function schoolsResults(
         ]
       };
     }
-
+    case "SEARCH_SCHOOLS": {
+      if (action.search != "") {
+        return {
+          ...state,
+          schoolsResults: [
+            ...state.originalResults.filter(search(action.search))
+          ]
+        };
+      } else {
+        return {
+          ...state,
+          schoolsResults: [...state.originalResults]
+        };
+      }
+    }
     case "FILTER_SCHOOLS": {
       return {
         ...state,

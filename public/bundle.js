@@ -24824,6 +24824,13 @@ var filtering = exports.filtering = function filtering(filter) {
   };
 };
 
+var search = exports.search = function search(_search) {
+  return {
+    type: "SEARCH_SCHOOLS",
+    search: _search
+  };
+};
+
 /***/ }),
 /* 353 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -26192,7 +26199,7 @@ var SearchBar = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
 
     _this.state = {
-      filter: { city: "", type: "" }
+      filter: { name: "", city: "", type: "" }
     };
     return _this;
   }
@@ -26206,10 +26213,16 @@ var SearchBar = function (_React$Component) {
       });
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
+    key: "handleSearch",
+    value: function handleSearch(e) {
       var filter = this.state.filter;
-      console.log(filter.city);
+      this.props.search(filter.name);
+    }
+  }, {
+    key: "handleFilter",
+    value: function handleFilter(e) {
+      var filter = this.state.filter;
+
       if (filter.city || filter.type) {
         this.props.filter(filter);
       }
@@ -26230,14 +26243,20 @@ var SearchBar = function (_React$Component) {
               type: "text",
               className: "form-control",
               placeholder: "Look up a school",
-              id: "search"
+              id: "name",
+              onChange: this.handleChange.bind(this)
             }),
             _react2.default.createElement(
               "span",
               { className: "input-group-btn" },
               _react2.default.createElement(
                 "button",
-                { className: "btn btn-info", type: "button" },
+                {
+                  className: "btn btn-info",
+                  id: "btnSearch",
+                  type: "button",
+                  onClick: this.handleSearch.bind(this)
+                },
                 _react2.default.createElement("span", { className: "glyphicon glyphicon-search" })
               )
             )
@@ -26357,7 +26376,7 @@ var SearchBar = function (_React$Component) {
             {
               className: "btn btn-info",
               type: "button",
-              onClick: this.handleSubmit.bind(this)
+              onClick: this.handleFilter.bind(this)
             },
             _react2.default.createElement("span", { className: "glyphicon glyphicon-search" })
           )
@@ -26503,6 +26522,11 @@ var SchoolsContainer = function (_React$Component) {
       this.props.dispatch((0, _sorting2.filtering)(e));
     }
   }, {
+    key: "search",
+    value: function search(e) {
+      this.props.dispatch((0, _sorting2.search)(e));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -26527,7 +26551,10 @@ var SchoolsContainer = function (_React$Component) {
               "List of Schools in New Zealand"
             )
           ),
-          _react2.default.createElement(_SearchBar2.default, { filter: this.filterBy.bind(this) }),
+          _react2.default.createElement(_SearchBar2.default, {
+            search: this.search.bind(this),
+            filter: this.filterBy.bind(this)
+          }),
           _react2.default.createElement(
             "table",
             { className: "table table-hover" },
@@ -26783,7 +26810,18 @@ function schoolsResults() {
           schoolsResults: [].concat(_toConsumableArray(state.schoolsResults.sort((0, _utilities.sortBy)(action.sortField, action.sortOrder))))
         });
       }
-
+    case "SEARCH_SCHOOLS":
+      {
+        if (action.search != "") {
+          return _extends({}, state, {
+            schoolsResults: [].concat(_toConsumableArray(state.originalResults.filter((0, _utilities.search)(action.search))))
+          });
+        } else {
+          return _extends({}, state, {
+            schoolsResults: [].concat(_toConsumableArray(state.originalResults))
+          });
+        }
+      }
     case "FILTER_SCHOOLS":
       {
         return _extends({}, state, {
@@ -73319,6 +73357,18 @@ var sortBy = exports.sortBy = function sortBy(field, sortOrder) {
       if (a[field] > b[field]) return -1;
       if (a[field] < b[field]) return 1;
       return 0;
+    };
+  }
+};
+
+var search = exports.search = function search(name) {
+  console.log(name);
+  if (name != "") {
+    console.log(name);
+    var schoolName = name.toLowerCase();
+    console.log(schoolName);
+    return function (school) {
+      return school.Name.toLowerCase().search(schoolName) == 0;
     };
   }
 };

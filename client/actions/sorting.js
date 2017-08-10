@@ -12,3 +12,10 @@ export const filtering = filter => {
     filter
   };
 };
+
+export const search = search => {
+  return {
+    type: "SEARCH_SCHOOLS",
+    search
+  };
+};
