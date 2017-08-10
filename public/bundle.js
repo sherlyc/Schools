@@ -25586,7 +25586,7 @@ var GMap = function (_React$Component) {
     value: function loadMap(center) {
       this.map = new google.maps.Map(this.refs.map, {
         center: center,
-        zoom: 17
+        zoom: 15
       });
 
       this.marker = new google.maps.Marker({
@@ -25605,7 +25605,7 @@ var GMap = function (_React$Component) {
 
       return _react2.default.createElement(
         "div",
-        { className: "mapWrapper" },
+        null,
         _react2.default.createElement(
           "div",
           { className: "googleMap", ref: "map", style: mapStyle },
@@ -26053,7 +26053,7 @@ var SchoolProfile = function (_React$Component) {
           null,
           _react2.default.createElement(
             _reactBootstrap.Col,
-            { xs: 12, md: 6 },
+            { md: 6 },
             _react2.default.createElement(
               _reactBootstrap.ListGroup,
               null,
@@ -26133,7 +26133,7 @@ var SchoolProfile = function (_React$Component) {
           ),
           _react2.default.createElement(
             _reactBootstrap.Col,
-            { xs: 6, md: 6 },
+            { md: 6 },
             _react2.default.createElement(_GMap2.default, {
               center: _this.coordinateCheck(school.Latitude, school.Longitude)
             })
@@ -26142,7 +26142,6 @@ var SchoolProfile = function (_React$Component) {
       );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
-
   //combine street, suburb and city to form address
 
 
@@ -31826,6 +31825,116 @@ var Label = function (_React$Component) {
 
 /***/ }),
 /* 417 */
+<<<<<<< HEAD
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_prop_types_extra_lib_elementType__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_prop_types_extra_lib_elementType___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_prop_types_extra_lib_elementType__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ListGroupItem__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_ValidComponentChildren__ = __webpack_require__(21);
+
+
+
+
+
+
+
+
+
+
+
+
+
+var propTypes = {
+  /**
+   * You can use a custom element type for this component.
+   *
+   * If not specified, it will be treated as `'li'` if every child is a
+   * non-actionable `<ListGroupItem>`, and `'div'` otherwise.
+   */
+  componentClass: __WEBPACK_IMPORTED_MODULE_7_prop_types_extra_lib_elementType___default.a
+};
+
+function getDefaultComponent(children) {
+  if (!children) {
+    // FIXME: This is the old behavior. Is this right?
+    return 'div';
+  }
+
+  if (__WEBPACK_IMPORTED_MODULE_10__utils_ValidComponentChildren__["a" /* default */].some(children, function (child) {
+    return child.type !== __WEBPACK_IMPORTED_MODULE_8__ListGroupItem__["a" /* default */] || child.props.href || child.props.onClick;
+  })) {
+    return 'div';
+  }
+
+  return 'ul';
+}
+
+var ListGroup = function (_React$Component) {
+  __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(ListGroup, _React$Component);
+
+  function ListGroup() {
+    __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default()(this, ListGroup);
+
+    return __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, _React$Component.apply(this, arguments));
+  }
+
+  ListGroup.prototype.render = function render() {
+    var _props = this.props,
+        children = _props.children,
+        _props$componentClass = _props.componentClass,
+        Component = _props$componentClass === undefined ? getDefaultComponent(children) : _props$componentClass,
+        className = _props.className,
+        props = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties___default()(_props, ['children', 'componentClass', 'className']);
+
+    var _splitBsProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__["splitBsProps"])(props),
+        bsProps = _splitBsProps[0],
+        elementProps = _splitBsProps[1];
+
+    var classes = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__["getClassSet"])(bsProps);
+
+    var useListItem = Component === 'ul' && __WEBPACK_IMPORTED_MODULE_10__utils_ValidComponentChildren__["a" /* default */].every(children, function (child) {
+      return child.type === __WEBPACK_IMPORTED_MODULE_8__ListGroupItem__["a" /* default */];
+    });
+
+    return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+      Component,
+      __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, elementProps, {
+        className: __WEBPACK_IMPORTED_MODULE_5_classnames___default()(className, classes)
+      }),
+      useListItem ? __WEBPACK_IMPORTED_MODULE_10__utils_ValidComponentChildren__["a" /* default */].map(children, function (child) {
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_react__["cloneElement"])(child, { listItem: true });
+      }) : children
+    );
+  };
+
+  return ListGroup;
+}(__WEBPACK_IMPORTED_MODULE_6_react___default.a.Component);
+
+ListGroup.propTypes = propTypes;
+
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__["bsClass"])('list-group', ListGroup));
+
+/***/ }),
+/* 418 */
+=======
+>>>>>>> 31f20b430e63d1480cdb26d971db8193ce3bcb4f
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
