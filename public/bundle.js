@@ -25789,7 +25789,7 @@ var Pagination = function (_React$Component) {
       var items = this.props.items;
       var pager = this.state.pager;
 
-      if (page < 1 || page > pager.totalPages) {
+      if (page < 1) {
         return;
       }
 
@@ -73362,11 +73362,8 @@ var sortBy = exports.sortBy = function sortBy(field, sortOrder) {
 };
 
 var search = exports.search = function search(name) {
-  console.log(name);
   if (name != "") {
-    console.log(name);
     var schoolName = name.toLowerCase();
-    console.log(schoolName);
     return function (school) {
       return school.Name.toLowerCase().search(schoolName) == 0;
     };
