@@ -24809,11 +24809,20 @@ exports['default'] = thunk;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var sortingByName = exports.sortingByName = function sortingByName(sortField, sortOrder) {
+var sorting = exports.sorting = function sorting(sortField, sortOrder) {
   return {
     type: "SORT_SCHOOLS",
-    sortOrder: sortOrder,
-    sortField: sortField
+    sortField: sortField,
+    sortOrder: sortOrder
+  };
+};
+
+var filtering = exports.filtering = function filtering(filter) {
+  console.log("filtering");
+  console.log(filter);
+  return {
+    type: "FILTER_SCHOOLS",
+    filter: filter
   };
 };
 
@@ -26158,104 +26167,223 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SearchBar = function SearchBar() {
-  return _react2.default.createElement(
-    "div",
-    { className: "row" },
-    _react2.default.createElement(
-      "div",
-      { className: "col-xs-6" },
-      _react2.default.createElement(
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchBar = function (_React$Component) {
+  _inherits(SearchBar, _React$Component);
+
+  function SearchBar(props) {
+    _classCallCheck(this, SearchBar);
+
+    var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+    _this.state = {
+      filter: { city: "", age: "" }
+    };
+    return _this;
+  }
+
+  _createClass(SearchBar, [{
+    key: "handleChange",
+    value: function handleChange(e) {
+      var field = e.target.id;
+      this.setState({
+        filter: _extends({}, this.state.filter, _defineProperty({}, field, e.target.value))
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      console.log(this.state.filter);
+      this.props.filter(this.state.filter);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
         "div",
-        { className: "input-group" },
-        _react2.default.createElement("input", {
-          type: "text",
-          className: "form-control",
-          placeholder: "Look up a school",
-          id: "search"
-        }),
+        { className: "row" },
         _react2.default.createElement(
-          "span",
-          { className: "input-group-btn" },
+          "div",
+          { className: "col-xs-4" },
+          _react2.default.createElement(
+            "select",
+            {
+              className: "form-control",
+              id: "city",
+              onChange: this.handleChange.bind(this)
+            },
+            _react2.default.createElement(
+              "option",
+              null,
+              "Select a City"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "Auckland"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "Wellington"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "Christchurch"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "Hamilton"
+            )
+          ),
+          " "
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "col-xs-4" },
+          _react2.default.createElement(
+            "select",
+            {
+              className: "form-control",
+              id: "age",
+              onChange: this.handleChange.bind(this)
+            },
+            _react2.default.createElement(
+              "option",
+              null,
+              "Attending Age"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "Preschool"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "5"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "6"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "7"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "8"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "9"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "10"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "11"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "12"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "13"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "14"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "15"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "16"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "17"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "18"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "19"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "20"
+            ),
+            _react2.default.createElement(
+              "option",
+              null,
+              "21"
+            )
+          ),
+          " "
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "col-xs-4" },
           _react2.default.createElement(
             "button",
-            { className: "btn btn-info", type: "button" },
+            {
+              className: "btn btn-info",
+              type: "button",
+              onClick: this.handleSubmit.bind(this)
+            },
             _react2.default.createElement("span", { className: "glyphicon glyphicon-search" })
           )
         )
-      )
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "col-xs-3" },
-      _react2.default.createElement(
-        "select",
-        { className: "form-control", id: "city" },
-        _react2.default.createElement(
-          "option",
-          null,
-          "Select a City"
-        ),
-        _react2.default.createElement(
-          "option",
-          null,
-          "Auckland"
-        ),
-        _react2.default.createElement(
-          "option",
-          null,
-          "Wellington"
-        ),
-        _react2.default.createElement(
-          "option",
-          null,
-          "Christchurch"
-        ),
-        _react2.default.createElement(
-          "option",
-          null,
-          "Hamilton"
-        )
-      ),
-      " "
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "col-xs-3" },
-      _react2.default.createElement(
-        "select",
-        { className: "form-control", id: "decile" },
-        _react2.default.createElement(
-          "option",
-          null,
-          "Filter by Decile"
-        ),
-        _react2.default.createElement(
-          "option",
-          null,
-          "Decile 9 and above"
-        ),
-        _react2.default.createElement(
-          "option",
-          null,
-          "Decile 7 to 8"
-        ),
-        _react2.default.createElement(
-          "option",
-          null,
-          "Decile 1 to 6"
-        )
-      ),
-      " "
-    )
-  );
-};
+      );
+    }
+  }]);
+
+  return SearchBar;
+}(_react2.default.Component);
 
 exports.default = SearchBar;
 
@@ -26338,7 +26466,8 @@ var SchoolsContainer = function (_React$Component) {
   }, {
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      var schoolsList = nextProps.schoolsResults.map(function (school, i) {
+      var result = nextProps.schoolsResults.schoolsResults;
+      var schoolsList = result.map(function (school, i) {
         return {
           id: school.ID,
           name: school.Name,
@@ -26350,7 +26479,7 @@ var SchoolsContainer = function (_React$Component) {
 
       this.setState({
         schools: schoolsList,
-        schoolsResults: nextProps.schoolsResults
+        schoolsResults: result
       });
     }
   }, {
@@ -26382,7 +26511,12 @@ var SchoolsContainer = function (_React$Component) {
       var sortField = e.target.id;
       var toggleSort = this.state.sorting[sortField] == "" ? "ASC" : "";
       this.setState({ sorting: _defineProperty({}, sortField, toggleSort) });
-      this.props.dispatch((0, _sorting2.sortingByName)(sortField, toggleSort));
+      this.props.dispatch((0, _sorting2.sorting)(sortField, toggleSort));
+    }
+  }, {
+    key: "filterBy",
+    value: function filterBy(e) {
+      this.props.dispatch((0, _sorting2.filtering)(e));
     }
   }, {
     key: "render",
@@ -26409,7 +26543,7 @@ var SchoolsContainer = function (_React$Component) {
               "List of Schools in New Zealand"
             )
           ),
-          _react2.default.createElement(_SearchBar2.default, null),
+          _react2.default.createElement(_SearchBar2.default, { filter: this.filterBy.bind(this) }),
           _react2.default.createElement(
             "table",
             { className: "table table-hover" },
@@ -26639,35 +26773,41 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _utilities = __webpack_require__(893);
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function sortBy(field, sortOrder) {
-  if (sortOrder == "ASC") {
-    return function (a, b) {
-      if (a[field] < b[field]) return -1;
-      if (a[field] > b[field]) return 1;
-      return 0;
-    };
-  } else {
-    return function (a, b) {
-      if (a[field] > b[field]) return -1;
-      if (a[field] < b[field]) return 1;
-      return 0;
-    };
-  }
-}
-
 function schoolsResults() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    originalResults: [],
+    schoolsResults: []
+  };
   var action = arguments[1];
 
   switch (action.type) {
     case "RECEIVE_SCHOOLS":
-      return [].concat(_toConsumableArray(action.schoolsResults));
+      return _extends({}, state, {
+        originalResults: [].concat(_toConsumableArray(action.schoolsResults)),
+        schoolsResults: [].concat(_toConsumableArray(action.schoolsResults))
+      });
 
     case "SORT_SCHOOLS":
       {
-        return [].concat(_toConsumableArray(state.sort(sortBy(action.sortField, action.sortOrder))));
+        console.log(action);
+        return _extends({}, state, {
+          schoolsResults: [].concat(_toConsumableArray(state.originalResults.sort((0, _utilities.sortBy)(action.sortField, action.sortOrder))))
+        });
+      }
+
+    case "FILTER_SCHOOLS":
+      {
+        return _extends({}, state, {
+          schoolsResults: [].concat(_toConsumableArray(state.originalResults.filter(function (school) {
+            return school.City == action.filter.city;
+          })))
+        });
       }
 
     default:
@@ -73175,6 +73315,36 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 893 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var sortBy = exports.sortBy = function sortBy(field, sortOrder) {
+  if (sortOrder == "ASC") {
+    return function (a, b) {
+      if (a[field] < b[field]) return -1;
+      if (a[field] > b[field]) return 1;
+      return 0;
+    };
+  } else {
+    return function (a, b) {
+      if (a[field] > b[field]) return -1;
+      if (a[field] < b[field]) return 1;
+      return 0;
+    };
+  }
+};
+
+var filterBy = exports.filterBy = function filterBy(field) {
+  return function () {};
+};
 
 /***/ })
 /******/ ]);

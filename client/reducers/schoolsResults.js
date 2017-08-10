@@ -1,26 +1,41 @@
-function sortBy(field, sortOrder) {
-  if (sortOrder == "ASC") {
-    return function(a, b) {
-      if (a[field] < b[field]) return -1;
-      if (a[field] > b[field]) return 1;
-      return 0;
-    };
-  } else {
-    return function(a, b) {
-      if (a[field] > b[field]) return -1;
-      if (a[field] < b[field]) return 1;
-      return 0;
-    };
-  }
-}
+import { sortBy, filterBy } from "../helpers/utilities";
 
-function schoolsResults(state = [], action) {
+function schoolsResults(
+  state = {
+    originalResults: [],
+    schoolsResults: []
+  },
+  action
+) {
   switch (action.type) {
     case "RECEIVE_SCHOOLS":
-      return [...action.schoolsResults];
+      return {
+        ...state,
+        originalResults: [...action.schoolsResults],
+        schoolsResults: [...action.schoolsResults]
+      };
 
     case "SORT_SCHOOLS": {
-      return [...state.sort(sortBy(action.sortField, action.sortOrder))];
+      console.log(action);
+      return {
+        ...state,
+        schoolsResults: [
+          ...state.originalResults.sort(
+            sortBy(action.sortField, action.sortOrder)
+          )
+        ]
+      };
+    }
+
+    case "FILTER_SCHOOLS": {
+      return {
+        ...state,
+        schoolsResults: [
+          ...state.originalResults.filter(
+            school => school.City == action.filter.city
+          )
+        ]
+      };
     }
 
     default:

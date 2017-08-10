@@ -1,7 +1,16 @@
-export const sortingByName = (sortField, sortOrder) => {
+export const sorting = (sortField, sortOrder) => {
   return {
     type: "SORT_SCHOOLS",
-    sortOrder,
-    sortField
+    sortField,
+    sortOrder
+  };
+};
+
+export const filtering = filter => {
+  console.log("filtering");
+  console.log(filter);
+  return {
+    type: "FILTER_SCHOOLS",
+    filter
   };
 };
