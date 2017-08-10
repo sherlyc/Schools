@@ -11,7 +11,7 @@ export default class GMap extends React.Component {
   loadMap(center) {
     this.map = new google.maps.Map(this.refs.map, {
       center: center,
-      zoom: 17
+      zoom: 15
     });
 
     this.marker = new google.maps.Marker({
@@ -28,7 +28,7 @@ export default class GMap extends React.Component {
     };
 
     return (
-      <div className="mapWrapper">
+      <div>
         <div className="googleMap" ref="map" style={mapStyle}>
           Map is not available.
         </div>

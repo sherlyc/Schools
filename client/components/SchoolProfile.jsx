@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default class SchoolProfile extends React.Component {
-
   //combine street, suburb and city to form address
   formatAddress = (street, suburb, city) => {
     let strStreet = street ? street : "";
@@ -46,7 +45,7 @@ export default class SchoolProfile extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={12} md={6}>
+          <Col md={6}>
             <ListGroup>
               <ListGroupItem>
                 School Type : {school.School_Type}
@@ -85,7 +84,7 @@ export default class SchoolProfile extends React.Component {
               </ListGroupItem>
             </ListGroup>
           </Col>
-          <Col xs={6} md={6}>
+          <Col md={6}>
             <GMap
               center={this.coordinateCheck(school.Latitude, school.Longitude)}
             />
