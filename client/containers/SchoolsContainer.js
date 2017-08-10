@@ -5,7 +5,7 @@ import SchoolModal from "../components/Modal";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
-import { sortingByName } from "../actions/sorting";
+import { sorting, filtering, search } from "../actions/sorting";
 
 class SchoolsContainer extends React.Component {
   constructor() {
@@ -30,10 +30,12 @@ class SchoolsContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const schoolsList = nextProps.schoolsResults.map((school, i) => {
+    const result = nextProps.schoolsResults.schoolsResults;
+    const schoolsList = result.map((school, i) => {
       return {
         id: school.ID,
         name: school.Name,
+        type: school.School_Type,
         city: school.City,
         decile: school.Decile
       };
@@ -41,7 +43,7 @@ class SchoolsContainer extends React.Component {
 
     this.setState({
       schools: schoolsList,
-      schoolsResults: nextProps.schoolsResults
+      schoolsResults: result
     });
   }
 
@@ -68,7 +70,15 @@ class SchoolsContainer extends React.Component {
     let sortField = e.target.id;
     let toggleSort = this.state.sorting[sortField] == "" ? "ASC" : "";
     this.setState({ sorting: { [sortField]: toggleSort } });
-    this.props.dispatch(sortingByName(sortField, toggleSort));
+    this.props.dispatch(sorting(sortField, toggleSort));
+  }
+
+  filterBy(e) {
+    this.props.dispatch(filtering(e));
+  }
+
+  search(e) {
+    this.props.dispatch(search(e));
   }
 
   render() {
@@ -85,7 +95,10 @@ class SchoolsContainer extends React.Component {
           <div className="text-center">
             <h1>List of Schools in New Zealand</h1>
           </div>
-          <SearchBar />
+          <SearchBar
+            search={this.search.bind(this)}
+            filter={this.filterBy.bind(this)}
+          />
           <table className="table table-hover">
             <thead>
               <tr>
@@ -93,6 +106,11 @@ class SchoolsContainer extends React.Component {
                 <th>
                   <a href="#" id="Name" onClick={this.sortBy.bind(this)}>
                     Name
+                  </a>
+                </th>
+                <th>
+                  <a href="#" id="School_Type" onClick={this.sortBy.bind(this)}>
+                    Type
                   </a>
                 </th>
                 <th>
@@ -117,6 +135,9 @@ class SchoolsContainer extends React.Component {
                     <a href="#" id={item.id} onClick={this.openModal}>
                       {item.name}
                     </a>
+                  </td>
+                  <td>
+                    {item.type}
                   </td>
                   <td>
                     {item.city}

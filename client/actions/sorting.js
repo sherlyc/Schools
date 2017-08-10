@@ -1,7 +1,21 @@
-export const sortingByName = (sortField, sortOrder) => {
+export const sorting = (sortField, sortOrder) => {
   return {
     type: "SORT_SCHOOLS",
-    sortOrder,
-    sortField
+    sortField,
+    sortOrder
+  };
+};
+
+export const filtering = filter => {
+  return {
+    type: "FILTER_SCHOOLS",
+    filter
+  };
+};
+
+export const search = search => {
+  return {
+    type: "SEARCH_SCHOOLS",
+    search
   };
 };
