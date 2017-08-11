@@ -26418,8 +26418,6 @@ var _Modal = __webpack_require__(208);
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
-var _reactRouterDom = __webpack_require__(104);
-
 var _reactRedux = __webpack_require__(23);
 
 var _actions = __webpack_require__(67);

@@ -2,7 +2,6 @@ import React from "react";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import SchoolModal from "../components/Modal";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
 import { sorting, filtering, search } from "../actions/sorting";
