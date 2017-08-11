@@ -26444,10 +26444,6 @@ var SchoolsContainer = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (SchoolsContainer.__proto__ || Object.getPrototypeOf(SchoolsContainer)).call(this));
 
-    _this.openModal = _this.openModal.bind(_this);
-    _this.closeModal = _this.closeModal.bind(_this);
-    _this.onChangePage = _this.onChangePage.bind(_this);
-
     _this.state = {
       schools: [],
       pageOfItems: [],
@@ -26533,7 +26529,10 @@ var SchoolsContainer = function (_React$Component) {
       var modal = null;
       var showModal = this.state.showModal;
       if (showModal) {
-        modal = _react2.default.createElement(_Modal2.default, { SchoolID: this.state.SchoolID, onClose: this.closeModal });
+        modal = _react2.default.createElement(_Modal2.default, {
+          SchoolID: this.state.SchoolID,
+          onClose: this.closeModal.bind(this)
+        });
       }
       return _react2.default.createElement(
         "div",
@@ -26623,7 +26622,11 @@ var SchoolsContainer = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                       "a",
-                      { href: "#", id: item.id, onClick: _this2.openModal },
+                      {
+                        href: "#",
+                        id: item.id,
+                        onClick: _this2.openModal.bind(_this2)
+                      },
                       item.name
                     )
                   ),
@@ -26652,7 +26655,7 @@ var SchoolsContainer = function (_React$Component) {
             { className: "text-center" },
             _react2.default.createElement(_Pagination2.default, {
               items: this.state.schools,
-              onChangePage: this.onChangePage
+              onChangePage: this.onChangePage.bind(this)
             })
           )
         )

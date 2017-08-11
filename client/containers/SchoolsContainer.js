@@ -10,9 +10,6 @@ import { sorting, filtering, search } from "../actions/sorting";
 class SchoolsContainer extends React.Component {
   constructor() {
     super();
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.onChangePage = this.onChangePage.bind(this);
 
     this.state = {
       schools: [],
@@ -86,7 +83,10 @@ class SchoolsContainer extends React.Component {
     var showModal = this.state.showModal;
     if (showModal) {
       modal = (
-        <SchoolModal SchoolID={this.state.SchoolID} onClose={this.closeModal} />
+        <SchoolModal
+          SchoolID={this.state.SchoolID}
+          onClose={this.closeModal.bind(this)}
+        />
       );
     }
     return (
@@ -132,7 +132,11 @@ class SchoolsContainer extends React.Component {
                     {item.id}
                   </td>
                   <td>
-                    <a href="#" id={item.id} onClick={this.openModal}>
+                    <a
+                      href="#"
+                      id={item.id}
+                      onClick={this.openModal.bind(this)}
+                    >
                       {item.name}
                     </a>
                   </td>
@@ -153,7 +157,7 @@ class SchoolsContainer extends React.Component {
           <div className="text-center">
             <Pagination
               items={this.state.schools}
-              onChangePage={this.onChangePage}
+              onChangePage={this.onChangePage.bind(this)}
             />
           </div>
         </div>
