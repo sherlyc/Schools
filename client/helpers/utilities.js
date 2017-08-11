@@ -17,7 +17,7 @@ export const sortBy = (field, sortOrder) => {
 export const search = name => {
   if (name != "") {
     let schoolName = name.toLowerCase();
-    return school => school.Name.toLowerCase().search(schoolName) == 0;
+    return school => school.Name.toLowerCase().indexOf(schoolName) != -1;
   }
 };
 

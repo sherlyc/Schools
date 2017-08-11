@@ -26702,7 +26702,7 @@ var search = exports.search = function search(name) {
   if (name != "") {
     var schoolName = name.toLowerCase();
     return function (school) {
-      return school.Name.toLowerCase().search(schoolName) == 0;
+      return school.Name.toLowerCase().indexOf(schoolName) != -1;
     };
   }
 };
