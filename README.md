@@ -43,6 +43,3 @@ open in your browser:  http://localhost:3000
 * user can view a list/links of properties available on trademe nearby the selected school.
 * a google map based navigation for user to search for schools
 
-## ER Diagram
-### v 1.0
-![alt text](/public/ER.png)
