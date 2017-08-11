@@ -26234,7 +26234,7 @@ var SearchBar = function (_React$Component) {
         { className: "row" },
         _react2.default.createElement(
           "div",
-          { className: "col-xs-3" },
+          { className: "col-xs-5" },
           _react2.default.createElement(
             "div",
             { className: "input-group" },
@@ -26369,7 +26369,7 @@ var SearchBar = function (_React$Component) {
         ),
         _react2.default.createElement(
           "div",
-          { className: "col-xs-3" },
+          { className: "col-xs-1" },
           _react2.default.createElement(
             "button",
             {
