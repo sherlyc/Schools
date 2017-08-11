@@ -126,3 +126,8 @@ input[type=submit]:hover {
   position: relative;
   height: 0;
 }
+
+.result-empty {
+  margin-top: 3em;
+  font-size: 1em;
+}

@@ -2,7 +2,6 @@ import React from "react";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import SchoolModal from "../components/Modal";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSchools } from "../actions";
 import { sorting, filtering, search } from "../actions/sorting";
@@ -10,9 +9,6 @@ import { sorting, filtering, search } from "../actions/sorting";
 class SchoolsContainer extends React.Component {
   constructor() {
     super();
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.onChangePage = this.onChangePage.bind(this);
 
     this.state = {
       schools: [],
@@ -86,7 +82,10 @@ class SchoolsContainer extends React.Component {
     var showModal = this.state.showModal;
     if (showModal) {
       modal = (
-        <SchoolModal SchoolID={this.state.SchoolID} onClose={this.closeModal} />
+        <SchoolModal
+          SchoolID={this.state.SchoolID}
+          onClose={this.closeModal.bind(this)}
+        />
       );
     }
     return (
@@ -99,62 +98,80 @@ class SchoolsContainer extends React.Component {
             search={this.search.bind(this)}
             filter={this.filterBy.bind(this)}
           />
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>
-                  <a href="#" id="Name" onClick={this.sortBy.bind(this)}>
-                    Name
-                  </a>
-                </th>
-                <th>
-                  <a href="#" id="School_Type" onClick={this.sortBy.bind(this)}>
-                    Type
-                  </a>
-                </th>
-                <th>
-                  <a href="#" id="City" onClick={this.sortBy.bind(this)}>
-                    City
-                  </a>
-                </th>
-                <th>
-                  <a href="#" id="Decile" onClick={this.sortBy.bind(this)}>
-                    Decile
-                  </a>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.pageOfItems.map(item =>
-                <tr key={item.id}>
-                  <td>
-                    {item.id}
-                  </td>
-                  <td>
-                    <a href="#" id={item.id} onClick={this.openModal}>
-                      {item.name}
-                    </a>
-                  </td>
-                  <td>
-                    {item.type}
-                  </td>
-                  <td>
-                    {item.city}
-                  </td>
-                  <td>
-                    {item.decile}
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+          {this.state.pageOfItems.length > 0
+            ? <div>
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>
+                        <a href="#" id="Name" onClick={this.sortBy.bind(this)}>
+                          Name
+                        </a>
+                      </th>
+                      <th>
+                        <a
+                          href="#"
+                          id="School_Type"
+                          onClick={this.sortBy.bind(this)}
+                        >
+                          Type
+                        </a>
+                      </th>
+                      <th>
+                        <a href="#" id="City" onClick={this.sortBy.bind(this)}>
+                          City
+                        </a>
+                      </th>
+                      <th>
+                        <a
+                          href="#"
+                          id="Decile"
+                          onClick={this.sortBy.bind(this)}
+                        >
+                          Decile
+                        </a>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.pageOfItems.map(item =>
+                      <tr key={item.id}>
+                        <td>
+                          {item.id}
+                        </td>
+                        <td>
+                          <a
+                            href="#"
+                            id={item.id}
+                            onClick={this.openModal.bind(this)}
+                          >
+                            {item.name}
+                          </a>
+                        </td>
+                        <td>
+                          {item.type}
+                        </td>
+                        <td>
+                          {item.city}
+                        </td>
+                        <td>
+                          {item.decile}
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            : <div className="result-empty text-center">
+                Sorry, no results found.
+              </div>}
           {modal}
           <div className="text-center">
             <Pagination
               items={this.state.schools}
-              onChangePage={this.onChangePage}
-            />
+              onChangePage={this.onChangePage.bind(this)}
+            />{" "}
           </div>
         </div>
       </div>
