@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/lib/Button";
 import Modal from "react-overlays/lib/Modal";
-import SchoolProfile from "../containers/ProfileContainer";
+import SchoolProfileContainer from "../containers/ProfileContainer";
 
 const modalStyle = {
   position: "fixed",
@@ -52,7 +52,7 @@ class SchoolModal extends React.Component {
           onHide={this.close}
         >
           <div style={dialogStyle()}>
-            <SchoolProfile schoolID={this.props.SchoolID} />
+            <SchoolProfileContainer schoolID={this.props.SchoolID} />
           </div>
         </Modal>
       </div>
