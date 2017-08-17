@@ -36,9 +36,8 @@ open in your browser:  http://localhost:3000
 
 ### User Stories
 
-* user can filter/sort the list by deciles, areas
-* user can search for a school by specifying names, areas
-* an administrator area to allow add/edit/delete/update school profile.
+* user can filter/sort the list by deciles/cities.
+* user can search for a school by specifying names/cities
 * user can add comments to a school profile.
 * user can view a list/links of properties available on trademe nearby the selected school.
 * a google map based navigation for user to search for schools
