@@ -13,7 +13,7 @@ export default class SchoolProfile extends React.Component {
     let strSuburb = suburb ? ", " + suburb : "";
     let strCity = city ? ", " + city : "";
 
-    return strStreet + strSuburb + strCity;
+    return strStreet + strSuburb + strCity + ".";
   };
 
   coordinateCheck = (lat, lng) => {
@@ -27,23 +27,58 @@ export default class SchoolProfile extends React.Component {
   render = () => {
     const school = this.props.school || {};
     return (
-      <Grid>
-        <Row>
-          <Col>
-            <h2>
+     <div>
+      <div className="profile__school-title">
+            <h2 className="main-title">
               {school.Name}
             </h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            {" "}{this.formatAddress(
-              school.Street,
-              school.Suburb,
-              school.City
-            )}{" "}
-          </Col>
-        </Row>
+            <p className="secondary-info">
+              {this.formatAddress(
+                school.Street,
+                school.Suburb,
+                school.City
+              )} Decile: { school.Decile } 
+            </p>
+      </div>
+      <div className="border-bottom"></div>
+      <div className="profile__school-details">
+              <ul className="profile__school-list">
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">School type</div>
+                  <div className="profile__school-list-value">{school.School_Type}</div>
+                </li>
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">Authority</div>
+                  <div className="profile__school-list-value">{school.Authority}</div>
+                </li>
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">Gender</div>
+                  <div className="profile__school-list-value">{school.Gender}</div>
+                </li>
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">School roll</div>
+                  <div className="profile__school-list-value">{school.School_Roll}</div>
+                </li>
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">Principal</div>
+                  <div className="profile__school-list-value">{school.Principal}</div>
+                </li>
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">Suburb</div>
+                  <div className="profile__school-list-value">{school.Suburb || 'N/A'}</div>
+                </li>
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">Email</div>
+                  <div className="profile__school-list-value">{school.Email}</div>
+                </li>
+                <li className="profile__school-list-item">
+                  <div className="profile__school-list-label">Website</div>
+                  <div className="profile__school-list-value">{school.School_Website || 'N/A'}</div>
+                </li>
+              </ul>
+      </div>
+
+      <Grid>
         <Row>
           <Col md={6}>
             <ListGroup>
@@ -91,6 +126,7 @@ export default class SchoolProfile extends React.Component {
           </Col>
         </Row>
       </Grid>
+    </div>
     );
   };
 }
